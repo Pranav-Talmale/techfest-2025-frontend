@@ -3,11 +3,11 @@ import { Sidebar, SidebarBody, SidebarLink } from "./Sidebar";
 import { links } from "./Links";
 import { Link, Outlet } from "react-router-dom";
 import {
-  IconBrandFacebook,
-  IconBrandInstagram,
-  IconBrandLinkedin,
-  IconBrandTwitter,
-} from "@tabler/icons-react";
+  Facebook,
+  Instagram as InstagramIcon,
+  Linkedin,
+  Twitter,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -38,28 +38,28 @@ export default function SidebarComponent() {
               link={{
                 label: "Facebook",
                 href: "https://facebook.com",
-                icon: <IconBrandFacebook className="h-6 w-6 text-blue-600" />,
+                icon: <Facebook className="h-6 w-6 text-blue-600" />,
               }}
             />
             <SidebarLink
               link={{
                 label: "Instagram",
                 href: "https://instagram.com",
-                icon: <IconBrandInstagram className="h-6 w-6 text-pink-500" />,
+                icon: <InstagramIcon className="h-6 w-6 text-pink-500" />,
               }}
             />
             <SidebarLink
               link={{
                 label: "LinkedIn",
                 href: "https://linkedin.com",
-                icon: <IconBrandLinkedin className="h-6 w-6 text-blue-700" />,
+                icon: <Linkedin className="h-6 w-6 text-blue-700" />,
               }}
             />
             <SidebarLink
               link={{
                 label: "Twitter",
                 href: "https://twitter.com",
-                icon: <IconBrandTwitter className="h-6 w-6 text-blue-400" />,
+                icon: <Twitter className="h-6 w-6 text-blue-400" />,
               }}
             />
           </div>

@@ -16,7 +16,7 @@ export default defineConfig({
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
           'three-vendor': ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing'],
-          'ui-vendor': ['@tabler/icons-react', 'clsx', 'tailwind-merge'],
+          'ui-vendor': ['lucide-react', 'clsx', 'tailwind-merge'],
         }
       }
     },
