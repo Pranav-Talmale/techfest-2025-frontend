@@ -1,5 +1,6 @@
 import Experience from "@/components/Spaceship/Experience";
 import LoadingScreen from "@/components/LoadingScreen";
+import Explore from "@/components/EventCards/ExploreComponent";
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       </div> */}
       <LoadingScreen />
       <Experience />
+      <Explore />
     </>
   );
 }
