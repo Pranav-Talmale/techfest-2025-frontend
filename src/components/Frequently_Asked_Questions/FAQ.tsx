@@ -3,33 +3,41 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const faqs = [
-  {
-    id: 1,
-    question: "When and where is TechFest 2025?",
-    answer: "TechFest 2025 will be held on March 1st - 2nd, 2025 at our campus. The event will run from 9 AM to 6 PM on both days."
-  },
-  {
-    id: 2,
-    question: "How can I register for events?",
-    answer: "You can register for individual events through our Events page. Each event has its own registration form and requirements."
-  },
-  {
-    id: 3,
-    question: "Is there a registration fee?",
-    answer: "Registration fees vary by event. Some events are free, while others have a nominal fee. Check individual event pages for details."
-  },
-  {
-    id: 4,
-    question: "Can I participate in multiple events?",
-    answer: "Yes! You can participate in multiple events as long as their schedules don't conflict. Make sure to check the event timings before registering."
-  },
-  {
-    id: 5,
-    question: "What should I bring to the event?",
-    answer: "Bring your student ID, registration confirmation, and any specific items required for your events. For technical events, you might need to bring your laptop."
+const faqData = {
+  title: "Frequently Asked Questions",
+  subtitle: "Everything you need to know about the event",
+  questions: [
+    {
+      id: 1,
+      question: "When and where is TechFest 2025?",
+      answer: "TechFest 2025 will be held on March 1st - 2nd, 2025 at our campus. The event will run from 9 AM to 6 PM on both days."
+    },
+    {
+      id: 2,
+      question: "How can I register for events?",
+      answer: "You can register for individual events through our Events page. Each event has its own registration form and requirements."
+    },
+    {
+      id: 3,
+      question: "Is there a registration fee?",
+      answer: "Registration fees vary by event. Some events are free, while others have a nominal fee. Check individual event pages for details."
+    },
+    {
+      id: 4,
+      question: "Can I participate in multiple events?",
+      answer: "Yes! You can participate in multiple events as long as their schedules don't conflict. Make sure to check the event timings before registering."
+    },
+    {
+      id: 5,
+      question: "What should I bring to the event?",
+      answer: "Bring your student ID, registration confirmation, and any specific items required for your events. For technical events, you might need to bring your laptop."
+    }
+  ],
+  cta: {
+    text: "Still have questions?",
+    linkText: "Contact our support team →"
   }
-];
+};
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,7 +95,7 @@ export function FAQ() {
             transition={{ duration: 0.5 }}
             className="text-3xl font-bold text-white mb-4"
           >
-            Frequently Asked Questions
+            {faqData.title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -95,13 +103,13 @@ export function FAQ() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-white/50"
           >
-            Everything you need to know about the event
+            {faqData.subtitle}
           </motion.p>
         </div>
 
         {/* FAQ List */}
         <div className="space-y-px">
-          {faqs.map((faq) => (
+          {faqData.questions.map((faq) => (
             <FAQItem 
               key={faq.id} 
               question={faq.question} 
@@ -118,13 +126,13 @@ export function FAQ() {
           className="mt-16 text-center"
         >
           <p className="text-white/50 mb-4">
-            Still have questions?
+            {faqData.cta.text}
           </p>
           <Link
             to="/contact"
             className="text-white hover:text-white/80 transition-colors"
           >
-            Contact our support team →
+            {faqData.cta.linkText}
           </Link>
         </motion.div>
       </div>

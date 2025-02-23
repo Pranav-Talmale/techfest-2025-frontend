@@ -49,10 +49,6 @@ const Spaceship = forwardRef<THREE.Group, SpaceshipProps>(({ turbo = 0 }, ref) =
     alphaFix(materials.spaceship_racer)
     alphaFix(materials.cockpit)
 
-    // Add emissive properties to cockpit
-    materials.cockpit.emissive = new THREE.Color(0xffa500) // Orange glow
-    materials.cockpit.emissiveIntensity = 2.5 // Base intensity
-
     // Cleanup on unmount
     return () => {
       beamTexture.dispose()
@@ -188,7 +184,7 @@ const Spaceship = forwardRef<THREE.Group, SpaceshipProps>(({ turbo = 0 }, ref) =
         <cylinderGeometry args={[70, 25, 1600, 15]} />
         <meshBasicMaterial
           transparent
-          color={[1, 0.4, 0.02]}
+          color={new THREE.Color('#260C73')}
           alphaMap={beamTexture}
           blending={THREE.CustomBlending}
           blendEquation={THREE.AddEquation}
@@ -202,7 +198,7 @@ const Spaceship = forwardRef<THREE.Group, SpaceshipProps>(({ turbo = 0 }, ref) =
       <mesh position={[750, -60, -1350]}>
         <sphereGeometry args={[50, 16, 16]} />
         <meshBasicMaterial
-          color={[1, 0.4, 0.02]}
+          color={new THREE.Color('#260C73')}
           transparent
           opacity={0.8}
           toneMapped={false}

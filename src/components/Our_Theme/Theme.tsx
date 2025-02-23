@@ -2,6 +2,25 @@
 import { motion } from "framer-motion";
 import { Rocket, Stars, Orbit } from "lucide-react";
 
+const themeData = {
+  title: "Space Odyssey",
+  subtitle: "Exploring the Final Frontier",
+  description: [
+    "The vast expanse of space is a cosmic wonder, filled with shimmering galaxies, distant stars, and endless mysteries. Nebulas glow like celestial paintings, while planets drift in silent orbits, bathed in the light of ancient suns.",
+    "Amidst the darkness, comets streak across the void, leaving trails of stardust in their wake. Space is a frontier of infinite possibilities, where the unknown invites exploration and the universe whispers its secrets to those who dare to listen."
+  ],
+  features: [
+    { label: "Cosmic Events", icon: "🌠" },
+    { label: "Space Tech", icon: "🛸" },
+    { label: "Star Gazing", icon: "🔭" },
+    { label: "Galaxy Quest", icon: "🌌" }
+  ],
+  image: {
+    src: "/planet-02.png",
+    alt: "Space Theme"
+  }
+};
+
 export function Theme() {
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
@@ -23,7 +42,7 @@ export function Theme() {
           >
             <Stars className="w-8 h-8 text-white/50" />
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white">
-              Space Odyssey
+              {themeData.title}
             </h2>
             <Stars className="w-8 h-8 text-white/50" />
           </motion.div>
@@ -33,7 +52,7 @@ export function Theme() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-white/50 text-lg md:text-xl"
           >
-            Exploring the Final Frontier
+            {themeData.subtitle}
           </motion.p>
         </div>
 
@@ -49,8 +68,8 @@ export function Theme() {
             <div className="absolute -inset-1 bg-gradient-to-r from-white/10 to-white/5 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
             <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10">
               <img
-                src="/planet-02.png"
-                alt="Space Theme"
+                src={themeData.image.src}
+                alt={themeData.image.alt}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -76,26 +95,16 @@ export function Theme() {
             className="space-y-8 order-1 md:order-2"
           >
             <div className="space-y-6">
-              <p className="text-lg md:text-xl text-neutral-300 leading-relaxed">
-                The vast expanse of space is a cosmic wonder, filled with shimmering galaxies, 
-                distant stars, and endless mysteries. Nebulas glow like celestial paintings, 
-                while planets drift in silent orbits, bathed in the light of ancient suns.
-              </p>
-              <p className="text-lg md:text-xl text-neutral-300 leading-relaxed">
-                Amidst the darkness, comets streak across the void, leaving trails of stardust 
-                in their wake. Space is a frontier of infinite possibilities, where the unknown 
-                invites exploration and the universe whispers its secrets to those who dare to listen.
-              </p>
+              {themeData.description.map((paragraph, index) => (
+                <p key={index} className="text-lg md:text-xl text-neutral-300 leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
             </div>
 
             {/* Theme Features */}
             <div className="grid grid-cols-2 gap-6 pt-6">
-              {[
-                { label: "Cosmic Events", icon: "🌠" },
-                { label: "Space Tech", icon: "🛸" },
-                { label: "Star Gazing", icon: "🔭" },
-                { label: "Galaxy Quest", icon: "🌌" },
-              ].map((feature, index) => (
+              {themeData.features.map((feature, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 10 }}

@@ -2,11 +2,13 @@ import { useRef, useMemo, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-const COLORS = ['#fcaa67', '#c75d59', '#ffffc7', '#8cc5c6', '#a5898c'].map(
+//260C73 57016D 1C488F 529EEA 126778 new colours 
+//'#fcaa67', '#c75d59', '#ffffc7', '#8cc5c6', '#a5898c' old colours 
+const COLORS = ['#260C73', '#57016D', '#1C488F', '#529EEA', '#126778'].map(
   color => new THREE.Color(color).convertSRGBToLinear().multiplyScalar(3.0)
 )
 
-const COUNT = 150
+const COUNT = 200
 const STAR_TEXTURE_URL = '/star.png'
 
 const random = (min: number, max: number) => min + Math.random() * (max - min)

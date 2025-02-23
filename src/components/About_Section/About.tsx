@@ -1,6 +1,28 @@
 import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 
+const aboutData = {
+  title: "Technovate'25",
+  date: "March 1st - 2nd, 2025",
+  mainHeading: "Experience the Future",
+  description: "Join us for an electrifying showcase of technology, creativity, and innovation at RAIT's premier technical festival. Immerse yourself in cutting-edge demonstrations, participate in thrilling competitions, and connect with fellow tech enthusiasts.",
+  highlights: [
+    "20+ Technical Events",
+    "Expert Workshops",
+    "Amazing Prizes"
+  ],
+  stats: [
+    { number: "200+", label: "Participants" },
+    { number: "10+", label: "Events" },
+    { number: "20+", label: "Workshops" },
+    { number: "₹20k+", label: "Prize Pool" }
+  ],
+  poster: {
+    src: "/Poster-final.png",
+    alt: "Technovate'25 Poster"
+  }
+};
+
 export function About() {
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
@@ -20,7 +42,7 @@ export function About() {
             transition={{ duration: 0.5 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
           >
-            Technovate'25
+            {aboutData.title}
           </motion.h1>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -29,38 +51,32 @@ export function About() {
             className="mt-4 flex items-center justify-center gap-2 text-white/50"
           >
             <Calendar className="w-5 h-5" />
-            <span className="text-lg">March 1st - 2nd, 2025</span>
+            <span className="text-lg">{aboutData.date}</span>
           </motion.div>
         </div>
 
         {/* Main Content */}
-        <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-center text-center md:text-left">
           {/* Left: Text Content */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-8"
+            className="space-y-8 md:space-y-12 "
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Experience the Future
+              {aboutData.mainHeading}
             </h2>
             <p className="text-lg md:text-xl text-neutral-300 leading-relaxed">
-              Join us for an electrifying showcase of technology, creativity, and innovation at RAIT's premier technical festival. Immerse yourself in cutting-edge demonstrations, participate in thrilling competitions, and connect with fellow tech enthusiasts.
+              {aboutData.description}
             </p>
             <div className="flex flex-col gap-4 text-neutral-300">
-              <div className="flex items-center gap-2">
-                <div className="w-1 h-1 rounded-full bg-white/50" />
-                <span>20+ Technical Events</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-1 h-1 rounded-full bg-white/50" />
-                <span>Expert Workshops</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-1 h-1 rounded-full bg-white/50" />
-                <span>Amazing Prizes</span>
-              </div>
+              {aboutData.highlights.map((highlight, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <div className="w-1 h-1 rounded-full bg-white/50" />
+                  <span>{highlight}</span>
+                </div>
+              ))}
             </div>
           </motion.div>
 
@@ -72,11 +88,11 @@ export function About() {
             className="relative group"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-white/10 to-white/5 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10">
+            <div className="relative aspect-[9/13] rounded-xl overflow-hidden border border-white/10">
               <img
-                src="/planet-01.png"
-                alt="Technovate Event"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                src={aboutData.poster.src}
+                alt={aboutData.poster.alt}
+                className="w-full h-full scale-105 object-contain group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             </div>
@@ -90,12 +106,7 @@ export function About() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8"
         >
-          {[
-            { number: "200+", label: "Participants" },
-            { number: "10+", label: "Events" },
-            { number: "20+", label: "Workshops" },
-            { number: "₹2L+", label: "Prize Pool" },
-          ].map((stat, index) => (
+          {aboutData.stats.map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                 {stat.number}
