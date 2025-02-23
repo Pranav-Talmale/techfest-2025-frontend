@@ -11,8 +11,8 @@ export default function EventDetail() {
 
   if (!event) {
     return (
-      <div className="min-h-screen bg-black p-4 md:p-8">
-        <div className="max-w-7xl mx-auto">
+      <div className="min-h-screen bg-black pt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Link 
             to="/events"
             className="inline-flex items-center text-white hover:text-white/80 transition-colors"
@@ -43,7 +43,7 @@ export default function EventDetail() {
 
   return (
     <div className="min-h-screen bg-black pt-16">
-      <div className="container mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto ">
         {/* Hero Section with Full-width Image */}
         <div className="relative h-[50vh] md:h-[60vh] w-full">
           <div className="absolute inset-0">

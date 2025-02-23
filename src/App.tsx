@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar";
 // Placeholder component for Contact
 const Contact = () => (
   <div className="min-h-screen bg-black pt-16">
-    <div className="container mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto">
       <h1 className="text-6xl font-bold text-white mb-8">Contact Us</h1>
       <p className="text-white/70">Coming soon...</p>
     </div>
