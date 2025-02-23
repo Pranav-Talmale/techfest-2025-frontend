@@ -82,7 +82,7 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       <div
         className={cn(
-          'fixed inset-0 z-50 bg-black/80 backdrop-blur-sm md:hidden transition-opacity duration-300',
+          'fixed inset-0 z-50 bg-black/90 backdrop-blur-md md:hidden transition-opacity duration-300',
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         )}
         onClick={() => setIsOpen(false)}
@@ -90,8 +90,8 @@ export default function Navbar() {
         {/* Drawer Panel */}
         <div
           className={cn(
-            'fixed inset-y-0 right-0 w-full max-w-sm bg-neutral-900 shadow-xl transition-transform duration-300 ease-in-out',
-            isOpen ? 'translate-x-0' : 'translate-x-full'
+            'fixed inset-x-0 top-0 h-auto max-h-[85vh] bg-black shadow-xl transition-transform duration-300 ease-in-out border-b border-white/10',
+            isOpen ? 'translate-y-0' : '-translate-y-full'
           )}
           onClick={(e) => e.stopPropagation()}
         >
@@ -110,42 +110,42 @@ export default function Navbar() {
           </div>
 
           {/* Drawer Content */}
-          <div className="px-2 py-4">
+          <div className="px-4 py-6">
             {/* Main Navigation */}
-            {navigation.map((item) => {
-              const isActive = location.pathname === item.href;
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={cn(
-                    'flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-colors',
-                    isActive
-                      ? 'bg-white/10 text-white'
-                      : 'text-white/50 hover:bg-white/5 hover:text-white'
-                  )}
-                >
-                  <div className="flex items-center">
+            <div className="grid gap-4">
+              {navigation.map((item) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      'flex items-center px-4 py-3 rounded-lg text-lg font-medium transition-colors border border-white/10',
+                      isActive
+                        ? 'bg-white text-black'
+                        : 'text-white hover:bg-white hover:text-black'
+                    )}
+                  >
                     <item.icon className="h-5 w-5 mr-3" />
                     {item.name}
-                  </div>
-                </Link>
-              );
-            })}
+                  </Link>
+                );
+              })}
+            </div>
 
             {/* Social Links */}
-            <div className="mt-4 px-4 pt-4 border-t border-white/10">
-              <div className="flex items-center justify-around">
+            <div className="mt-8 pt-6 border-t border-white/10">
+              <div className="flex items-center justify-center gap-8">
                 {socials.map((social) => (
                   <a
                     key={social.name}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/50 hover:text-white transition-colors p-2"
+                    className="text-white hover:text-white/70 transition-colors p-2"
                   >
-                    <social.icon className="w-6 h-6" />
+                    <social.icon className="w-7 h-7" />
                   </a>
                 ))}
               </div>

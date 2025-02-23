@@ -14,7 +14,7 @@ function Home() {
         </p>
       </div> */}
       <LoadingScreen />
-      <div className="h-screen"><Experience/> </div>
+      <div className="h-screen"><Experience/></div>
       <Explore />
     </>
   );
