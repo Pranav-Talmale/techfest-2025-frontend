@@ -54,7 +54,7 @@ const Explore: React.FC = () => {
   const [active, setActive] = useState<string>("world-2");
 
   return (
-    <section className="sm:p-16 xs:p-8 px-6 py-12" id="explore">
+    <section className="sm:p-16 xs:p-8 px-6 py-12 bg-black" id="explore">
       <motion.div
         variants={staggerContainer(0.25, 0)}
         initial="hidden"
