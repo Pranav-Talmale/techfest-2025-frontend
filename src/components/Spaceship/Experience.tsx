@@ -6,6 +6,7 @@ import {
   useCallback,
   useMemo,
   useRef,
+  lazy,
 } from "react";
 import {
   EffectComposer,
@@ -13,9 +14,12 @@ import {
 } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
-import Stars from "./Stars";
-import Spaceship from "./Spaceship";
-import MotionBlur from "./MotionBlur";
+import LoadingScreen from "../LoadingScreen";
+
+// Lazy load heavy components
+const Stars = lazy(() => import("./Stars"));
+const Spaceship = lazy(() => import("./Spaceship"));
+const MotionBlur = lazy(() => import("./MotionBlur"));
 
 // Create PMREM Generator for dynamic environment mapping
 const DynamicEnvMap = ({ children }: { children: React.ReactNode }) => {
@@ -250,6 +254,7 @@ const Experience = () => {
 
   return (
     <>
+      <LoadingScreen />
       <Canvas
         dpr={[1, 1.5]}
         performance={{ min: 0.5 }}

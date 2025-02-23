@@ -10,7 +10,7 @@ const LoadingScreen = () => {
       // Add a small delay before hiding to ensure everything is rendered
       const timeout = setTimeout(() => {
         setShow(false)
-      }, 800)
+      }, 100)
       return () => clearTimeout(timeout)
     }
   }, [progress])

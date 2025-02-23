@@ -10,4 +10,16 @@ export default defineConfig({
       "@": "/src", // Directly set the alias to "/src"
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing'],
+          'ui-vendor': ['@tabler/icons-react', 'clsx', 'tailwind-merge'],
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000,
+  }
 });
