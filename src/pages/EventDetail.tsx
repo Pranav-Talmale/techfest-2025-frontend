@@ -1,7 +1,7 @@
 import { useSearchParams, Link } from 'react-router-dom';
 import eventsData from '@/data/events.json';
 import { ArrowLeft, Users, Calendar, MapPin, Clock, ChevronRight, ExternalLink, Camera } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function EventDetail() {
   const [searchParams] = useSearchParams();
@@ -9,6 +9,10 @@ export default function EventDetail() {
   const event = eventsData.events.find(e => e.id === eventId);
   const [selectedImage, setSelectedImage] = useState<null | { url: string; caption: string }>(null);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   if (!event) {
     return (
       <div className="min-h-screen bg-black pt-16">
@@ -40,6 +44,8 @@ export default function EventDetail() {
     hour: '2-digit',
     minute: '2-digit'
   });
+
+
 
   return (
     <div className="min-h-screen bg-black pt-16">

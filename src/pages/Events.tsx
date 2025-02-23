@@ -1,6 +1,7 @@
 import { useSearchParams, Link } from 'react-router-dom';
 import eventsData from '@/data/events.json';
 import { Filter, ChevronRight, Calendar, MapPin, Users } from 'lucide-react';
+import { useEffect } from 'react';
 
 type Category = 'all' | 'tech' | 'non-tech' | 'gaming';
 
@@ -11,6 +12,10 @@ export default function Events() {
   const filteredEvents = eventsData.events.filter(event => {
     return category === 'all' || event.category === category;
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black pt-16">
