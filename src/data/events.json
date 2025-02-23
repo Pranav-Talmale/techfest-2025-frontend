@@ -15,7 +15,21 @@
       ],
       "venue": "Tech Block, Room 101",
       "datetime": "2025-02-15T10:00:00Z",
-      "teamSize": "4 members"
+      "teamSize": "4 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1511882150382-421056c89033?w=800&auto=format&fit=crop&q=60",
+          "caption": "2024 Winners solving the final puzzle"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1517263904808-5dc91e3e7044?w=800&auto=format&fit=crop&q=60",
+          "caption": "Participants working on clues"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1569596082827-c5e8990bd490?w=800&auto=format&fit=crop&q=60",
+          "caption": "Team collaboration in action"
+        }
+      ]
     },
     {
       "id": "ar-vr",
@@ -32,7 +46,21 @@
       ],
       "venue": "Innovation Lab",
       "datetime": "2025-02-15T11:00:00Z",
-      "teamSize": "Individual"
+      "teamSize": "Individual",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800&auto=format&fit=crop&q=60",
+          "caption": "VR Gaming Competition 2024"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1626387346567-68d0c81dc088?w=800&auto=format&fit=crop&q=60",
+          "caption": "AR Demo Session"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=800&auto=format&fit=crop&q=60",
+          "caption": "Interactive VR Experience"
+        }
+      ]
     },
     {
       "id": "cricomania",
@@ -49,7 +77,21 @@
       ],
       "venue": "Sports Complex",
       "datetime": "2025-02-16T09:00:00Z",
-      "teamSize": "2 members"
+      "teamSize": "2 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&auto=format&fit=crop&q=60",
+          "caption": "Tournament Finals"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&auto=format&fit=crop&q=60",
+          "caption": "Team Strategy Session"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&auto=format&fit=crop&q=60",
+          "caption": "Victory Celebration"
+        }
+      ]
     },
     {
       "id": "blinded-battle",
@@ -66,7 +108,21 @@
       ],
       "venue": "Main Auditorium",
       "datetime": "2025-02-16T14:00:00Z",
-      "teamSize": "Individual"
+      "teamSize": "Individual",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1606166325683-e6deb697d301?w=800&auto=format&fit=crop&q=60",
+          "caption": "Participants in action"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&auto=format&fit=crop&q=60",
+          "caption": "Challenge Round"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&auto=format&fit=crop&q=60",
+          "caption": "Winners Podium"
+        }
+      ]
     },
     {
       "id": "dancing-radium",
@@ -83,7 +139,21 @@
       ],
       "venue": "Cultural Center",
       "datetime": "2025-02-15T18:00:00Z",
-      "teamSize": "1-2 members"
+      "teamSize": "1-2 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=800&auto=format&fit=crop&q=60",
+          "caption": "LED Dance Performance"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&auto=format&fit=crop&q=60",
+          "caption": "Light Show"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&auto=format&fit=crop&q=60",
+          "caption": "Group Performance"
+        }
+      ]
     },
     {
       "id": "ctf",
@@ -100,7 +170,21 @@
       ],
       "venue": "Computer Lab 3",
       "datetime": "2025-02-17T09:00:00Z",
-      "teamSize": "3 members"
+      "teamSize": "3 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=60",
+          "caption": "Teams during competition"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=800&auto=format&fit=crop&q=60",
+          "caption": "Problem Solving"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?w=800&auto=format&fit=crop&q=60",
+          "caption": "Flag Capture Moment"
+        }
+      ]
     },
     {
       "id": "squid-games",
@@ -117,7 +201,21 @@
       ],
       "venue": "Main Ground",
       "datetime": "2025-02-16T11:00:00Z",
-      "teamSize": "6 members"
+      "teamSize": "6 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1636487658609-28282edc1b7e?w=800&auto=format&fit=crop&q=60",
+          "caption": "Game Arena"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1511882150382-421056c89033?w=800&auto=format&fit=crop&q=60",
+          "caption": "Challenge Round"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1547638375-ebf04735d19a?w=800&auto=format&fit=crop&q=60",
+          "caption": "Final Round"
+        }
+      ]
     },
     {
       "id": "laser-tag",
@@ -134,7 +232,21 @@
       ],
       "venue": "Indoor Sports Complex",
       "datetime": "2025-02-17T13:00:00Z",
-      "teamSize": "5 members"
+      "teamSize": "5 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=800&auto=format&fit=crop&q=60",
+          "caption": "Arena Battle"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1547638375-ebf04735d19a?w=800&auto=format&fit=crop&q=60",
+          "caption": "Team Strategy"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&auto=format&fit=crop&q=60",
+          "caption": "Victory Moment"
+        }
+      ]
     },
     {
       "id": "photobooth",
@@ -151,7 +263,21 @@
       ],
       "venue": "Main Hall Entrance",
       "datetime": "2025-02-15T09:00:00Z",
-      "teamSize": "Individual or Group"
+      "teamSize": "Individual or Group",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&auto=format&fit=crop&q=60",
+          "caption": "Fun Moments"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop&q=60",
+          "caption": "Group Photos"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&auto=format&fit=crop&q=60",
+          "caption": "Themed Shots"
+        }
+      ]
     },
     {
       "id": "coding-competition",
@@ -168,7 +294,21 @@
       ],
       "venue": "Computer Center",
       "datetime": "2025-02-15T13:00:00Z",
-      "teamSize": "Individual"
+      "teamSize": "Individual",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1623479322729-28b25c16b011?w=800&auto=format&fit=crop&q=60",
+          "caption": "Participants during the finals"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?w=800&auto=format&fit=crop&q=60",
+          "caption": "Late night coding session"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=60",
+          "caption": "Winners announcement"
+        }
+      ]
     },
     {
       "id": "startup-pitch",
@@ -219,7 +359,21 @@
       ],
       "venue": "E-Sports Arena",
       "datetime": "2025-02-16T10:00:00Z",
-      "teamSize": "5 members"
+      "teamSize": "5 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=60",
+          "caption": "Tournament Finals"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&auto=format&fit=crop&q=60",
+          "caption": "Team celebration"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=800&auto=format&fit=crop&q=60",
+          "caption": "Intense gameplay moment"
+        }
+      ]
     },
     {
       "id": "bgmi-cod",
@@ -236,7 +390,21 @@
       ],
       "venue": "Mobile Gaming Zone",
       "datetime": "2025-02-17T11:00:00Z",
-      "teamSize": "4 members"
+      "teamSize": "4 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&auto=format&fit=crop&q=60",
+          "caption": "Mobile Gaming Arena"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=800&auto=format&fit=crop&q=60",
+          "caption": "Squad Battle"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=60",
+          "caption": "Winners Circle"
+        }
+      ]
     },
     {
       "id": "simulator",
@@ -253,7 +421,21 @@
       ],
       "venue": "Simulation Lab",
       "datetime": "2025-02-15T10:00:00Z",
-      "teamSize": "Individual"
+      "teamSize": "Individual",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1607292676061-d629f4b663fa?w=800&auto=format&fit=crop&q=60",
+          "caption": "Flight Simulator"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800&auto=format&fit=crop&q=60",
+          "caption": "Racing Experience"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1626387346567-68d0c81dc088?w=800&auto=format&fit=crop&q=60",
+          "caption": "VR Simulation"
+        }
+      ]
     },
     {
       "id": "fifa-2k23-gta",
@@ -270,7 +452,21 @@
       ],
       "venue": "Gaming Arena",
       "datetime": "2025-02-16T13:00:00Z",
-      "teamSize": "Individual"
+      "teamSize": "Individual",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=800&auto=format&fit=crop&q=60",
+          "caption": "FIFA Tournament"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=60",
+          "caption": "NBA 2K Match"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=60",
+          "caption": "GTA Session"
+        }
+      ]
     },
     {
       "id": "project-competition-software",
@@ -287,7 +483,21 @@
       ],
       "venue": "Tech Hub",
       "datetime": "2025-02-17T09:00:00Z",
-      "teamSize": "2-4 members"
+      "teamSize": "2-4 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=60",
+          "caption": "Project Demo"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=60",
+          "caption": "Team Presentation"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?w=800&auto=format&fit=crop&q=60",
+          "caption": "Code Review"
+        }
+      ]
     },
     {
       "id": "paper-presentation-software",
@@ -304,7 +514,21 @@
       ],
       "venue": "Seminar Hall",
       "datetime": "2025-02-16T11:00:00Z",
-      "teamSize": "1-2 members"
+      "teamSize": "1-2 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&auto=format&fit=crop&q=60",
+          "caption": "Research Presentation"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=60",
+          "caption": "Q&A Session"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&auto=format&fit=crop&q=60",
+          "caption": "Award Ceremony"
+        }
+      ]
     },
     {
       "id": "project-competition-hardware",
@@ -321,7 +545,21 @@
       ],
       "venue": "Hardware Lab",
       "datetime": "2025-02-17T10:00:00Z",
-      "teamSize": "2-4 members"
+      "teamSize": "2-4 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1597838816882-4435b1977fbe?w=800&auto=format&fit=crop&q=60",
+          "caption": "Hardware Demo"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=800&auto=format&fit=crop&q=60",
+          "caption": "Circuit Testing"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&auto=format&fit=crop&q=60",
+          "caption": "Project Exhibition"
+        }
+      ]
     },
     {
       "id": "rc-throttle",
@@ -338,7 +576,21 @@
       ],
       "venue": "RC Track",
       "datetime": "2025-02-16T15:00:00Z",
-      "teamSize": "2 members"
+      "teamSize": "2 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800&auto=format&fit=crop&q=60",
+          "caption": "Race Track"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=800&auto=format&fit=crop&q=60",
+          "caption": "RC Car Setup"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1547638375-ebf04735d19a?w=800&auto=format&fit=crop&q=60",
+          "caption": "Victory Lap"
+        }
+      ]
     },
     {
       "id": "project-competition",
@@ -355,7 +607,21 @@
       ],
       "venue": "Exhibition Hall",
       "datetime": "2025-02-16T09:00:00Z",
-      "teamSize": "2-4 members"
+      "teamSize": "2-4 members",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=60",
+          "caption": "Project Showcase"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=60",
+          "caption": "Live Demo"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=60",
+          "caption": "Judging Round"
+        }
+      ]
     }
   ]
 } 
