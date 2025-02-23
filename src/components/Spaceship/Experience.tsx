@@ -265,7 +265,8 @@ const Experience = () => {
           powerPreference: "high-performance",
         }}
         style={{
-          background: "#101d1d",
+          // background: "#101d1d",
+          background: "#000000",
         }}
       >
         <CameraRig turbo={turbo} />
@@ -285,15 +286,6 @@ const Experience = () => {
               castShadow
               shadow-mapSize={[1024, 1024]}
               shadow-bias={-0.0001}
-            />
-
-            {/* Engine glow light */}
-            <pointLight
-              position={[-3, 0, 0]}
-              intensity={2.0}
-              color="#ff3030"
-              distance={8}
-              decay={2}
             />
 
             {/* Stars Background */}
