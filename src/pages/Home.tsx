@@ -1,6 +1,12 @@
 import Experience from "@/components/Spaceship/Experience";
 import LoadingScreen from "@/components/LoadingScreen";
 import Explore from "@/components/ExploreEvent/ExploreComponent";
+import { About } from "@/components/About_Section/About";
+import { Theme } from "@/components/Our_Theme/Theme";
+import { Sponsors } from "@/components/Our_Sponsors/Spons";
+import { FAQ } from "@/components/Frequently_Asked_Questions/FAQ";
+import { Technovate } from "@/components/Technovate_2024/Technovate";
+import { Footer } from "@/components/Footer/Footer";
 
 function Home() {
   return (
@@ -15,7 +21,13 @@ function Home() {
       </div> */}
       <LoadingScreen />
       <div className="h-screen"><Experience/></div>
+      <About/>
+      <Theme/>
       <Explore />
+      <Sponsors/>
+      <FAQ/>
+      <Technovate/>
+      <Footer/>
     </>
   );
 }
