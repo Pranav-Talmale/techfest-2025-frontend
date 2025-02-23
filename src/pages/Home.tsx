@@ -1,6 +1,6 @@
 import Experience from "@/components/Spaceship/Experience";
 import LoadingScreen from "@/components/LoadingScreen";
-import Explore from "@/components/EventCards/ExploreComponent";
+import Explore from "@/components/ExploreEvent/ExploreComponent";
 
 function Home() {
   return (
