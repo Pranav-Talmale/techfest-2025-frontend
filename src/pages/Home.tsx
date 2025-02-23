@@ -1,4 +1,5 @@
 import Experience from "@/components/Spaceship/Experience";
+import LoadingScreen from "@/components/LoadingScreen";
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
           Mouse - Steer ship (disabled during turbo)
         </p>
       </div> */}
+      <LoadingScreen />
       <Experience />
     </>
   );
