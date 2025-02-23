@@ -27,8 +27,8 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center">
-              <span className="text-white text-xl font-bold">TechFest</span>
-              <span className="text-white/50 text-xl font-bold ml-1">2025</span>
+              <span className="text-white text-xl font-bold tracking-tight">TechFest</span>
+              <span className="text-white/50 text-xl font-bold tracking-tight ml-1">2025</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -40,7 +40,7 @@ export default function Navbar() {
                     key={item.name}
                     to={item.href}
                     className={cn(
-                      'text-sm font-medium transition-colors flex items-center gap-2',
+                      'text-sm font-medium tracking-wide transition-colors flex items-center gap-2',
                       location.pathname === item.href
                         ? 'text-white'
                         : 'text-white/50 hover:text-white'
@@ -98,8 +98,8 @@ export default function Navbar() {
           {/* Drawer Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
             <div className="flex items-center">
-              <span className="text-white font-bold">TechFest</span>
-              <span className="text-white/50 font-bold ml-1">2025</span>
+              <span className="text-white font-bold tracking-tight">TechFest</span>
+              <span className="text-white/50 font-bold tracking-tight ml-1">2025</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -121,7 +121,7 @@ export default function Navbar() {
                     to={item.href}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      'flex items-center px-4 py-3 rounded-lg text-lg font-medium transition-colors border border-white/10',
+                      'flex items-center px-4 py-3 rounded-lg text-lg font-medium tracking-wide transition-colors border border-white/10',
                       isActive
                         ? 'bg-white text-black'
                         : 'text-white hover:bg-white hover:text-black'
