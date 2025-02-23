@@ -230,6 +230,11 @@ const SpaceshipController = ({
 const Experience = () => {
   const [turbo, setTurbo] = useState(0);
   const [mousePoint, setMousePoint] = useState(new THREE.Vector3(0, 0, 0));
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.code === "KeyW") {
@@ -244,17 +249,59 @@ const Experience = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  }, [handleKeyDown, handleKeyUp]);
+    if (!isMobile) {
+      window.addEventListener("keydown", handleKeyDown);
+      window.addEventListener("keyup", handleKeyUp);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+        window.removeEventListener("keyup", handleKeyUp);
+      };
+    }
+  }, [handleKeyDown, handleKeyUp, isMobile]);
 
   return (
     <>
       <LoadingScreen />
+      
+      {/* Logo Overlay */}
+      <div className="absolute inset-x-0 top-1/3 flex flex-col items-center pointer-events-none z-10">
+        <div className="text-center">
+          <img 
+            src="/technovate logo.png"
+            alt="Technovate"
+            className="h-24 md:h-32 w-auto mb-4"
+          />
+          <p className="text-lg md:text-xl text-white/70">
+            The Future Awaits
+          </p>
+        </div>
+      </div>
+
+      {/* Controls Overlay */}
+      <div className="absolute inset-x-0 bottom-12 flex justify-center pointer-events-none z-10">
+        {isMobile ? (
+          <div className="pointer-events-auto">
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                className="sr-only peer"
+                checked={turbo === 1}
+                onChange={(e) => setTurbo(e.target.checked ? 1 : 0)}
+              />
+              <div className="w-20 h-11 bg-white/10 backdrop-blur-sm peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-white/25 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-10 after:w-10 after:transition-all peer-checked:bg-white/30"></div>
+              <span className="ml-3 text-sm text-white/70">
+                {turbo === 1 ? 'Boosting' : 'Boost'}
+              </span>
+            </label>
+          </div>
+        ) : (
+          <div className="flex items-center justify-center gap-2 text-white/50 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+            <kbd className="px-2 py-1 text-sm bg-white/10 rounded">W</kbd>
+            <span className="text-sm md:text-base">to boost into hyperspace</span>
+          </div>
+        )}
+      </div>
+
       <Canvas
         dpr={[1, 1.5]}
         performance={{ min: 0.5 }}
@@ -265,7 +312,6 @@ const Experience = () => {
           powerPreference: "high-performance",
         }}
         style={{
-          // background: "#101d1d",
           background: "#000000",
         }}
       >

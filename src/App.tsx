@@ -2,18 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import Home from "@/pages/Home";
 import Events from "@/pages/Events";
 import EventDetail from "@/pages/EventDetail";
+import Contact from "@/pages/Contact";
 import ErrorPage from "@/pages/ErrorPage";
 import Navbar from "@/components/Navbar";
-
-// Placeholder component for Contact
-const Contact = () => (
-  <div className="min-h-screen bg-black pt-16">
-    <div className="max-w-7xl mx-auto">
-      <h1 className="text-6xl font-bold text-white mb-8">Contact Us</h1>
-      <p className="text-white/70">Coming soon...</p>
-    </div>
-  </div>
-);
 
 function App() {
   return (

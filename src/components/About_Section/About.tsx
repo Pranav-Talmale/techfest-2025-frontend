@@ -1,87 +1,110 @@
-"use client";
-import React from "react";
-import { Spotlight } from "./Spotlight";
 import { motion } from "framer-motion";
-
-const staggerContainer = (staggerChildren: number, delayChildren: number) => ({
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren,
-      delayChildren,
-    },
-  },
-});
-
-const textVariant2 = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "tween", ease: "easeIn" },
-  },
-};
-
-interface TitleTextProps {
-  title: React.ReactNode;
-  textStyles?: string;
-}
-
-const TitleText: React.FC<TitleTextProps> = ({ title, textStyles }) => (
-  <motion.h2
-    variants={textVariant2}
-    initial="hidden"
-    whileInView="show"
-    className={`mt-[8px] font-bold md:text-[64px] text-[40px] text-white ${textStyles}`}
-  >
-    {title}
-  </motion.h2>
-);
+import { Calendar } from "lucide-react";
 
 export function About() {
   return (
-    <div className="min-h-screen w-full rounded-md flex flex-col md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden p-8">
-      <Spotlight />
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
       
-      {/* Title */}
-      <motion.div
-        variants={staggerContainer(0.25, 0)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.25 }}
-        className="max-w-7xl mx-auto relative z-10 w-full text-center mb-36"
-      >
-        <TitleText title={<>About Us</>} />
-      </motion.div>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/50 to-black pointer-events-none" />
 
-      {/* Content: Paragraph + Image */}
-      <motion.div
-        variants={staggerContainer(0.25, 0)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.25 }}
-        className="max-w-full mx-auto mt-8 flex flex-col md:flex-row items-center justify-between gap-24"
-      >
-        {/* Text */}
-        <motion.p
-          variants={textVariant2}
-          initial="hidden"
-          whileInView="show"
-          className="font-normal text-xl tracking-wide leading-tight text-neutral-300 max-w-lg text-center md:text-left"
+      {/* Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative">
+        {/* Header */}
+        <div className="text-center mb-16 md:mb-24">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+          >
+            Technovate'25
+          </motion.h1>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-4 flex items-center justify-center gap-2 text-white/50"
+          >
+            <Calendar className="w-5 h-5" />
+            <span className="text-lg">March 1st - 2nd, 2025</span>
+          </motion.div>
+        </div>
+
+        {/* Main Content */}
+        <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
+          {/* Left: Text Content */}
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="space-y-8"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Experience the Future
+            </h2>
+            <p className="text-lg md:text-xl text-neutral-300 leading-relaxed">
+              Join us for an electrifying showcase of technology, creativity, and innovation at RAIT's premier technical festival. Immerse yourself in cutting-edge demonstrations, participate in thrilling competitions, and connect with fellow tech enthusiasts.
+            </p>
+            <div className="flex flex-col gap-4 text-neutral-300">
+              <div className="flex items-center gap-2">
+                <div className="w-1 h-1 rounded-full bg-white/50" />
+                <span>20+ Technical Events</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-1 h-1 rounded-full bg-white/50" />
+                <span>Expert Workshops</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-1 h-1 rounded-full bg-white/50" />
+                <span>Amazing Prizes</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right: Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="relative group"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-white/10 to-white/5 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10">
+              <img
+                src="/planet-01.png"
+                alt="Technovate Event"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Stats */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8"
         >
-          Join us on April 7th and 8th for an electrifying showcase of technology, creativity and collaboration at Technovate'25, official techfest of RAIT
-        </motion.p>
-
-        {/* Image */}
-        <motion.img
-          variants={textVariant2}
-          initial="hidden"
-          whileInView="show"
-          src="planet-01.png" // Change this to your actual image path
-          alt="About Us"
-          className="w-[500px] h-auto rounded-lg shadow-lg"
-        />
-      </motion.div>
+          {[
+            { number: "200+", label: "Participants" },
+            { number: "10+", label: "Events" },
+            { number: "20+", label: "Workshops" },
+            { number: "₹2L+", label: "Prize Pool" },
+          ].map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                {stat.number}
+              </div>
+              <div className="text-neutral-400">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 }

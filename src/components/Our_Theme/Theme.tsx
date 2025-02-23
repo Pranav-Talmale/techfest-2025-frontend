@@ -1,89 +1,116 @@
 "use client";
-import React from "react";
-import { Spotlight } from "../About_Section/Spotlight";
 import { motion } from "framer-motion";
-
-const staggerContainer = (staggerChildren: number, delayChildren: number) => ({
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren,
-      delayChildren,
-    },
-  },
-});
-
-const textVariant2 = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "tween", ease: "easeIn" },
-  },
-};
-
-interface TitleTextProps {
-  title: React.ReactNode;
-  textStyles?: string;
-}
-
-const TitleText: React.FC<TitleTextProps> = ({ title, textStyles }) => (
-  <motion.h2
-    variants={textVariant2}
-    initial="hidden"
-    whileInView="show"
-    className={`mt-[8px] font-bold md:text-[64px] text-[40px] text-white ${textStyles}`}
-  >
-    {title}
-  </motion.h2>
-);
+import { Rocket, Stars, Orbit } from "lucide-react";
 
 export function Theme() {
   return (
-    <div className="min-h-screen w-full rounded-md flex flex-col md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden p-8">
-      <Spotlight />
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
       
-      {/* Title */}
-      <motion.div
-        variants={staggerContainer(0.25, 0)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.25 }}
-        className="max-w-7xl mx-auto relative z-10 w-full text-center mb-36"
-      >
-        <TitleText title={<>Our Theme</>} />
-      </motion.div>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/50 to-black pointer-events-none" />
 
-      {/* Content: Paragraph + Image */}
-      <motion.div
-        variants={staggerContainer(0.25, 0)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.25 }}
-        className="max-w-full mx-auto mt-8 flex flex-col md:flex-row items-center justify-between gap-24"
-      >
+      {/* Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative">
+        {/* Header */}
+        <div className="text-center mb-16 md:mb-24">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center justify-center gap-4 mb-6"
+          >
+            <Stars className="w-8 h-8 text-white/50" />
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white">
+              Space Odyssey
+            </h2>
+            <Stars className="w-8 h-8 text-white/50" />
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-white/50 text-lg md:text-xl"
+          >
+            Exploring the Final Frontier
+          </motion.p>
+        </div>
 
-        {/* Image */}
-        <motion.img
-          variants={textVariant2}
-          initial="hidden"
-          whileInView="show"
-          src="planet-02.png" // Change this to your actual image path
-          alt="About Us"
-          className="w-[500px] h-auto rounded-lg shadow-lg"
-        />
+        {/* Main Content */}
+        <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
+          {/* Left: Image */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="relative group order-2 md:order-1"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-white/10 to-white/5 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500" />
+            <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10">
+              <img
+                src="/planet-02.png"
+                alt="Space Theme"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              
+              {/* Floating Elements */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="absolute bottom-4 left-4 right-4 flex items-center justify-center gap-4"
+              >
+                <Rocket className="w-6 h-6 text-white/70" />
+                <Orbit className="w-6 h-6 text-white/70" />
+              </motion.div>
+            </div>
+          </motion.div>
 
-        {/* Text */}
-        <motion.p
-          variants={textVariant2}
-          initial="hidden"
-          whileInView="show"
-          className="font-normal text-xl tracking-wide leading-tight text-neutral-300 max-w-lg text-center md:text-left"
-        >
-          The vast expanse of space is a cosmic wonder, filled with shimmering galaxies, distant stars, and endless mysteries. Nebulas glow like celestial paintings, while planets drift in silent orbits, bathed in the light of ancient suns. Amidst the darkness, comets streak across the void, leaving trails of stardust in their wake. Space is a frontier of infinite possibilities, where the unknown invites exploration and the universe whispers its secrets to those who dare to listen. 🚀✨
-        </motion.p>
+          {/* Right: Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="space-y-8 order-1 md:order-2"
+          >
+            <div className="space-y-6">
+              <p className="text-lg md:text-xl text-neutral-300 leading-relaxed">
+                The vast expanse of space is a cosmic wonder, filled with shimmering galaxies, 
+                distant stars, and endless mysteries. Nebulas glow like celestial paintings, 
+                while planets drift in silent orbits, bathed in the light of ancient suns.
+              </p>
+              <p className="text-lg md:text-xl text-neutral-300 leading-relaxed">
+                Amidst the darkness, comets streak across the void, leaving trails of stardust 
+                in their wake. Space is a frontier of infinite possibilities, where the unknown 
+                invites exploration and the universe whispers its secrets to those who dare to listen.
+              </p>
+            </div>
 
-      </motion.div>
+            {/* Theme Features */}
+            <div className="grid grid-cols-2 gap-6 pt-6">
+              {[
+                { label: "Cosmic Events", icon: "🌠" },
+                { label: "Space Tech", icon: "🛸" },
+                { label: "Star Gazing", icon: "🔭" },
+                { label: "Galaxy Quest", icon: "🌌" },
+              ].map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
+                  className="flex items-center gap-3 text-white/70"
+                >
+                  <span className="text-2xl">{feature.icon}</span>
+                  <span className="text-sm font-medium">{feature.label}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }

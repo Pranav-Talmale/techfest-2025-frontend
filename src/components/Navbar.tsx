@@ -27,8 +27,11 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center">
-              <span className="text-white text-xl font-bold tracking-tight">TechFest</span>
-              <span className="text-white/50 text-xl font-bold tracking-tight ml-1">2025</span>
+              <img 
+                src="/technovate logo.png" 
+                alt="Technovate" 
+                className="h-8 w-auto"
+              />
             </Link>
 
             {/* Desktop Navigation */}
@@ -97,10 +100,13 @@ export default function Navbar() {
         >
           {/* Drawer Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-            <div className="flex items-center">
-              <span className="text-white font-bold tracking-tight">TechFest</span>
-              <span className="text-white/50 font-bold tracking-tight ml-1">2025</span>
-            </div>
+            <Link to="/" onClick={() => setIsOpen(false)}>
+              <img 
+                src="/technovate logo.png" 
+                alt="Technovate" 
+                className="h-12 w-auto"
+              />
+            </Link>
             <button
               onClick={() => setIsOpen(false)}
               className="p-2 text-white/50 hover:text-white focus:outline-none"

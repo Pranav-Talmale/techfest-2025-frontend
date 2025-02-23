@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { FC } from "react";
 
 interface ExploreCardProps {
   id: string;
@@ -10,63 +9,77 @@ interface ExploreCardProps {
   handleClick: (id: string) => void;
 }
 
-const fadeIn = (
-  direction: "left" | "right" | "up" | "down",
-  type: string,
-  delay: number,
-  duration: number
-) => ({
-  hidden: {
-    x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
-    y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
-    opacity: 0,
-  },
-  show: {
-    x: 0,
-    y: 0,
-    opacity: 1,
-    transition: {
-      type,
-      delay,
-      duration,
-      ease: "easeOut",
-    },
-  },
-});
-
-const ExploreEventsCard: FC<ExploreCardProps> = ({
+export default function ExploreEventsCard({
   id,
   imgUrl,
   title,
   index,
   active,
   handleClick,
-}) => (
-  <motion.div
-    variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-    className={`relative ${
-      active === id ? "lg:flex-[3.5] flex-[10]" : "lg:flex-[0.5] flex-[2]"
-    } flex items-center justify-center min-w-[170px] h-[700px] transition-[flex] duration-[0.7s] ease-out-flex cursor-pointer`}
-    onClick={() => handleClick(id)}
-  >
-    <img
-      src={imgUrl}
-      alt={title}
-      className="absolute w-full h-full object-cover rounded-[24px]"
-    />
+}: ExploreCardProps) {
+  const isActive = active === id;
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.2 }}
+      className={`relative ${
+        isActive ? "lg:flex-[3.5] flex-[10]" : "lg:flex-[0.5] flex-[2]"
+      } flex items-center justify-center min-w-[170px] h-[700px] transition-[flex] duration-700 ease-out-flex cursor-pointer overflow-hidden rounded-3xl`}
+      onClick={() => handleClick(id)}
+    >
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 z-10" />
 
-    {active !== id ? (
-      <h3 className="font-semibold sm:text-[26px] text-[18px] text-white absolute z-0 lg:bottom-20 lg:rotate-[-90deg] lg:origin-[0,0]">
-        {title}
-      </h3>
-    ) : (
-      <div className="absolute bottom-0 p-8 justify-start w-full flex-col bg-[rgba(0,0,0,0.5)] rounded-b-[24px]">
-        <h2 className="mt-[24px] font-semibold sm:text-[32px] text-[24px] text-white">
+      {/* Background Image */}
+      <motion.img
+        src={imgUrl}
+        alt={title}
+        className="absolute w-full h-full object-cover"
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.4 }}
+      />
+
+      {/* Content */}
+      {!isActive ? (
+        <motion.h3 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="font-semibold text-2xl text-white absolute z-20 lg:bottom-20 lg:-rotate-90 lg:origin-[0,0] drop-shadow-lg"
+        >
           {title}
-        </h2>
-      </div>
-    )}
-  </motion.div>
-);
-
-export default ExploreEventsCard;
+        </motion.h3>
+      ) : (
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="absolute bottom-0 p-8 flex justify-start w-full flex-col z-20"
+        >
+          <div className="flex flex-col gap-4">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className="font-bold text-[32px] text-white drop-shadow-lg"
+            >
+              {title}
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              className="flex items-center gap-2"
+            >
+              <div className="w-1 h-1 rounded-full bg-white" />
+              <p className="text-white/70 text-lg">Click to explore</p>
+            </motion.div>
+          </div>
+        </motion.div>
+      )}
+    </motion.div>
+  );
+}
