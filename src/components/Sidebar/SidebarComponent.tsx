@@ -16,11 +16,12 @@ export default function SidebarComponent() {
   return (
     <div
       className={cn(
-        "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-screen flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden",
-        "h-screen"
+        "flex flex-col md:flex-row flex-1 h-screen w-full bg-gray-100 dark:bg-neutral-800 mx-auto border border-neutral-200 dark:border-neutral-700",
+        "overflow-hidden" // Prevent horizontal scrolling
       )}
     >
-      <Sidebar open={open} setOpen={setOpen}>
+      {/* Sidebar (Fixed) */}
+      <Sidebar open={open} setOpen={setOpen} className="h-screen ">
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             {open ? <Logo /> : <LogoIcon />}
@@ -65,8 +66,8 @@ export default function SidebarComponent() {
         </SidebarBody>
       </Sidebar>
 
-      {/* Page Content */}
-      <div className="flex-1">
+      {/* Page Content (Scrollable Vertically, No Horizontal Scroll) */}
+      <div className="flex-1 min-h-screen overflow-y-auto overflow-x-hidden">
         <Outlet />
       </div>
     </div>
