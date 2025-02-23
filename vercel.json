@@ -2,6 +2,39 @@
   "version": 2,
   "routes": [
     {
+      "src": "/assets/(.*)\\.js",
+      "headers": { "Content-Type": "application/javascript" },
+      "dest": "/assets/$1.js"
+    },
+    {
+      "src": "/assets/(.*)\\.css",
+      "headers": { "Content-Type": "text/css" },
+      "dest": "/assets/$1.css"
+    },
+    {
+      "src": "/assets/(.*)\\.png",
+      "headers": { "Content-Type": "image/png" },
+      "dest": "/assets/$1.png"
+    },
+    {
+      "src": "/assets/(.*)\\.jpg",
+      "headers": { "Content-Type": "image/jpeg" },
+      "dest": "/assets/$1.jpg"
+    },
+    {
+      "src": "/assets/(.*)\\.svg",
+      "headers": { "Content-Type": "image/svg+xml" },
+      "dest": "/assets/$1.svg"
+    },
+    {
+      "src": "/assets/(.*)\\.glb",
+      "headers": { "Content-Type": "model/gltf-binary" },
+      "dest": "/assets/$1.glb"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
       "src": "^/(.*)",
       "dest": "/index.html"
     }
