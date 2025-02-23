@@ -23,7 +23,7 @@ const LoadingScreen = () => {
       <div className="relative z-10 flex flex-col items-center">
         <h1 className="mb-4 text-4xl font-bold text-orange-500">TECHFEST 2025</h1>
         <div className="mb-8 flex items-center gap-2">
-          <span className="text-sm text-gray-400">Loading assets</span>
+          <span className="text-sm text-gray-400">Preparing for Intergalactic Travel</span>
           <span className="text-sm text-orange-500">{Math.round(progress)}%</span>
         </div>
 
