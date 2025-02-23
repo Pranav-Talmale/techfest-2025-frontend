@@ -1,12 +1,14 @@
-import Experience from "./components/Spaceship/Experience";
-import LoadingScreen from "./components/LoadingScreen";
+import { Routes, Route } from "react-router-dom";
+import Home from "@/pages/Home";
+import SidebarComponent from "@/components/Sidebar/SidebarComponent";
 
 function App() {
   return (
-    <main className="fixed inset-0">
-      <LoadingScreen />
-      <Experience />
-    </main>
+    <Routes>
+      <Route path="/" element={<SidebarComponent />}>
+        <Route index element={<Home />} />
+      </Route>
+    </Routes>
   );
 }
 
