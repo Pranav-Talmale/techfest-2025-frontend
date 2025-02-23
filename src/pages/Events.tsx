@@ -15,7 +15,9 @@ export default function Events() {
   return (
     <div className="min-h-screen bg-black p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-white mb-8">Events</h1>
+        <h1 className="text-6xl font-bold text-white mb-8">
+          Events
+        </h1>
         
         {/* Filters */}
         <div className="flex items-center gap-2 mb-8">
