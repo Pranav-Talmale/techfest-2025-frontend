@@ -13,8 +13,8 @@ export default function Events() {
   });
 
   return (
-    <div className="min-h-screen bg-black p-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-black pt-16">
+      <div className="container mx-auto px-4 py-8">
         <h1 className="text-6xl font-bold text-white mb-8">
           Events
         </h1>

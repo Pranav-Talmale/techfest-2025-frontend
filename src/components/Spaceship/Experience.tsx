@@ -232,13 +232,13 @@ const Experience = () => {
   const [mousePoint, setMousePoint] = useState(new THREE.Vector3(0, 0, 0));
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.code === "Space") {
+    if (e.code === "KeyW") {
       setTurbo(1);
     }
   }, []);
 
   const handleKeyUp = useCallback((e: KeyboardEvent) => {
-    if (e.code === "Space") {
+    if (e.code === "KeyW") {
       setTurbo(0);
     }
   }, []);
