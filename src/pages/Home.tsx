@@ -30,6 +30,11 @@ function Home() {
       <FAQ />
       <Technovate />
       <Footer />
+      <Sponsors />
+      <Inspiration />
+      <FAQ />
+      <Technovate />
+      <Footer />
     </>
   );
 }
