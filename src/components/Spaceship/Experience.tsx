@@ -249,7 +249,7 @@ const Experience = () => {
   const [mousePoint, setMousePoint] = useState(new THREE.Vector3());
   const [boostStartTime, setBoostStartTime] = useState<number | null>(null);
   const [boostProgress, setBoostProgress] = useState(0);
-  const boostTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const boostTimeoutRef = useRef<number | NodeJS.Timeout | null>(null);
   const [smoothProgress, setSmoothProgress] = useState(0);
   const animationFrameRef = useRef<number | undefined>(undefined);
 
@@ -281,7 +281,7 @@ const Experience = () => {
         setBoostProgress(progress);
         
         if (progress < 1 && isBoostingFromKey) {
-          boostTimeoutRef.current = setTimeout(updateProgress, 16); // Use timeout instead of RAF
+          boostTimeoutRef.current = window.setTimeout(updateProgress, 16); // Use timeout instead of RAF
         } else if (progress >= 1) {
           const aboutSection = document.getElementById('about-section');
           if (aboutSection) {
