@@ -25,11 +25,11 @@ function Home() {
       <About/>
       <Theme/>
       <Explore />
-      <Sponsors/>
-      <Inspiration/>
-      <FAQ/>
-      <Technovate/>
-      <Footer/>
+      <Sponsors />
+      <Inspiration />
+      <FAQ />
+      <Technovate />
+      <Footer />
     </>
   );
 }
