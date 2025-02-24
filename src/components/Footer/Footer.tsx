@@ -22,9 +22,9 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-start">
             <Link to="/" className="flex items-center mb-4 md:mb-0">
               <img
-                src="/technovate logo.png"
+                src="technovate_logo.svg"
                 alt="Technovate"
-                className="h-8 w-auto"
+                className="h-6 w-auto mb-4"
               />
             </Link>
             <nav className="flex gap-6 mt-4 md:mt-0">

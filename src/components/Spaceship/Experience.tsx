@@ -8,6 +8,7 @@ import {
   useRef,
   lazy,
   Fragment,
+  memo,
 } from "react";
 import { EffectComposer, ChromaticAberration } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
@@ -15,7 +16,7 @@ import * as THREE from "three";
 import LoadingScreen from "../LoadingScreen";
 import { Preload, Environment } from "@react-three/drei";
 
-// Custom hook to detect when the target key is pressed.
+// Custom hook to detect when the target key is held down.
 function useKeyPress(targetKey: string) {
   const [pressed, setPressed] = useState(false);
   const downHandler = useCallback((e: KeyboardEvent) => {
@@ -43,10 +44,6 @@ const MotionBlur = lazy(() => import("./MotionBlur"));
 const CameraRig = ({ turbo }: { turbo: number }) => {
   const { camera } = useThree();
   const perspCamera = camera as THREE.PerspectiveCamera;
-  const basePosition = useMemo(() => new THREE.Vector3(-4, 4, 6), []);
-  const baseLookAt = useMemo(() => new THREE.Vector3(0, 0, 0), []);
-  const turboPosition = useMemo(() => new THREE.Vector3(5, 1, 1), []);
-  const turboLookAt = useMemo(() => new THREE.Vector3(-5, 0, 0), []);
 
   useFrame(() => {
     const targetPos = turbo ? turboPosition : basePosition;
@@ -63,7 +60,7 @@ const CameraRig = ({ turbo }: { turbo: number }) => {
     camera.lookAt(baseLookAt);
     perspCamera.fov = 40;
     perspCamera.updateProjectionMatrix();
-  }, [camera, basePosition, baseLookAt, perspCamera]);
+  }, [camera, perspCamera]);
 
   return null;
 };
@@ -103,6 +100,7 @@ const SpaceshipController = ({
   turbo: number;
 }) => {
   const spaceshipRef = useRef<THREE.Group>(null);
+  const materialsRef = useRef<THREE.MeshStandardMaterial[]>([]);
   const { clock } = useThree();
   const translateY = useRef(0);
   const translateAcceleration = useRef(0);
@@ -115,9 +113,10 @@ const SpaceshipController = ({
   const subtractionVec = useMemo(() => new THREE.Vector3(), []);
   const upVec = useMemo(() => new THREE.Vector3(0, 1, 0), []);
 
-  // Enhance spaceship material for reflections on mount.
+  // Enhance spaceship materials for reflections and cache them.
   useEffect(() => {
     if (spaceshipRef.current) {
+      const mats: THREE.MeshStandardMaterial[] = [];
       spaceshipRef.current.traverse((child) => {
         if (
           child instanceof THREE.Mesh &&
@@ -127,8 +126,10 @@ const SpaceshipController = ({
           child.material.metalness = 1;
           child.material.roughness = 0.1;
           child.material.needsUpdate = true;
+          mats.push(child.material);
         }
       });
+      materialsRef.current = mats;
     }
   }, []);
 
@@ -166,12 +167,6 @@ const SpaceshipController = ({
     spaceshipRef.current.rotation.set(boundedPitch, -Math.PI / 2, angleZ.current, "YZX");
 
     // --- Dynamic Reflection Update (Occasional Purple Tint Flash) ---
-    // Define a 10-second cycle:
-    // 0 - 4 sec: pure blue
-    // 4 - 5 sec: transition from blue to purple
-    // 5 - 6 sec: pure purple
-    // 6 - 7 sec: transition from purple back to blue
-    // 7 - 10 sec: pure blue
     const timeVal = clock.getElapsedTime();
     const flashPeriod = 10.0;
     const phase = timeVal % flashPeriod;
@@ -187,18 +182,15 @@ const SpaceshipController = ({
     } else {
       fraction = 0;
     }
-    // When fraction is 0, tint is pure blue; when fraction is 1, tint is purple.
     const blueColor = new THREE.Color(0x800080);
     const purpleColor = new THREE.Color(0x0000ff);
     const tint = blueColor.clone().lerp(purpleColor, fraction);
 
-    // Update envMap intensity and blend material color toward the tint.
-    spaceshipRef.current.traverse((child) => {
-      if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
-        child.material.envMapIntensity = 3 + 2 * fraction;
-        child.material.color.lerp(tint, 0.3);
-        child.material.needsUpdate = true;
-      }
+    // Update only the cached materials.
+    materialsRef.current.forEach((material) => {
+      material.envMapIntensity = 3 + 2 * fraction;
+      material.color.lerp(tint, 0.3);
+      material.needsUpdate = true;
     });
   });
 
@@ -206,17 +198,16 @@ const SpaceshipController = ({
 };
 
 const PostProcessing = ({ turbo }: { turbo: number }) => {
-  const multisampling = turbo === 1 ? 4 : 0;
-  const offset = turbo === 1 ? [0.002 * turbo, 0.002 * turbo] : [0, 0];
+  const multisampling = turbo ? 4 : 0;
+  const offset = turbo ? [0.002 * turbo, 0.002 * turbo] : [0, 0];
   return (
     <EffectComposer multisampling={multisampling}>
-      {turbo === 1 ? <MotionBlur turbo={turbo} /> : <Fragment />}
+      {turbo ? <MotionBlur turbo={turbo} /> : <Fragment />}
       <ChromaticAberration blendFunction={BlendFunction.NORMAL} offset={offset} />
     </EffectComposer>
   );
 };
 
-// Assign the static environment map (from Drei's Environment) to objects that need it.
 const AssignEnvMap = () => {
   const { scene } = useThree();
   useEffect(() => {
@@ -241,47 +232,202 @@ const AssignEnvMap = () => {
   return null;
 };
 
+const BOOST_DURATION = 2000;
+
+// Memoize static objects
+const basePosition = new THREE.Vector3(-4, 4, 6);
+const baseLookAt = new THREE.Vector3(0, 0, 0);
+const turboPosition = new THREE.Vector3(5, 1, 1);
+const turboLookAt = new THREE.Vector3(-5, 0, 0);
+
 const Experience = () => {
-  // Use our custom hook to detect the "W" key for boosting.
-  const isBoosting = useKeyPress("KeyW");
-  const turbo = isBoosting ? 1 : 0;
-  const [mousePoint, setMousePoint] = useState(() => new THREE.Vector3(0, 0, 0));
+  // For desktop, boost state comes from holding "W"
+  const isBoostingFromKey = useKeyPress("KeyW");
+  // For mobile, we use a separate state that works on press-and-hold
+  const [boostMobile, setBoostMobile] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [mousePoint, setMousePoint] = useState(new THREE.Vector3());
+  const [boostStartTime, setBoostStartTime] = useState<number | null>(null);
+  const [boostProgress, setBoostProgress] = useState(0);
+  const boostTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [smoothProgress, setSmoothProgress] = useState(0);
+  const animationFrameRef = useRef<number | undefined>(undefined);
+
+  // Track boost start time separately for keyboard
+  const keyboardBoostStart = useRef<number | null>(null);
+
+  // Determine boost state based on platform:
+  const turbo = isMobile ? (boostMobile ? 1 : 0) : (isBoostingFromKey ? 1 : 0);
 
   useEffect(() => {
     setIsMobile("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
 
+  // Reset scroll position on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Watch for keyboard boost changes
+  useEffect(() => {
+    if (isBoostingFromKey) {
+      if (!keyboardBoostStart.current) {
+        keyboardBoostStart.current = Date.now();
+      }
+      const updateProgress = () => {
+        if (!keyboardBoostStart.current) return;
+        const elapsed = Date.now() - keyboardBoostStart.current;
+        const progress = Math.min(elapsed / BOOST_DURATION, 1);
+        setBoostProgress(progress);
+        
+        if (progress < 1 && isBoostingFromKey) {
+          boostTimeoutRef.current = setTimeout(updateProgress, 16); // Use timeout instead of RAF
+        } else if (progress >= 1) {
+          const aboutSection = document.getElementById('about-section');
+          if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      };
+      updateProgress();
+    } else {
+      if (boostTimeoutRef.current) {
+        clearTimeout(boostTimeoutRef.current);
+      }
+      keyboardBoostStart.current = null;
+      setBoostProgress(0);
+    }
+
+    return () => {
+      if (boostTimeoutRef.current) {
+        clearTimeout(boostTimeoutRef.current);
+      }
+    };
+  }, [isBoostingFromKey]);
+
+  // Separate mobile boost handler
+  useEffect(() => {
+    if (boostMobile) {
+      if (!boostStartTime) {
+        setBoostStartTime(Date.now());
+      }
+      const updateProgress = () => {
+        const elapsed = Date.now() - (boostStartTime || Date.now());
+        const progress = Math.min(elapsed / BOOST_DURATION, 1);
+        setBoostProgress(progress);
+        
+        if (progress < 1 && boostMobile) {
+          boostTimeoutRef.current = setTimeout(updateProgress, 16);
+        } else if (progress >= 1) {
+          const aboutSection = document.getElementById('about-section');
+          if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+            setBoostMobile(false);
+          }
+        }
+      };
+      updateProgress();
+    } else {
+      if (boostTimeoutRef.current) {
+        clearTimeout(boostTimeoutRef.current);
+      }
+      setBoostStartTime(null);
+      if (!isBoostingFromKey) {
+        setBoostProgress(0);
+      }
+    }
+
+    return () => {
+      if (boostTimeoutRef.current) {
+        clearTimeout(boostTimeoutRef.current);
+      }
+    };
+  }, [boostMobile, boostStartTime]);
+
+  // Smooth progress animation
+  useEffect(() => {
+    const animateProgress = () => {
+      setSmoothProgress(prev => {
+        const target = boostProgress;
+        const diff = target - prev;
+        // Adjust the divisor to control smoothing (higher = smoother but slower)
+        const next = prev + diff * 0.1;
+        return Math.abs(diff) < 0.001 ? target : next;
+      });
+      animationFrameRef.current = requestAnimationFrame(animateProgress);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(animateProgress);
+    return () => {
+      if (animationFrameRef.current !== undefined) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [boostProgress]);
+
+  // Calculate the displayed percentage using smoothed progress
+  const displayedProgress = Math.min(Math.floor(smoothProgress * 100), 100);
+
+  // Memoize event handlers
+  const handleMobileBoostStart = useCallback(() => setBoostMobile(true), []);
+  const handleMobileBoostEnd = useCallback(() => setBoostMobile(false), []);
+  const handleMouseMove = useCallback((point: THREE.Vector3) => setMousePoint(point), []);
+
+
   return (
     <>
       <LoadingScreen />
       {/* Logo Overlay */}
-      <div className="absolute inset-x-0 top-1/3 flex flex-col items-center pointer-events-none z-10">
-        <div className="text-center">
-          <img src="/technovate logo.png" alt="Technovate" className="h-24 md:h-32 w-auto mb-4" />
-          <p className="text-lg md:text-xl text-white/70">The Future Awaits</p>
-        </div>
-      </div>
+      <div className="absolute top-6 sm:top-0 left-0 pointer-events-none z-10 p-16">
+  <div className="text-left">
+    <img
+      src="technovate_logo.svg"
+      alt="Technovate"
+      className="h-18 md:h-18 w-auto mb-0 sm:mb-3 md:mb-6 object-contain"
+    />
+    <p className="px-1 text-lg md:text-xl text-white/90">the Future Awaits</p>
+  </div>
+</div>
+
       {/* Controls Overlay */}
-      <div className="absolute inset-x-0 bottom-12 flex justify-center pointer-events-none z-10">
+      <div className="absolute inset-x-0 bottom-12 flex flex-col items-center gap-4 z-10 min-h-[80px]">
+        {/* Boost Progress Bar - Use smoothed progress */}
+        <div className="w-48 h-1 bg-white/20 rounded-full overflow-hidden" 
+             style={{ opacity: turbo > 0 ? 1 : 0, transition: 'opacity 0.2s' }}>
+          <div 
+            className="h-full bg-white"
+            style={{ 
+              width: `${displayedProgress}%`,
+              transition: 'none' // Remove transition to let RAF handle animation
+            }}
+          />
+        </div>
+
+        {/* Boost Controls */}
         {isMobile ? (
-          <div className="pointer-events-auto">
-            <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" className="sr-only peer" checked={turbo === 1} readOnly />
-              <div className="w-20 h-11 bg-white/10 backdrop-blur-sm rounded-full"></div>
-              <span className="ml-3 text-sm text-white/70">
-                {turbo === 1 ? "Boosting" : "Boost"}
-              </span>
-            </label>
+          <div
+            className="pointer-events-auto bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full cursor-pointer text-white/70 select-none min-w-[130px] text-center"
+            onTouchStart={handleMobileBoostStart}
+            onTouchEnd={handleMobileBoostEnd}
+            onMouseDown={handleMobileBoostStart}
+            onMouseUp={handleMobileBoostEnd}
+            onMouseLeave={handleMobileBoostEnd}
+          >
+            <span className="text-sm whitespace-nowrap">
+              {turbo ? `Boosting ${displayedProgress}%` : "Hold to Boost"}
+            </span>
           </div>
         ) : (
-          <div className="flex items-center justify-center gap-2 text-white/50 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+          <div className="flex items-center justify-center gap-2 text-white/50 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full min-w-[190px]">
             <kbd className="px-2 py-1 text-sm bg-white/10 rounded">W</kbd>
-            <span className="text-sm md:text-base">to boost into hyperspace</span>
+            <span className="text-sm md:text-base whitespace-nowrap">
+              {turbo ? `Boosting ${displayedProgress}%` : "Hold to Boost"}
+            </span>
           </div>
         )}
       </div>
       <Canvas
+        tabIndex={0}
         dpr={[1, 1.5]}
         performance={{ min: 0.5 }}
         shadows
@@ -292,10 +438,9 @@ const Experience = () => {
         <Preload all />
         <CameraRig turbo={turbo} />
         <Suspense fallback={null}>
-          {/* Static HDR environment for efficient reflections */}
           <Environment preset="park" background={false} />
           <AssignEnvMap />
-          <MousePlane onMove={setMousePoint} turbo={turbo} />
+          <MousePlane onMove={handleMouseMove} turbo={turbo} />
           <ambientLight intensity={1} />
           <directionalLight
             position={[1, 2, 3]}
@@ -313,4 +458,4 @@ const Experience = () => {
   );
 };
 
-export default Experience;
+export default memo(Experience);

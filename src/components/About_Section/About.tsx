@@ -25,7 +25,10 @@ const aboutData = {
 
 export function About() {
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
+    <div 
+      id="about-section" 
+      className="min-h-screen bg-black relative overflow-hidden scroll-mt-32"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
       
