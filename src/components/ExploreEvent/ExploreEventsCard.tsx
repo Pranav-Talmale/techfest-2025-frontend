@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 interface ExploreCardProps {
   id: string;
@@ -18,7 +19,7 @@ export default function ExploreEventsCard({
   handleClick,
 }: ExploreCardProps) {
   const isActive = active === id;
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 50 }}
@@ -44,7 +45,7 @@ export default function ExploreEventsCard({
 
       {/* Content */}
       {!isActive ? (
-        <motion.h3 
+        <motion.h3
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
@@ -53,14 +54,14 @@ export default function ExploreEventsCard({
           {title}
         </motion.h3>
       ) : (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
           className="absolute bottom-0 p-8 flex justify-start w-full flex-col z-20"
         >
           <div className="flex flex-col gap-4">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
@@ -75,7 +76,18 @@ export default function ExploreEventsCard({
               className="flex items-center gap-2"
             >
               <div className="w-1 h-1 rounded-full bg-white" />
-              <p className="text-white/70 text-lg">Click to explore</p>
+              <Link
+                to={`/events?category=${
+                  id === "world-1"
+                    ? "tech"
+                    : id === "world-2"
+                    ? "non-tech"
+                    : "gaming"
+                }`}
+                className="text-white/70 text-lg"
+              >
+                Click to explore
+              </Link>
             </motion.div>
           </div>
         </motion.div>
