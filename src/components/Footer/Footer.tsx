@@ -22,9 +22,9 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-start">
             <Link to="/" className="flex items-center mb-4 md:mb-0">
               <img
-                src="/technovate logo.png"
+                src="technovate_logo.svg"
                 alt="Technovate"
-                className="h-8 w-auto"
+                className="h-6 w-auto mb-4"
               />
             </Link>
             <nav className="flex gap-6 mt-4 md:mt-0">
@@ -62,7 +62,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between">
           <p className="text-sm text-white/50">
-            © Made with ❤️ by Deeptanshu, Pranav, Vishwajeet and Jatin
+            © Made with ❤️ by Deeptanshu, Pranav and Jatin
           </p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a
