@@ -108,7 +108,7 @@ export function FAQ() {
         </div>
 
         {/* FAQ List */}
-        <div className="space-y-px px-2">
+        <div className="space-y-px">
           {faqData.questions.map((faq) => (
             <FAQItem 
               key={faq.id} 

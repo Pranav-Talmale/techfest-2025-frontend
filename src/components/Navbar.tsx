@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Menu,
@@ -25,19 +25,48 @@ const socials = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === "/";
+
+  // On non-home pages, header should be visible.
+  // On the homepage, hide header until user scrolls beyond half the viewport height.
+  const [showHeader, setShowHeader] = useState(!isHome);
+
+  useEffect(() => {
+    if (isHome) {
+      const handleScroll = () => {
+        if (window.scrollY >= window.innerHeight / 2) {
+          setShowHeader(true);
+        } else {
+          setShowHeader(false);
+        }
+      };
+
+      window.addEventListener("scroll", handleScroll);
+      // Check initial scroll position
+      handleScroll();
+      return () => window.removeEventListener("scroll", handleScroll);
+    } else {
+      setShowHeader(true);
+    }
+  }, [isHome]);
 
   return (
     <>
       {/* Fixed Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-lg border-b border-white/10">
+      <nav
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-lg border-b border-white/10 transition-opacity duration-300",
+          showHeader ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center">
               <img
-                src="/technovate logo.png"
+                src="technovate_logo.svg"
                 alt="Technovate"
-                className="h-8 w-auto"
+                className="h-6 w-auto"
               />
             </Link>
 
@@ -109,7 +138,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
             <Link to="/" onClick={() => setIsOpen(false)}>
               <img
-                src="/technovate logo.png"
+                src="technovate_logo.svg"
                 alt="Technovate"
                 className="h-12 w-auto"
               />

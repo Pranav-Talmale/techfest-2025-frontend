@@ -32,9 +32,9 @@ const LoadingScreen = () => {
           className="mb-8"
         >
           <img 
-            src="/technovate logo.png" 
+            src="technovate_logo.svg" 
             alt="Technovate" 
-            className="h-16 w-auto"
+            className="h-8 w-auto"
           />
         </motion.div>
 
