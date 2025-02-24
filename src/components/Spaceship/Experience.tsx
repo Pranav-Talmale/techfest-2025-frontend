@@ -7,120 +7,67 @@ import {
   useMemo,
   useRef,
   lazy,
+  Fragment,
 } from "react";
-import {
-  EffectComposer,
-  ChromaticAberration,
-} from "@react-three/postprocessing";
+import { EffectComposer, ChromaticAberration } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
 import LoadingScreen from "../LoadingScreen";
+import { Preload, Environment } from "@react-three/drei";
+
+// Custom hook to detect when the target key is pressed.
+function useKeyPress(targetKey: string) {
+  const [pressed, setPressed] = useState(false);
+  const downHandler = useCallback((e: KeyboardEvent) => {
+    if (e.code === targetKey) setPressed(true);
+  }, [targetKey]);
+  const upHandler = useCallback((e: KeyboardEvent) => {
+    if (e.code === targetKey) setPressed(false);
+  }, [targetKey]);
+  useEffect(() => {
+    window.addEventListener("keydown", downHandler);
+    window.addEventListener("keyup", upHandler);
+    return () => {
+      window.removeEventListener("keydown", downHandler);
+      window.removeEventListener("keyup", upHandler);
+    };
+  }, [downHandler, upHandler]);
+  return pressed;
+}
 
 // Lazy load heavy components
 const Stars = lazy(() => import("./Stars"));
 const Spaceship = lazy(() => import("./Spaceship"));
 const MotionBlur = lazy(() => import("./MotionBlur"));
 
-// Create PMREM Generator for dynamic environment mapping
-const DynamicEnvMap = ({ children }: { children: React.ReactNode }) => {
-  const { gl, scene } = useThree();
-  const pmrem = useMemo(() => new THREE.PMREMGenerator(gl), [gl]);
-  const previousEnvMap = useRef<THREE.WebGLRenderTarget | null>(null);
-
-  useFrame(() => {
-    // Hide spaceship temporarily
-    scene.traverse((obj) => {
-      if (obj.name === "spaceship") obj.visible = false;
-    });
-
-    // Clear background
-    const originalBackground = scene.background;
-    scene.background = null;
-
-    // Generate environment map
-    const envMap = pmrem.fromScene(scene);
-
-    // Restore scene
-    scene.background = originalBackground;
-    scene.traverse((obj) => {
-      if (obj.name === "spaceship") {
-        obj.visible = true;
-        // Apply environment map to spaceship materials
-        obj.traverse((child) => {
-          if (
-            child instanceof THREE.Mesh &&
-            child.material instanceof THREE.MeshStandardMaterial
-          ) {
-            child.material.envMap = envMap.texture;
-            child.material.envMapIntensity = 100;
-            child.material.normalScale?.set(0.3, 0.3);
-            child.material.needsUpdate = true;
-          }
-        });
-      }
-    });
-
-    // Dispose of previous envMap
-    if (previousEnvMap.current) {
-      previousEnvMap.current.dispose();
-    }
-    previousEnvMap.current = envMap;
-  });
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (previousEnvMap.current) {
-        previousEnvMap.current.dispose();
-      }
-      pmrem.dispose();
-    };
-  }, [pmrem]);
-
-  return <>{children}</>;
-};
-
 const CameraRig = ({ turbo }: { turbo: number }) => {
   const { camera } = useThree();
   const perspCamera = camera as THREE.PerspectiveCamera;
-
-  // Base camera position for non-turbo view
-  const basePosition = new THREE.Vector3(-4, 4, 6); //RGB x-axis:red y-axis:green z-axis:blue
-  const baseLookAt = new THREE.Vector3(0, 0, 0);
-
-  // Turbo camera position
-  const turboPosition = new THREE.Vector3(5, 1, 1);
-  const turboLookAt = new THREE.Vector3(-5, 0, 0);
+  const basePosition = useMemo(() => new THREE.Vector3(-4, 4, 6), []);
+  const baseLookAt = useMemo(() => new THREE.Vector3(0, 0, 0), []);
+  const turboPosition = useMemo(() => new THREE.Vector3(5, 1, 1), []);
+  const turboLookAt = useMemo(() => new THREE.Vector3(-5, 0, 0), []);
 
   useFrame(() => {
     const targetPos = turbo ? turboPosition : basePosition;
     const targetLook = turbo ? turboLookAt : baseLookAt;
-
-    // Smoothly interpolate position
     camera.position.lerp(targetPos, 0.05);
-
-    // Update camera look-at
     camera.lookAt(targetLook);
-
-    // Update FOV
     const targetFOV = 40 + turbo * 15;
     perspCamera.fov = THREE.MathUtils.lerp(perspCamera.fov, targetFOV, 0.02);
     perspCamera.updateProjectionMatrix();
   });
 
-  // Set initial position and look-at
   useEffect(() => {
     camera.position.copy(basePosition);
     camera.lookAt(baseLookAt);
     perspCamera.fov = 40;
     perspCamera.updateProjectionMatrix();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [camera]);
+  }, [camera, basePosition, baseLookAt, perspCamera]);
 
   return null;
 };
 
-// Mouse tracking for spaceship control
 const MousePlane = ({
   onMove,
   turbo,
@@ -128,10 +75,9 @@ const MousePlane = ({
   onMove: (point: THREE.Vector3) => void;
   turbo: number;
 }) => {
-  const intersectionPoint = new THREE.Vector3();
-
+  const intersectionPoint = useMemo(() => new THREE.Vector3(), []);
   const handlePointerMove = (event: { point: THREE.Vector3 }) => {
-    if (turbo > 0) return; // Disable steering during turbo
+    if (turbo > 0) return;
     intersectionPoint.set(-3, event.point.y, event.point.z);
     onMove(intersectionPoint);
   };
@@ -149,7 +95,6 @@ const MousePlane = ({
   );
 };
 
-// Spaceship movement controller
 const SpaceshipController = ({
   mousePoint,
   turbo,
@@ -158,6 +103,7 @@ const SpaceshipController = ({
   turbo: number;
 }) => {
   const spaceshipRef = useRef<THREE.Group>(null);
+  const { clock } = useThree();
   const translateY = useRef(0);
   const translateAcceleration = useRef(0);
   const angleZ = useRef(0);
@@ -165,132 +111,166 @@ const SpaceshipController = ({
   const pitchAngle = useRef(0);
   const pitchAcceleration = useRef(0);
 
+  const tempVec = useMemo(() => new THREE.Vector3(), []);
+  const subtractionVec = useMemo(() => new THREE.Vector3(), []);
+  const upVec = useMemo(() => new THREE.Vector3(0, 1, 0), []);
+
+  // Enhance spaceship material for reflections on mount.
+  useEffect(() => {
+    if (spaceshipRef.current) {
+      spaceshipRef.current.traverse((child) => {
+        if (
+          child instanceof THREE.Mesh &&
+          child.material instanceof THREE.MeshStandardMaterial
+        ) {
+          child.material.envMapIntensity = 4;
+          child.material.metalness = 1;
+          child.material.roughness = 0.1;
+          child.material.needsUpdate = true;
+        }
+      });
+    }
+  }, []);
+
   useFrame(() => {
     if (!spaceshipRef.current) return;
-
+    // --- Spaceship Movement Logic ---
     if (turbo > 0) {
-      // During turbo, gradually return to center
-      translateAcceleration.current += (0 - translateY.current) * 0.01;
-      angleAcceleration.current += (0 - angleZ.current) * 0.01;
-      pitchAcceleration.current += (0 - pitchAngle.current) * 0.01;
+      translateAcceleration.current += -translateY.current * 0.01;
+      angleAcceleration.current += -angleZ.current * 0.01;
+      pitchAcceleration.current += -pitchAngle.current * 0.01;
     } else {
-      // Normal steering with bounds
-      const boundedY = Math.max(-3, Math.min(1, mousePoint.y)); // Limit vertical range to ±3 units
+      const boundedY = Math.max(-3, Math.min(1, mousePoint.y));
       translateAcceleration.current += (boundedY - translateY.current) * 0.002;
-
-      // Calculate target pitch based on mouse Z position
       const targetPitch = mousePoint.z * 0.5;
       pitchAcceleration.current += (targetPitch - pitchAngle.current) * 0.01;
     }
-
-    // Apply acceleration damping
     translateAcceleration.current *= 0.95;
     translateY.current += translateAcceleration.current;
-
     pitchAcceleration.current *= 0.85;
     pitchAngle.current += pitchAcceleration.current;
 
-    // Calculate rotation based on mouse position with bounds
-    const dir = mousePoint
-      .clone()
-      .sub(new THREE.Vector3(0, translateY.current, 0))
-      .normalize();
-
-    // Calculate yaw (left/right tilt)
-    const dirCos = dir.dot(new THREE.Vector3(0, 1, 0));
+    subtractionVec.set(0, translateY.current, 0);
+    tempVec.copy(mousePoint).sub(subtractionVec).normalize();
+    const dirCos = tempVec.dot(upVec);
     const angle = Math.acos(dirCos) - Math.PI / 2;
-
-    // Limit rotation angles
     const boundedAngle = Math.max(-Math.PI / 4, Math.min(Math.PI / 4, angle));
-    const boundedPitch = Math.max(
-      -Math.PI / 6,
-      Math.min(Math.PI / 6, pitchAngle.current)
-    );
-
-    // Update rotation with smooth acceleration
+    const boundedPitch = Math.max(-Math.PI / 6, Math.min(Math.PI / 6, pitchAngle.current));
     if (!turbo) {
       angleAcceleration.current += (boundedAngle - angleZ.current) * 0.01;
     }
     angleAcceleration.current *= 0.75;
     angleZ.current += angleAcceleration.current;
 
-    // Apply transformations with proper Euler angles
     spaceshipRef.current.position.setY(translateY.current);
-    spaceshipRef.current.rotation.set(
-      boundedPitch,
-      -Math.PI / 2,
-      angleZ.current,
-      "YZX"
-    );
+    spaceshipRef.current.rotation.set(boundedPitch, -Math.PI / 2, angleZ.current, "YZX");
+
+    // --- Dynamic Reflection Update (Occasional Purple Tint Flash) ---
+    // Define a 10-second cycle:
+    // 0 - 4 sec: pure blue
+    // 4 - 5 sec: transition from blue to purple
+    // 5 - 6 sec: pure purple
+    // 6 - 7 sec: transition from purple back to blue
+    // 7 - 10 sec: pure blue
+    const timeVal = clock.getElapsedTime();
+    const flashPeriod = 10.0;
+    const phase = timeVal % flashPeriod;
+    let fraction = 0;
+    if (phase < 4) {
+      fraction = 0;
+    } else if (phase < 5) {
+      fraction = (phase - 4) / 1;
+    } else if (phase < 6) {
+      fraction = 1;
+    } else if (phase < 7) {
+      fraction = 1 - ((phase - 6) / 1);
+    } else {
+      fraction = 0;
+    }
+    // When fraction is 0, tint is pure blue; when fraction is 1, tint is purple.
+    const blueColor = new THREE.Color(0x800080);
+    const purpleColor = new THREE.Color(0x0000ff);
+    const tint = blueColor.clone().lerp(purpleColor, fraction);
+
+    // Update envMap intensity and blend material color toward the tint.
+    spaceshipRef.current.traverse((child) => {
+      if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
+        child.material.envMapIntensity = 3 + 2 * fraction;
+        child.material.color.lerp(tint, 0.3);
+        child.material.needsUpdate = true;
+      }
+    });
   });
 
   return <Spaceship turbo={turbo} ref={spaceshipRef} />;
 };
 
+const PostProcessing = ({ turbo }: { turbo: number }) => {
+  const multisampling = turbo === 1 ? 4 : 0;
+  const offset = turbo === 1 ? [0.002 * turbo, 0.002 * turbo] : [0, 0];
+  return (
+    <EffectComposer multisampling={multisampling}>
+      {turbo === 1 ? <MotionBlur turbo={turbo} /> : <Fragment />}
+      <ChromaticAberration blendFunction={BlendFunction.NORMAL} offset={offset} />
+    </EffectComposer>
+  );
+};
+
+// Assign the static environment map (from Drei's Environment) to objects that need it.
+const AssignEnvMap = () => {
+  const { scene } = useThree();
+  useEffect(() => {
+    if (scene.environment) {
+      scene.traverse((child) => {
+        if (
+          child instanceof THREE.Mesh &&
+          child.material &&
+          child.material instanceof THREE.MeshStandardMaterial
+        ) {
+          if (!child.material.envMap) {
+            child.material.envMap = scene.environment;
+            child.material.envMapIntensity = 4;
+            child.material.metalness = 1;
+            child.material.roughness = 0.1;
+            child.material.needsUpdate = true;
+          }
+        }
+      });
+    }
+  }, [scene.environment]);
+  return null;
+};
+
 const Experience = () => {
-  const [turbo, setTurbo] = useState(0);
-  const [mousePoint, setMousePoint] = useState(new THREE.Vector3(0, 0, 0));
+  // Use our custom hook to detect the "W" key for boosting.
+  const isBoosting = useKeyPress("KeyW");
+  const turbo = isBoosting ? 1 : 0;
+  const [mousePoint, setMousePoint] = useState(() => new THREE.Vector3(0, 0, 0));
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    setIsMobile("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
-
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.code === "KeyW") {
-      setTurbo(1);
-    }
-  }, []);
-
-  const handleKeyUp = useCallback((e: KeyboardEvent) => {
-    if (e.code === "KeyW") {
-      setTurbo(0);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!isMobile) {
-      window.addEventListener("keydown", handleKeyDown);
-      window.addEventListener("keyup", handleKeyUp);
-      return () => {
-        window.removeEventListener("keydown", handleKeyDown);
-        window.removeEventListener("keyup", handleKeyUp);
-      };
-    }
-  }, [handleKeyDown, handleKeyUp, isMobile]);
 
   return (
     <>
       <LoadingScreen />
-      
       {/* Logo Overlay */}
       <div className="absolute inset-x-0 top-1/3 flex flex-col items-center pointer-events-none z-10">
         <div className="text-center">
-          <img 
-            src="/technovate logo.png"
-            alt="Technovate"
-            className="h-24 md:h-32 w-auto mb-4"
-          />
-          <p className="text-lg md:text-xl text-white/70">
-            The Future Awaits
-          </p>
+          <img src="/technovate logo.png" alt="Technovate" className="h-24 md:h-32 w-auto mb-4" />
+          <p className="text-lg md:text-xl text-white/70">The Future Awaits</p>
         </div>
       </div>
-
       {/* Controls Overlay */}
       <div className="absolute inset-x-0 bottom-12 flex justify-center pointer-events-none z-10">
         {isMobile ? (
           <div className="pointer-events-auto">
             <label className="relative inline-flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                className="sr-only peer"
-                checked={turbo === 1}
-                onChange={(e) => setTurbo(e.target.checked ? 1 : 0)}
-              />
-              <div className="w-20 h-11 bg-white/10 backdrop-blur-sm peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-white/25 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-10 after:w-10 after:transition-all peer-checked:bg-white/30"></div>
+              <input type="checkbox" className="sr-only peer" checked={turbo === 1} readOnly />
+              <div className="w-20 h-11 bg-white/10 backdrop-blur-sm rounded-full"></div>
               <span className="ml-3 text-sm text-white/70">
-                {turbo === 1 ? 'Boosting' : 'Boost'}
+                {turbo === 1 ? "Boosting" : "Boost"}
               </span>
             </label>
           </div>
@@ -301,57 +281,32 @@ const Experience = () => {
           </div>
         )}
       </div>
-
       <Canvas
         dpr={[1, 1.5]}
         performance={{ min: 0.5 }}
         shadows
         camera={{ fov: 40, near: 0.1, far: 200 }}
-        gl={{
-          antialias: true,
-          powerPreference: "high-performance",
-        }}
-        style={{
-          background: "#000000",
-        }}
+        gl={{ antialias: true, powerPreference: "high-performance" }}
+        style={{ background: "#000000" }}
       >
+        <Preload all />
         <CameraRig turbo={turbo} />
-
         <Suspense fallback={null}>
-          <DynamicEnvMap>
-            {/* Mouse tracking plane */}
-            <MousePlane onMove={setMousePoint} turbo={turbo} />
-
-            {/* Enhanced Lighting Setup */}
-            <ambientLight intensity={0.3} />
-
-            {/* Main directional light */}
-            <directionalLight
-              position={[1, 2, 3]}
-              intensity={0.5}
-              castShadow
-              shadow-mapSize={[1024, 1024]}
-              shadow-bias={-0.0001}
-            />
-
-            {/* Stars Background */}
-            <Stars turbo={turbo} />
-
-            {/* Spaceship with movement control */}
-            <SpaceshipController mousePoint={mousePoint} turbo={turbo} />
-
-            {/* Post Processing */}
-            <EffectComposer multisampling={4}>
-              {/* Motion Blur */}
-              <MotionBlur turbo={turbo} />
-
-              {/* Chromatic Aberration */}
-              <ChromaticAberration
-                blendFunction={BlendFunction.NORMAL}
-                offset={[0.002 * turbo, 0.002 * turbo]}
-              />
-            </EffectComposer>
-          </DynamicEnvMap>
+          {/* Static HDR environment for efficient reflections */}
+          <Environment preset="park" background={false} />
+          <AssignEnvMap />
+          <MousePlane onMove={setMousePoint} turbo={turbo} />
+          <ambientLight intensity={1} />
+          <directionalLight
+            position={[1, 2, 3]}
+            intensity={0.5}
+            castShadow
+            shadow-mapSize={[1024, 1024]}
+            shadow-bias={-0.0001}
+          />
+          <Stars turbo={turbo} />
+          <SpaceshipController mousePoint={mousePoint} turbo={turbo} />
+          <PostProcessing turbo={turbo} />
         </Suspense>
       </Canvas>
     </>
