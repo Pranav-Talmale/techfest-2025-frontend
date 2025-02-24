@@ -70,7 +70,7 @@ export function About() {
             <p className="text-lg md:text-xl text-neutral-300 leading-relaxed">
               {aboutData.description}
             </p>
-            <div className="flex flex-col gap-4 text-neutral-300">
+            <div className="flex flex-col md:items-start items-center text-justify gap-4 text-neutral-300">
               {aboutData.highlights.map((highlight, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div className="w-1 h-1 rounded-full bg-white/50" />
