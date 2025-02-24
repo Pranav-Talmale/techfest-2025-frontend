@@ -1,4 +1,4 @@
-import { Github, Twitter, Instagram, Mail } from "lucide-react";
+import { Twitter, Instagram, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const navigation = {
@@ -9,7 +9,6 @@ const navigation = {
   social: [
     { name: "Twitter", href: "https://twitter.com/", icon: Twitter },
     { name: "Instagram", href: "https://instagram.com/", icon: Instagram },
-    { name: "GitHub", href: "https://github.com/", icon: Github },
     { name: "Email", href: "mailto:contact@techfest.com", icon: Mail },
   ],
 };
@@ -22,9 +21,9 @@ export function Footer() {
           {/* Logo & Links */}
           <div className="flex flex-col items-center md:items-start">
             <Link to="/" className="flex items-center mb-4 md:mb-0">
-              <img 
-                src="/technovate logo.png" 
-                alt="Technovate" 
+              <img
+                src="/technovate logo.png"
+                alt="Technovate"
                 className="h-8 w-auto"
               />
             </Link>
@@ -66,10 +65,16 @@ export function Footer() {
             © Made with ❤️ by Deeptanshu, Pranav and Jatin
           </p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="text-sm text-white/50 hover:text-white transition-colors">
+            <a
+              href="#"
+              className="text-sm text-white/50 hover:text-white transition-colors"
+            >
               Privacy Policy
             </a>
-            <a href="#" className="text-sm text-white/50 hover:text-white transition-colors">
+            <a
+              href="#"
+              className="text-sm text-white/50 hover:text-white transition-colors"
+            >
               Terms of Service
             </a>
           </div>
