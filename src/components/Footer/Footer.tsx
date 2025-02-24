@@ -62,7 +62,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between">
           <p className="text-sm text-white/50">
-            © Made with ❤️ by Deeptanshu, Pranav and Jatin
+            © Made with ❤️ by Deeptanshu, Pranav, Vishwajeet and Jatin
           </p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a
