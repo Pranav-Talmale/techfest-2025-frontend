@@ -15,24 +15,23 @@ import * as THREE from "three";
 import LoadingScreen from "../LoadingScreen";
 import { Preload, Environment } from "@react-three/drei";
 
-// Custom hook to detect when the target key is pressed.
-function useKeyPress(targetKey: string) {
-  const [pressed, setPressed] = useState(false);
-  const downHandler = useCallback((e: KeyboardEvent) => {
-    if (e.code === targetKey) setPressed(true);
-  }, [targetKey]);
-  const upHandler = useCallback((e: KeyboardEvent) => {
-    if (e.code === targetKey) setPressed(false);
-  }, [targetKey]);
-  useEffect(() => {
-    window.addEventListener("keydown", downHandler);
-    window.addEventListener("keyup", upHandler);
-    return () => {
-      window.removeEventListener("keydown", downHandler);
-      window.removeEventListener("keyup", upHandler);
-    };
-  }, [downHandler, upHandler]);
-  return pressed;
+// Custom hook to detect when the target key is pressed or mobile touch is active
+function useTurboControl() {
+  const [isPressed, setIsPressed] = useState(false);
+  
+  const handleStart = useCallback(() => {
+    setIsPressed(true);
+  }, []);
+  
+  const handleEnd = useCallback(() => {
+    setIsPressed(false);
+  }, []);
+
+  return {
+    turboActive: isPressed,
+    handleStart,
+    handleEnd
+  };
 }
 
 // Lazy load heavy components
@@ -103,7 +102,6 @@ const SpaceshipController = ({
   turbo: number;
 }) => {
   const spaceshipRef = useRef<THREE.Group>(null);
-  const { clock } = useThree();
   const translateY = useRef(0);
   const translateAcceleration = useRef(0);
   const angleZ = useRef(0);
@@ -164,42 +162,6 @@ const SpaceshipController = ({
 
     spaceshipRef.current.position.setY(translateY.current);
     spaceshipRef.current.rotation.set(boundedPitch, -Math.PI / 2, angleZ.current, "YZX");
-
-    // --- Dynamic Reflection Update (Occasional Purple Tint Flash) ---
-    // Define a 10-second cycle:
-    // 0 - 4 sec: pure blue
-    // 4 - 5 sec: transition from blue to purple
-    // 5 - 6 sec: pure purple
-    // 6 - 7 sec: transition from purple back to blue
-    // 7 - 10 sec: pure blue
-    const timeVal = clock.getElapsedTime();
-    const flashPeriod = 10.0;
-    const phase = timeVal % flashPeriod;
-    let fraction = 0;
-    if (phase < 4) {
-      fraction = 0;
-    } else if (phase < 5) {
-      fraction = (phase - 4) / 1;
-    } else if (phase < 6) {
-      fraction = 1;
-    } else if (phase < 7) {
-      fraction = 1 - ((phase - 6) / 1);
-    } else {
-      fraction = 0;
-    }
-    // When fraction is 0, tint is pure blue; when fraction is 1, tint is purple.
-    const blueColor = new THREE.Color(0x800080);
-    const purpleColor = new THREE.Color(0x0000ff);
-    const tint = blueColor.clone().lerp(purpleColor, fraction);
-
-    // Update envMap intensity and blend material color toward the tint.
-    spaceshipRef.current.traverse((child) => {
-      if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
-        child.material.envMapIntensity = 3 + 2 * fraction;
-        child.material.color.lerp(tint, 0.3);
-        child.material.needsUpdate = true;
-      }
-    });
   });
 
   return <Spaceship turbo={turbo} ref={spaceshipRef} />;
@@ -229,7 +191,7 @@ const AssignEnvMap = () => {
         ) {
           if (!child.material.envMap) {
             child.material.envMap = scene.environment;
-            child.material.envMapIntensity = 4;
+            child.material.envMapIntensity = 1;
             child.material.metalness = 1;
             child.material.roughness = 0.1;
             child.material.needsUpdate = true;
@@ -242,71 +204,87 @@ const AssignEnvMap = () => {
 };
 
 const Experience = () => {
-  // Use our custom hook to detect the "W" key for boosting.
-  const isBoosting = useKeyPress("KeyW");
-  const turbo = isBoosting ? 1 : 0;
+  const { turboActive, handleStart, handleEnd } = useTurboControl();
   const [mousePoint, setMousePoint] = useState(() => new THREE.Vector3(0, 0, 0));
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setIsMobile("ontouchstart" in window || navigator.maxTouchPoints > 0);
-  }, []);
 
   return (
     <>
       <LoadingScreen />
-      {/* Logo Overlay */}
-      <div className="absolute inset-x-0 top-1/3 flex flex-col items-center pointer-events-none z-10">
-        <div className="text-center">
-          <img src="/technovate logo.png" alt="Technovate" className="h-24 md:h-32 w-auto mb-4" />
-          <p className="text-lg md:text-xl text-white/70">The Future Awaits</p>
+      {/* Minimalist Sci-fi Logo Overlay */}
+      <div className="absolute inset-x-0 top-[10vh] flex flex-col items-center pointer-events-none z-10">
+        {/* Logo Container */}
+        <div className="relative">
+          {/* Logo */}
+          <img 
+            src="/technovate logo.png" 
+            alt="Technovate" 
+            className="h-16 md:h-32 w-auto"
+          />
+          
+          {/* Tagline */}
+          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
+            <p className="text-xs md:text-sm uppercase tracking-[0.15em] text-white/60">
+              The Future Awaits
+            </p>
+          </div>
         </div>
       </div>
+      
       {/* Controls Overlay */}
-      <div className="absolute inset-x-0 bottom-12 flex justify-center pointer-events-none z-10">
-        {isMobile ? (
-          <div className="pointer-events-auto">
-            <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" className="sr-only peer" checked={turbo === 1} readOnly />
-              <div className="w-20 h-11 bg-white/10 backdrop-blur-sm rounded-full"></div>
-              <span className="ml-3 text-sm text-white/70">
-                {turbo === 1 ? "Boosting" : "Boost"}
-              </span>
-            </label>
-          </div>
-        ) : (
-          <div className="flex items-center justify-center gap-2 text-white/50 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-            <kbd className="px-2 py-1 text-sm bg-white/10 rounded">W</kbd>
-            <span className="text-sm md:text-base">to boost into hyperspace</span>
-          </div>
-        )}
+      <div className="absolute inset-x-0 bottom-12 flex flex-col items-center gap-4 pointer-events-none z-10 select-none touch-none">
+        <div className="text-sm text-white/50 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full">
+          Hold circle to boost into hyperspace
+        </div>
+        <div className="pointer-events-auto touch-none">
+          <button
+            onTouchStart={handleStart}
+            onTouchEnd={handleEnd}
+            onMouseDown={handleStart}
+            onMouseUp={handleEnd}
+            onMouseLeave={handleEnd}
+            className="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-200 transform select-none touch-none"
+            style={{
+              background: turboActive ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(8px)',
+              transform: turboActive ? 'scale(0.95)' : 'scale(1)',
+              boxShadow: turboActive ? '0 0 20px rgba(255, 255, 255, 0.2)' : '0 0 10px rgba(255, 255, 255, 0.1)',
+              WebkitTapHighlightColor: 'transparent',
+              WebkitTouchCallout: 'none',
+              userSelect: 'none'
+            }}
+          >
+            <div className={`w-8 h-8 rounded-full transition-all duration-200 select-none ${
+              turboActive ? 'bg-white scale-90' : 'bg-white/50 scale-100'
+            }`} />
+          </button>
+        </div>
       </div>
       <Canvas
-        dpr={[1, 1.5]}
-        performance={{ min: 0.5 }}
-        shadows
+        dpr={[0.5, 1]}
+        performance={{ min: 0.1 }}
+        shadows={false}
         camera={{ fov: 40, near: 0.1, far: 200 }}
-        gl={{ antialias: true, powerPreference: "high-performance" }}
+        gl={{
+          antialias: true,
+          powerPreference: "high-performance",
+        }}
         style={{ background: "#000000" }}
       >
         <Preload all />
-        <CameraRig turbo={turbo} />
+        <CameraRig turbo={turboActive ? 1 : 0} />
         <Suspense fallback={null}>
-          {/* Static HDR environment for efficient reflections */}
           <Environment preset="park" background={false} />
           <AssignEnvMap />
-          <MousePlane onMove={setMousePoint} turbo={turbo} />
-          <ambientLight intensity={1} />
+          <MousePlane onMove={setMousePoint} turbo={turboActive ? 1 : 0} />
+          <ambientLight intensity={0.1} />
           <directionalLight
             position={[1, 2, 3]}
             intensity={0.5}
-            castShadow
-            shadow-mapSize={[1024, 1024]}
-            shadow-bias={-0.0001}
+            castShadow={false}
           />
-          <Stars turbo={turbo} />
-          <SpaceshipController mousePoint={mousePoint} turbo={turbo} />
-          <PostProcessing turbo={turbo} />
+          <Stars turbo={turboActive ? 1 : 0} />
+          <SpaceshipController mousePoint={mousePoint} turbo={turboActive ? 1 : 0} />
+          <PostProcessing turbo={turboActive ? 1 : 0} />
         </Suspense>
       </Canvas>
     </>
