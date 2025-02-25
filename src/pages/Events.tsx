@@ -121,73 +121,75 @@ export default function Events() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
                     >
-                      {/* Event Image */}
-                      <div className="relative overflow-hidden h-64 w-full">
-                        <img
-                          src={event.image}
-                          alt={event.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+                      <div className="group block bg-neutral-900 rounded-2xl overflow-hidden hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-500 border border-white/10 hover:border-white/20">
+                        {/* Event Image */}
+                        <div className="relative overflow-hidden h-64 w-full">
+                          <img
+                            src={event.image}
+                            alt={event.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
 
-                        {/* Category Badge */}
-                        <div className="absolute top-4 right-4">
-                          <span className="px-3 py-1 rounded-full text-sm bg-white/10 text-white backdrop-blur-sm border border-white/20">
-                            {event.category === "tech"
-                              ? "Technical"
-                              : event.category === "non-tech"
-                              ? "Non Technical"
-                              : "Gaming"}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Event Content */}
-                      <div className="p-6">
-                        <div className="flex-1">
-                          <h3 className="text-2xl font-semibold text-white mb-3 group-hover:text-white/90 transition-colors">
-                            {event.title}
-                          </h3>
-                          <p className="text-neutral-400 mb-6 line-clamp-2 group-hover:text-neutral-300 transition-colors">
-                            {event.description}
-                          </p>
-
-                          {/* Event Details */}
-                          <div className="grid grid-cols-2 gap-4 mb-6">
-                            <div className="flex items-center gap-2 group/item">
-                              <Calendar className="w-4 h-4 text-white/50 group-hover/item:text-white/70 transition-colors" />
-                              <span className="text-sm text-neutral-300 group-hover/item:text-neutral-200 transition-colors">
-                                {new Date(event.datetime).toLocaleDateString(
-                                  "en-US",
-                                  {
-                                    month: "short",
-                                    day: "numeric",
-                                  }
-                                )}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-2 group/item">
-                              <MapPin className="w-4 h-4 text-white/50 group-hover/item:text-white/70 transition-colors" />
-                              <span className="text-sm text-neutral-300 truncate group-hover/item:text-neutral-200 transition-colors">
-                                {event.venue}
-                              </span>
-                            </div>
+                          {/* Category Badge */}
+                          <div className="absolute top-4 right-4">
+                            <span className="px-3 py-1 rounded-full text-sm bg-white/10 text-white backdrop-blur-sm border border-white/20">
+                              {event.category === "tech"
+                                ? "Technical"
+                                : event.category === "non-tech"
+                                ? "Non Technical"
+                                : "Gaming"}
+                            </span>
                           </div>
+                        </div>
 
-                          {/* Footer */}
-                          <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                            <div className="flex items-center gap-2 group/item">
-                              <Users className="w-4 h-4 text-white/50 group-hover/item:text-white/70 transition-colors" />
-                              <span className="text-sm text-white/80 group-hover/item:text-white/90 transition-colors">
-                                {event.teamSize}
-                              </span>
+                        {/* Event Content */}
+                        <div className="p-6">
+                          <div className="flex-1">
+                            <h3 className="text-2xl font-semibold text-white mb-3 group-hover:text-white/90 transition-colors">
+                              {event.title}
+                            </h3>
+                            <p className="text-neutral-400 mb-6 line-clamp-2 group-hover:text-neutral-300 transition-colors">
+                              {event.description}
+                            </p>
+
+                            {/* Event Details */}
+                            <div className="grid grid-cols-2 gap-4 mb-6">
+                              <div className="flex items-center gap-2 group/item">
+                                <Calendar className="w-4 h-4 text-white/50 group-hover/item:text-white/70 transition-colors" />
+                                <span className="text-sm text-neutral-300 group-hover/item:text-neutral-200 transition-colors">
+                                  {new Date(event.datetime).toLocaleDateString(
+                                    "en-US",
+                                    {
+                                      month: "short",
+                                      day: "numeric",
+                                    }
+                                  )}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2 group/item">
+                                <MapPin className="w-4 h-4 text-white/50 group-hover/item:text-white/70 transition-colors" />
+                                <span className="text-sm text-neutral-300 truncate group-hover/item:text-neutral-200 transition-colors">
+                                  {event.venue}
+                                </span>
+                              </div>
                             </div>
-                            <Link
-                              to={`/events/detail?id=${event.id}`}
-                              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300"
-                            >
-                              View Details
-                            </Link>{" "}
+
+                            {/* Footer */}
+                            <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                              <div className="flex items-center gap-2 group/item">
+                                <Users className="w-4 h-4 text-white/50 group-hover/item:text-white/70 transition-colors" />
+                                <span className="text-sm text-white/80 group-hover/item:text-white/90 transition-colors">
+                                  {event.teamSize}
+                                </span>
+                              </div>
+                              <Link
+                                to={`/events/detail?id=${event.id}`}
+                                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300"
+                              >
+                                View Details
+                              </Link>{" "}
+                            </div>
                           </div>
                         </div>
                       </div>
