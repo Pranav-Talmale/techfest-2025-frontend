@@ -6,7 +6,6 @@ import { Theme } from "@/components/Our_Theme/Theme";
 import { Sponsors } from "@/components/Our_Sponsors/Sponsors";
 import { FAQ } from "@/components/Frequently_Asked_Questions/FAQ";
 import { Technovate } from "@/components/Technovate_2024/Technovate";
-import { Footer } from "@/components/Footer/Footer";
 import { Inspiration } from "@/components/Our_Inspiration/Inspiration";
 import { useState } from "react";
 import { X, AlertTriangle } from "lucide-react";
@@ -26,8 +25,10 @@ function Home() {
         </p>
       </div> */}
       <LoadingScreen />
-      <div className="h-screen"><Experience/></div>
-      
+      <div className="h-screen">
+        <Experience />
+      </div>
+
       {/* Warning Banner */}
       <AnimatePresence>
         {showWarning && (
@@ -41,13 +42,19 @@ function Home() {
               <div className="bg-yellow-500/10 backdrop-blur-sm border border-yellow-500/20 rounded-lg shadow-lg">
                 <div className="p-4 flex items-center justify-between">
                   <div className="flex items-center">
-                    <AlertTriangle className="h-6 w-6 text-yellow-500" aria-hidden="true" />
+                    <AlertTriangle
+                      className="h-6 w-6 text-yellow-500"
+                      aria-hidden="true"
+                    />
                     <p className="ml-3 font-medium text-yellow-500">
                       <span className="hidden md:inline">
-                        Warning: This website is currently in development. All information, dates, and events shown are placeholder data and not final.
+                        Warning: This website is currently in development. All
+                        information, dates, and events shown are placeholder
+                        data and not final.
                       </span>
                       <span className="md:hidden">
-                        Development version - All information here is placeholder.
+                        Development version - All information here is
+                        placeholder.
                       </span>
                     </p>
                   </div>
@@ -66,14 +73,13 @@ function Home() {
         )}
       </AnimatePresence>
 
-      <About/>
-      <Theme/>
+      <About />
+      <Theme />
       <Explore />
-      <Sponsors/>
-      <Inspiration/>
-      <FAQ/>
-      <Technovate/>
-      <Footer/>
+      <Sponsors />
+      <Inspiration />
+      <FAQ />
+      <Technovate />
     </>
   );
 }

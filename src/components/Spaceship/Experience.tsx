@@ -9,7 +9,10 @@ import {
   lazy,
   Fragment,
 } from "react";
-import { EffectComposer, ChromaticAberration } from "@react-three/postprocessing";
+import {
+  EffectComposer,
+  ChromaticAberration,
+} from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
 import LoadingScreen from "../LoadingScreen";
@@ -94,6 +97,38 @@ const MousePlane = ({
   );
 };
 
+// Custom hook for gyroscopic controls on mobile
+function useGyroControl() {
+  const [gyroPoint, setGyroPoint] = useState(new THREE.Vector3(0, 0, 0));
+  const smoothGyroPoint = useRef(new THREE.Vector3(0, 0, 0)); // For smoother transition
+
+  useEffect(() => {
+    const handleOrientation = (event: DeviceOrientationEvent) => {
+      // Ensure values are not null, defaulting to 0 if undefined
+      const beta = event.beta ?? 0;
+      const gamma = event.gamma ?? 0;
+
+      // Normalize values and apply smoother scaling
+      const targetY = THREE.MathUtils.clamp((beta - 45) / 60, -3, 1);
+      const targetZ = THREE.MathUtils.clamp(gamma / 60, -2, 2);
+
+      // Apply smoothing using interpolation (lerp)
+      smoothGyroPoint.current.lerp(new THREE.Vector3(0, targetY, targetZ), 0.1);
+      setGyroPoint(smoothGyroPoint.current.clone()); // Update state with smoothed values
+    };
+
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener("deviceorientation", handleOrientation);
+    }
+
+    return () => {
+      window.removeEventListener("deviceorientation", handleOrientation);
+    };
+  }, []);
+
+  return gyroPoint;
+}
+
 const SpaceshipController = ({
   mousePoint,
   turbo,
@@ -153,7 +188,10 @@ const SpaceshipController = ({
     const dirCos = tempVec.dot(upVec);
     const angle = Math.acos(dirCos) - Math.PI / 2;
     const boundedAngle = Math.max(-Math.PI / 4, Math.min(Math.PI / 4, angle));
-    const boundedPitch = Math.max(-Math.PI / 6, Math.min(Math.PI / 6, pitchAngle.current));
+    const boundedPitch = Math.max(
+      -Math.PI / 6,
+      Math.min(Math.PI / 6, pitchAngle.current)
+    );
     if (!turbo) {
       angleAcceleration.current += (boundedAngle - angleZ.current) * 0.01;
     }
@@ -173,7 +211,10 @@ const PostProcessing = ({ turbo }: { turbo: number }) => {
   return (
     <EffectComposer multisampling={multisampling}>
       {turbo === 1 ? <MotionBlur turbo={turbo} /> : <Fragment />}
-      <ChromaticAberration blendFunction={BlendFunction.NORMAL} offset={offset} />
+      <ChromaticAberration
+        blendFunction={BlendFunction.NORMAL}
+        offset={offset}
+      />
     </EffectComposer>
   );
 };
@@ -191,6 +232,7 @@ const AssignEnvMap = () => {
         ) {
           if (!child.material.envMap) {
             child.material.envMap = scene.environment;
+            child.material.envMapIntensity = 1;
             child.material.envMapIntensity = 1;
             child.material.metalness = 1;
             child.material.roughness = 0.1;
@@ -263,7 +305,14 @@ const Experience = () => {
         dpr={[0.5, 1]}
         performance={{ min: 0.1 }}
         shadows={false}
+        dpr={[0.5, 1]}
+        performance={{ min: 0.1 }}
+        shadows={false}
         camera={{ fov: 40, near: 0.1, far: 200 }}
+        gl={{
+          antialias: true,
+          powerPreference: "high-performance",
+        }}
         gl={{
           antialias: true,
           powerPreference: "high-performance",
@@ -272,14 +321,18 @@ const Experience = () => {
       >
         <Preload all />
         <CameraRig turbo={turboActive ? 1 : 0} />
+        <CameraRig turbo={turboActive ? 1 : 0} />
         <Suspense fallback={null}>
           <Environment preset="park" background={false} />
           <AssignEnvMap />
           <MousePlane onMove={setMousePoint} turbo={turboActive ? 1 : 0} />
           <ambientLight intensity={0.1} />
+          <MousePlane onMove={setMousePoint} turbo={turboActive ? 1 : 0} />
+          <ambientLight intensity={0.1} />
           <directionalLight
             position={[1, 2, 3]}
             intensity={0.5}
+            castShadow={false}
             castShadow={false}
           />
           <Stars turbo={turboActive ? 1 : 0} />

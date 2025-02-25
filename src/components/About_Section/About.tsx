@@ -18,7 +18,7 @@ const aboutData = {
     { number: "₹20k+", label: "Prize Pool" }
   ],
   poster: {
-    src: "/Poster-final.png",
+    src: "/Poster-final.jpg",
     alt: "Technovate'25 Poster"
   }
 };
