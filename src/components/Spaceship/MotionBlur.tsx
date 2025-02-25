@@ -6,7 +6,7 @@ import * as THREE from 'three'
 // Define the shader with a compile-time constant for samples.
 const fragmentShader = /* glsl */ `
 uniform float strength;
-#define SAMPLES 8
+#define SAMPLES 1
 
 float rand2(vec2 n) { 
   return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);

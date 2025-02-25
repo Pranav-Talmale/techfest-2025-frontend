@@ -47,7 +47,7 @@ const CameraRig = ({ turbo }: { turbo: number }) => {
   const perspCamera = camera as THREE.PerspectiveCamera;
   const basePosition = useMemo(() => new THREE.Vector3(-4, 4, 6), []);
   const baseLookAt = useMemo(() => new THREE.Vector3(0, 0, 0), []);
-  const turboPosition = useMemo(() => new THREE.Vector3(5, 1, 1), []);
+  const turboPosition = useMemo(() => new THREE.Vector3(10, 0, 0), []);
   const turboLookAt = useMemo(() => new THREE.Vector3(-5, 0, 0), []);
 
   useFrame(() => {
@@ -56,7 +56,7 @@ const CameraRig = ({ turbo }: { turbo: number }) => {
     camera.position.lerp(targetPos, 0.05);
     camera.lookAt(targetLook);
     const targetFOV = 40 + turbo * 15;
-    perspCamera.fov = THREE.MathUtils.lerp(perspCamera.fov, targetFOV, 0.02);
+    perspCamera.fov = THREE.MathUtils.lerp(perspCamera.fov, targetFOV, 0.05);
     perspCamera.updateProjectionMatrix();
   });
 
@@ -156,7 +156,7 @@ const SpaceshipController = ({
           child instanceof THREE.Mesh &&
           child.material instanceof THREE.MeshStandardMaterial
         ) {
-          child.material.envMapIntensity = 4;
+          child.material.envMapIntensity = 1;
           child.material.metalness = 1;
           child.material.roughness = 0.1;
           child.material.needsUpdate = true;
@@ -206,7 +206,7 @@ const SpaceshipController = ({
 };
 
 const PostProcessing = ({ turbo }: { turbo: number }) => {
-  const multisampling = turbo === 1 ? 4 : 0;
+  const multisampling = turbo === 1 ? 1 : 0;
   const offset = turbo === 1 ? [0.002 * turbo, 0.002 * turbo] : [0, 0];
   return (
     <EffectComposer multisampling={multisampling}>
@@ -302,17 +302,10 @@ const Experience = () => {
         </div>
       </div>
       <Canvas
-        dpr={[0.5, 1]}
-        performance={{ min: 0.1 }}
-        shadows={false}
-        dpr={[0.5, 1]}
+        dpr={[0.8, 1]}
         performance={{ min: 0.1 }}
         shadows={false}
         camera={{ fov: 40, near: 0.1, far: 200 }}
-        gl={{
-          antialias: true,
-          powerPreference: "high-performance",
-        }}
         gl={{
           antialias: true,
           powerPreference: "high-performance",
@@ -332,7 +325,6 @@ const Experience = () => {
           <directionalLight
             position={[1, 2, 3]}
             intensity={0.5}
-            castShadow={false}
             castShadow={false}
           />
           <Stars turbo={turboActive ? 1 : 0} />
