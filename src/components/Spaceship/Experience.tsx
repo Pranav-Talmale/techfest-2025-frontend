@@ -98,36 +98,37 @@ const MousePlane = ({
 };
 
 // Custom hook for gyroscopic controls on mobile
-function useGyroControl() {
-  const [gyroPoint, setGyroPoint] = useState(new THREE.Vector3(0, 0, 0));
-  const smoothGyroPoint = useRef(new THREE.Vector3(0, 0, 0)); // For smoother transition
+//
+// function useGyroControl() {
+//   const [gyroPoint, setGyroPoint] = useState(new THREE.Vector3(0, 0, 0));
+//   const smoothGyroPoint = useRef(new THREE.Vector3(0, 0, 0)); // For smoother transition
 
-  useEffect(() => {
-    const handleOrientation = (event: DeviceOrientationEvent) => {
-      // Ensure values are not null, defaulting to 0 if undefined
-      const beta = event.beta ?? 0;
-      const gamma = event.gamma ?? 0;
+//   useEffect(() => {
+//     const handleOrientation = (event: DeviceOrientationEvent) => {
+//       // Ensure values are not null, defaulting to 0 if undefined
+//       const beta = event.beta ?? 0;
+//       const gamma = event.gamma ?? 0;
 
-      // Normalize values and apply smoother scaling
-      const targetY = THREE.MathUtils.clamp((beta - 45) / 60, -3, 1);
-      const targetZ = THREE.MathUtils.clamp(gamma / 60, -2, 2);
+//       // Normalize values and apply smoother scaling
+//       const targetY = THREE.MathUtils.clamp((beta - 45) / 60, -3, 1);
+//       const targetZ = THREE.MathUtils.clamp(gamma / 60, -2, 2);
 
-      // Apply smoothing using interpolation (lerp)
-      smoothGyroPoint.current.lerp(new THREE.Vector3(0, targetY, targetZ), 0.1);
-      setGyroPoint(smoothGyroPoint.current.clone()); // Update state with smoothed values
-    };
+//       // Apply smoothing using interpolation (lerp)
+//       smoothGyroPoint.current.lerp(new THREE.Vector3(0, targetY, targetZ), 0.1);
+//       setGyroPoint(smoothGyroPoint.current.clone()); // Update state with smoothed values
+//     };
 
-    if (window.DeviceOrientationEvent) {
-      window.addEventListener("deviceorientation", handleOrientation);
-    }
+//     if (window.DeviceOrientationEvent) {
+//       window.addEventListener("deviceorientation", handleOrientation);
+//     }
 
-    return () => {
-      window.removeEventListener("deviceorientation", handleOrientation);
-    };
-  }, []);
+//     return () => {
+//       window.removeEventListener("deviceorientation", handleOrientation);
+//     };
+//   }, []);
 
-  return gyroPoint;
-}
+//   return gyroPoint;
+// }
 
 const SpaceshipController = ({
   mousePoint,
