@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer/Footer";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/technovate-2025/">
       <App />
       <Footer />
     </BrowserRouter>

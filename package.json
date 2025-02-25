@@ -2,6 +2,7 @@
   "name": "techfest-2025-frontend",
   "private": true,
   "version": "0.0.0",
+  "homepage": "/technovate-2025/",
   "type": "module",
   "scripts": {
     "dev": "vite",

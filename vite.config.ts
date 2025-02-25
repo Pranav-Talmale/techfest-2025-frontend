@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: "/technovate-2025/",
   resolve: {
     alias: {
       "@": "/src", // Directly set the alias to "/src"
@@ -14,12 +15,17 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing'],
-          'ui-vendor': ['lucide-react', 'clsx', 'tailwind-merge'],
-        }
-      }
+          "react-vendor": ["react", "react-dom"],
+          "three-vendor": [
+            "three",
+            "@react-three/fiber",
+            "@react-three/drei",
+            "@react-three/postprocessing",
+          ],
+          "ui-vendor": ["lucide-react", "clsx", "tailwind-merge"],
+        },
+      },
     },
     chunkSizeWarningLimit: 1000,
-  }
+  },
 });

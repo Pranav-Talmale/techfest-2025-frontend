@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /technovate-2025/
+
+    # Redirect root and all subpaths to index.html (React handles routing)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.html [L]
+
+    # Ensure proper handling of React routes
+    <FilesMatch "\.(html|json|js|css|woff2?|ttf|eot|svg|png|jpg|jpeg|gif|ico|mp4|webm|ogg|mp3|wav|webp|avif)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+</IfModule>
