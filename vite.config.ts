@@ -14,12 +14,17 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing'],
-          'ui-vendor': ['lucide-react', 'clsx', 'tailwind-merge'],
+          'three-core': ['three'],
+          'drei': ['@react-three/drei'],
+          'fiber': ['@react-three/fiber'],
+          'postprocessing': ['@react-three/postprocessing', 'postprocessing'],
         }
       }
     },
     chunkSizeWarningLimit: 1000,
+  },
+  optimizeDeps: {
+    include: ['three', '@react-three/fiber', '@react-three/drei'],
+    exclude: ['@react-three/postprocessing'],
   }
 });

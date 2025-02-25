@@ -6,8 +6,6 @@ import {
   useCallback,
   useMemo,
   useRef,
-  lazy,
-  Fragment,
 } from "react";
 import {
   EffectComposer,
@@ -16,31 +14,40 @@ import {
 import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
 import LoadingScreen from "../LoadingScreen";
-import { Preload, Environment } from "@react-three/drei";
+import { Stats, Environment } from "@react-three/drei";
+import Stars from "./Stars";
+import Spaceship from "./Spaceship";
+import MotionBlur from "./MotionBlur";
+
+// Enable/disable FPS counter
+const SHOW_FPS = true; // Toggle this to show/hide FPS counter
 
 // Custom hook to detect when the target key is pressed or mobile touch is active
 function useTurboControl() {
   const [isPressed, setIsPressed] = useState(false);
+  const [transitioningTurbo, setTransitioningTurbo] = useState(false);
   
   const handleStart = useCallback(() => {
+    setTransitioningTurbo(true);
     setIsPressed(true);
+    // Clear transition state after animation
+    setTimeout(() => setTransitioningTurbo(false), 300);
   }, []);
   
   const handleEnd = useCallback(() => {
+    setTransitioningTurbo(true);
     setIsPressed(false);
+    // Clear transition state after animation
+    setTimeout(() => setTransitioningTurbo(false), 300);
   }, []);
 
   return {
     turboActive: isPressed,
+    transitioningTurbo,
     handleStart,
     handleEnd
   };
 }
-
-// Lazy load heavy components
-const Stars = lazy(() => import("./Stars"));
-const Spaceship = lazy(() => import("./Spaceship"));
-const MotionBlur = lazy(() => import("./MotionBlur"));
 
 const CameraRig = ({ turbo }: { turbo: number }) => {
   const { camera } = useThree();
@@ -206,15 +213,18 @@ const SpaceshipController = ({
   return <Spaceship turbo={turbo} ref={spaceshipRef} />;
 };
 
-const PostProcessing = ({ turbo }: { turbo: number }) => {
-  const multisampling = turbo === 1 ? 1 : 0;
-  const offset = turbo === 1 ? [0.002 * turbo, 0.002 * turbo] : [0, 0];
+// Optimized PostProcessing component with reduced quality during transitions
+const PostProcessing = ({ turbo, transitioning }: { turbo: number, transitioning: boolean }) => {
+  const quality = transitioning ? 0.5 : 1; // Reduce quality during transitions
+  
   return (
-    <EffectComposer multisampling={multisampling}>
-      {turbo === 1 ? <MotionBlur turbo={turbo} /> : <Fragment />}
+    <EffectComposer multisampling={0}>
+      <Suspense fallback={null}>
+        {turbo > 0 ? <MotionBlur turbo={turbo} /> : null}
+      </Suspense>
       <ChromaticAberration
         blendFunction={BlendFunction.NORMAL}
-        offset={offset}
+        offset={[0.002 * turbo * quality, 0.002 * turbo * quality]}
       />
     </EffectComposer>
   );
@@ -242,17 +252,21 @@ const AssignEnvMap = () => {
         }
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene.environment]);
   return null;
 };
 
 const Experience = () => {
-  const { turboActive, handleStart, handleEnd } = useTurboControl();
+  const { turboActive, transitioningTurbo, handleStart, handleEnd } = useTurboControl();
   const [mousePoint, setMousePoint] = useState(() => new THREE.Vector3(0, 0, 0));
 
   return (
     <>
       <LoadingScreen />
+      {/* FPS Counter */}
+      {SHOW_FPS && <Stats className="fps-counter" />}
+      
       {/* Minimalist Sci-fi Logo Overlay */}
       <div className="absolute inset-x-0 top-[10vh] flex flex-col items-center pointer-events-none z-10">
         {/* Logo Container */}
@@ -285,52 +299,53 @@ const Experience = () => {
             onMouseDown={handleStart}
             onMouseUp={handleEnd}
             onMouseLeave={handleEnd}
-            className="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-200 transform select-none touch-none"
+            className={`w-20 h-20 boost-button ${turboActive ? 'boost-active' : ''}`}
             style={{
-              background: turboActive ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)',
-              backdropFilter: 'blur(8px)',
-              transform: turboActive ? 'scale(0.95)' : 'scale(1)',
-              boxShadow: turboActive ? '0 0 20px rgba(255, 255, 255, 0.2)' : '0 0 10px rgba(255, 255, 255, 0.1)',
               WebkitTapHighlightColor: 'transparent',
               WebkitTouchCallout: 'none',
               userSelect: 'none'
             }}
           >
-            <div className={`w-8 h-8 rounded-full transition-all duration-200 select-none ${
-              turboActive ? 'bg-white scale-90' : 'bg-white/50 scale-100'
-            }`} />
+            <div className="boost-button-inner flex items-center justify-center">
+              <div 
+                className={`w-10 h-10 rounded-full transition-all duration-300 ${
+                  turboActive 
+                    ? 'bg-white scale-90 opacity-90' 
+                    : 'bg-white/50 scale-100 opacity-70'
+                }`} 
+              />
+            </div>
           </button>
         </div>
       </div>
       <Canvas
-        dpr={[0.8, 1]}
-        performance={{ min: 0.1 }}
+        dpr={transitioningTurbo ? 1 : (window.devicePixelRatio > 2 ? [1, 2] : [1, window.devicePixelRatio])}
+        performance={{ min: transitioningTurbo ? 0.3 : 0.5 }}
         shadows={false}
         camera={{ fov: 40, near: 0.1, far: 200 }}
         gl={{
-          antialias: true,
+          antialias: !transitioningTurbo && window.devicePixelRatio < 2,
           powerPreference: "high-performance",
+          alpha: false,
+          stencil: false,
+          depth: true,
         }}
         style={{ background: "#000000" }}
       >
-        <Preload all />
-        <CameraRig turbo={turboActive ? 1 : 0} />
         <CameraRig turbo={turboActive ? 1 : 0} />
         <Suspense fallback={null}>
-          <Environment preset="park" background={false} />
+          <Environment preset="city" background={false} />
           <AssignEnvMap />
           <MousePlane onMove={setMousePoint} turbo={turboActive ? 1 : 0} />
-          <ambientLight intensity={0.1} />
-          <MousePlane onMove={setMousePoint} turbo={turboActive ? 1 : 0} />
-          <ambientLight intensity={0.1} />
+          <ambientLight intensity={0.2} />
           <directionalLight
             position={[1, 2, 3]}
-            intensity={0.5}
+            intensity={0.8}
             castShadow={false}
           />
           <Stars turbo={turboActive ? 1 : 0} />
           <SpaceshipController mousePoint={mousePoint} turbo={turboActive ? 1 : 0} />
-          <PostProcessing turbo={turboActive ? 1 : 0} />
+          <PostProcessing turbo={turboActive ? 1 : 0} transitioning={transitioningTurbo} />
         </Suspense>
       </Canvas>
     </>

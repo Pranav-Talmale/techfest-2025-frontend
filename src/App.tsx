@@ -5,10 +5,12 @@ import EventDetail from "@/pages/EventDetail";
 import Contact from "@/pages/Contact";
 import ErrorPage from "@/pages/ErrorPage";
 import Navbar from "@/components/Navbar";
+import LoadingScreen from "./components/LoadingScreen";
 
 function App() {
   return (
     <>
+      <LoadingScreen />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

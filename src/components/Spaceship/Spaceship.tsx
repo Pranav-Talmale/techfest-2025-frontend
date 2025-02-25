@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from 'react'
+import { forwardRef, useEffect, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
@@ -10,17 +10,36 @@ interface SpaceshipProps {
 const Spaceship = forwardRef<THREE.Group, SpaceshipProps>(({ turbo = 0 }, ref) => {
   const { scene, nodes, materials } = useGLTF('/textured_x-wing_low_poly.glb')
 
-  // Fix material transparency and depth issues
+  // Optimize materials for mobile
   useEffect(() => {
     Object.values(materials).forEach((material) => {
       if (material instanceof THREE.Material) {
+        // Basic material settings
         material.transparent = false
         material.depthWrite = true
         material.side = THREE.FrontSide
+        
+        // Mobile optimizations
+        if (material instanceof THREE.MeshStandardMaterial) {
+          material.envMapIntensity = 1.5 // Increased for better reflections
+          material.metalness = 0.5 // Slightly reduced metalness
+          material.roughness = 0.2 // Reduced roughness for better reflections
+          material.flatShading = false // Disable flat shading for smoother look
+        }
+        
+        // Ensure high quality
+        material.precision = 'highp'
         material.needsUpdate = true
       }
     })
-  }, [materials])
+
+    // Optimize geometries if needed
+    Object.values(nodes).forEach((node) => {
+      if (node instanceof THREE.Mesh && node.geometry) {
+        node.geometry.computeVertexNormals() // Ensure smooth normals
+      }
+    })
+  }, [materials, nodes])
 
   useFrame((state) => {
     const group = (ref as React.RefObject<THREE.Group>)?.current
@@ -45,14 +64,15 @@ const Spaceship = forwardRef<THREE.Group, SpaceshipProps>(({ turbo = 0 }, ref) =
     }
   }, [materials, nodes])
 
+  const groupProps = useMemo(() => ({
+    rotation: [0, Math.PI / 2, 0] as [number, number, number],
+    scale: 0.5,
+    position: [0, 0, 0] as [number, number, number],
+    name: "x-wing"
+  }), [])
+
   return (
-    <group
-      ref={ref}
-      rotation={[0, Math.PI / 2, 0]}
-      scale={0.5}
-      position={[0, 0, 0]}
-      name="x-wing"
-    >
+    <group ref={ref} {...groupProps}>
       <primitive object={scene} />
     </group>
   )
