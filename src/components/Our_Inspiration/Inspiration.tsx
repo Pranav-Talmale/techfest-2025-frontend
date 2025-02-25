@@ -12,7 +12,7 @@ const patronsData = {
       name: "Dr. D. Y. Patil",
       role: "Founder President",
       organization: "D. Y. Patil Group",
-      image: "/patrons/DYPatil.jpg",
+      image: "patrons/DYPatil.jpg",
       quote: "Excellence in education empowers future generations.",
     },
     {
@@ -20,7 +20,7 @@ const patronsData = {
       name: "Dr. Vijay Patil",
       role: "Chancellor and President",
       organization: "D. Y. Patil Deemed to be University",
-      image: "/patrons/VijayPatil.jpg",
+      image: "patrons/VijayPatil.jpg",
       quote: "Innovation and tradition go hand in hand.",
     },
     {
@@ -28,7 +28,7 @@ const patronsData = {
       name: "Dr. Shivani D. Patil",
       role: "Pro Chancellor and Vice President",
       organization: "D. Y. Patil Deemed to be University",
-      image: "/patrons/ShivaniPatil.jpg",
+      image: "patrons/ShivaniPatil.jpg",
       quote: "Education is the cornerstone of progress.",
     },
   ],

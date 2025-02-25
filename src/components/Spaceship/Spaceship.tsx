@@ -8,7 +8,7 @@ interface SpaceshipProps {
 }
 
 const Spaceship = forwardRef<THREE.Group, SpaceshipProps>(({ turbo = 0 }, ref) => {
-  const { scene, nodes, materials } = useGLTF('/textured_x-wing_low_poly.glb')
+  const { scene, nodes, materials } = useGLTF('textured_x-wing_low_poly.glb')
 
   // Fix material transparency and depth issues
   useEffect(() => {

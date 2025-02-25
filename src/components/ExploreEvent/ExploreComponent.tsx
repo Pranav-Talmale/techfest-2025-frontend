@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import ExploreEventsCard from "./ExploreEventsCard";
 
 const exploreWorlds = [
-  { id: "world-1", imgUrl: "/planet-01.png", title: "Technical Events" },
-  { id: "world-2", imgUrl: "/planet-02.png", title: "Non Technical Events" },
-  { id: "world-3", imgUrl: "/planet-03.png", title: "Competitions" },
+  { id: "world-1", imgUrl: "planet-01.png", title: "Technical Events" },
+  { id: "world-2", imgUrl: "planet-02.png", title: "Non Technical Events" },
+  { id: "world-3", imgUrl: "planet-03.png", title: "Competitions" },
 ];
 
 export default function Explore() {

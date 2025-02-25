@@ -16,7 +16,7 @@ const themeData = {
     { label: "Galaxy Quest", icon: "🌌" }
   ],
   image: {
-    src: "/planet-02.png",
+    src: "planet-02.png",
     alt: "Space Theme"
   }
 };

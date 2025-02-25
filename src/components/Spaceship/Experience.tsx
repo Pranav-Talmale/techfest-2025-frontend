@@ -274,7 +274,7 @@ const Experience = () => {
         <div className="relative">
           {/* Logo */}
           <img
-            src="/technovate logo.png"
+            src="technovate logo.png"
             alt="Technovate"
             className="h-16 md:h-32 w-auto"
           />

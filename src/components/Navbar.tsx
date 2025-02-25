@@ -28,7 +28,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex items-center">
               <img 
-                src="/technovate logo.png" 
+                src="technovate logo.png" 
                 alt="Technovate" 
                 className="h-8 w-auto"
               />
@@ -102,7 +102,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
             <Link to="/" onClick={() => setIsOpen(false)}>
               <img 
-                src="/technovate logo.png" 
+                src="technovate logo.png" 
                 alt="Technovate" 
                 className="h-12 w-auto"
               />

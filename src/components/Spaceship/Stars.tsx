@@ -8,7 +8,7 @@ const COLORS = ['#260C73', '#57016D', '#1C488F', '#529EEA', '#126778'].map(
 )
 
 const COUNT = 200
-const STAR_TEXTURE_URL = '/star.png'
+const STAR_TEXTURE_URL = 'star.png'
 
 interface Star {
   position: THREE.Vector3

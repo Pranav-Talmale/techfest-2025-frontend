@@ -23,7 +23,7 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-start">
             <Link to="/" className="flex items-center mb-4 md:mb-0">
               <img 
-                src="/technovate logo.png" 
+                src="technovate logo.png" 
                 alt="Technovate" 
                 className="h-8 w-auto"
               />
