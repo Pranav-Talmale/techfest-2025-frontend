@@ -185,7 +185,7 @@ export default function Events() {
                               </div>
                               <Link
                                 to={`/events/detail?id=${event.id}`}
-                                className="inline-flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full font-medium hover:bg-gray-100 hover:scale-105 transition-transform transition-colors shadow-md"
+                                className="inline-flex items-center gap-2 bg-white text-black text-sm px-4 py-2 rounded-full font-medium hover:bg-gray-100 hover:scale-105 transition-transform transition-colors shadow-md"
                               >
                                 View Details
                               </Link>
