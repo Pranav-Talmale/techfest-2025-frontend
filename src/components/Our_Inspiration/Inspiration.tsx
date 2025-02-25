@@ -3,7 +3,8 @@ import { Quote } from "lucide-react";
 
 const patronsData = {
   title: "Our Inspiration & Chief Patrons",
-  subtitle: "Honoring the visionaries who guide us with their wisdom and leadership",
+  subtitle:
+    "Honoring the visionaries who guide us with their wisdom and leadership",
   quote: "Education is not preparation for life; education is life itself.",
   patrons: [
     {
@@ -12,7 +13,7 @@ const patronsData = {
       role: "Founder President",
       organization: "D. Y. Patil Group",
       image: "/patrons/DYPatil.jpg",
-      quote: "Excellence in education empowers future generations."
+      quote: "Excellence in education empowers future generations.",
     },
     {
       id: 2,
@@ -20,7 +21,7 @@ const patronsData = {
       role: "Chancellor and President",
       organization: "D. Y. Patil Deemed to be University",
       image: "/patrons/VijayPatil.jpg",
-      quote: "Innovation and tradition go hand in hand."
+      quote: "Innovation and tradition go hand in hand.",
     },
     {
       id: 3,
@@ -28,9 +29,9 @@ const patronsData = {
       role: "Pro Chancellor and Vice President",
       organization: "D. Y. Patil Deemed to be University",
       image: "/patrons/ShivaniPatil.jpg",
-      quote: "Education is the cornerstone of progress."
-    }
-  ]
+      quote: "Education is the cornerstone of progress.",
+    },
+  ],
 };
 
 export function Inspiration() {
@@ -38,7 +39,7 @@ export function Inspiration() {
     <section className="bg-black relative overflow-hidden py-32">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
-      
+
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -78,10 +79,10 @@ export function Inspiration() {
             >
               <div className="bg-neutral-900 rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-500 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]">
                 {/* Image Container */}
-                <div className="relative aspect-square rounded-xl overflow-hidden mb-6 border border-white/10 group-hover:border-white/20 transition-colors">
+                <div className="relative w-full h-full rounded-xl overflow-hidden mb-6 border border-white/10 group-hover:border-white/20 transition-colors">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <img 
-                    src={patron.image} 
+                  <img
+                    src={patron.image}
                     alt={patron.name}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
@@ -96,19 +97,13 @@ export function Inspiration() {
 
                 {/* Content */}
                 <div className="text-center">
-                  <motion.h3 
-                    className="text-xl font-semibold text-white mb-2 group-hover:text-white/90 transition-colors"
-                  >
+                  <motion.h3 className="text-xl font-semibold text-white mb-2 group-hover:text-white/90 transition-colors">
                     {patron.name}
                   </motion.h3>
-                  <motion.p 
-                    className="text-white/70 text-sm mb-1 group-hover:text-white/80 transition-colors"
-                  >
+                  <motion.p className="text-white/70 text-sm mb-1 group-hover:text-white/80 transition-colors">
                     {patron.role}
                   </motion.p>
-                  <motion.p 
-                    className="text-white/50 text-sm group-hover:text-white/60 transition-colors"
-                  >
+                  <motion.p className="text-white/50 text-sm group-hover:text-white/60 transition-colors">
                     {patron.organization}
                   </motion.p>
                 </div>
@@ -119,4 +114,4 @@ export function Inspiration() {
       </div>
     </section>
   );
-} 
+}
