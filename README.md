@@ -1,1 +1,1 @@
-# Techfest 2025 Frontend
+# Technovate 2025 Frontend
