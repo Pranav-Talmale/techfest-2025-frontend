@@ -10,6 +10,12 @@ interface SpaceshipProps {
 const Spaceship = forwardRef<THREE.Group, SpaceshipProps>(({ turbo = 0 }, ref) => {
   const { scene, nodes, materials } = useGLTF('/textured_x-wing_low_poly.glb')
 
+  // Mobile detection
+  const isMobile = useMemo(() => {
+    if (typeof window === 'undefined') return false
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768
+  }, [])
+
   // Optimize materials for mobile
   useEffect(() => {
     Object.values(materials).forEach((material) => {
@@ -22,9 +28,9 @@ const Spaceship = forwardRef<THREE.Group, SpaceshipProps>(({ turbo = 0 }, ref) =
         // Mobile optimizations
         if (material instanceof THREE.MeshStandardMaterial) {
           material.envMapIntensity = 1.5 // Increased for better reflections
-          material.metalness = 0.5 // Slightly reduced metalness
+          material.metalness = 0.8 // Slightly reduced metalness
           material.roughness = 0.2 // Reduced roughness for better reflections
-          material.flatShading = false // Disable flat shading for smoother look
+          material.flatShading = true // Disable flat shading for smoother look
         }
         
         // Ensure high quality
@@ -66,10 +72,10 @@ const Spaceship = forwardRef<THREE.Group, SpaceshipProps>(({ turbo = 0 }, ref) =
 
   const groupProps = useMemo(() => ({
     rotation: [0, Math.PI / 2, 0] as [number, number, number],
-    scale: 0.5,
+    scale: isMobile ? 0.3 : 0.5,
     position: [0, 0, 0] as [number, number, number],
     name: "x-wing"
-  }), [])
+  }), [isMobile])
 
   return (
     <group ref={ref} {...groupProps}>
