@@ -4,22 +4,18 @@
       "id": "escape-room",
       "title": "Escape Room",
       "category": "tech",
-      "description": "Put your problem-solving skills to the test in an exhilarating Escape Room challenge! Work with your team to solve intricate puzzles, uncover hidden clues, and beat the clock before time runs out. Can you crack the code and make your great escape?\n\nGame Plan: Participants are locked in a themed room and must solve a series of puzzles, riddles, and challenges to \"escape\" within a set time limit. Teamwork and logical reasoning are key!",
+      "description": "Test your problem-solving skills in our tech-themed escape room",
       "image": "https://images.unsplash.com/photo-1511882150382-421056c89033?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-escape-room",
       "rules": [
         "Teams of 4 members",
         "Time limit: 60 minutes",
         "Multiple rooms with increasing difficulty",
-        "Electronic devices not allowed inside",
-        "Time Limit: 10 Mins",
-        "Entry Fee: 100",
-        "Time Limit: 10 Mins",
-        "Entry Fee: 100"
+        "Electronic devices not allowed inside"
       ],
-      "venue": "Room 627-627",
+      "venue": "Tech Block, Room 101",
       "datetime": "2025-02-15T10:00:00Z",
-      "teamSize": "3 members",
+      "teamSize": "4 members",
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1511882150382-421056c89033?w=800&auto=format&fit=crop&q=60",
@@ -39,7 +35,7 @@
       "id": "ar-vr",
       "title": "AR/VR",
       "category": "tech",
-      "description": "Step into the future with cutting-edge AR/VR experiences! Immerse yourself in virtual worlds, explore augmented realities, and witness the power of technology like never before. Get ready to blur the lines between the real and the digital!",
+      "description": "Experience cutting-edge augmented and virtual reality demos",
       "image": "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-ar-vr",
       "rules": [
@@ -48,7 +44,7 @@
         "Age limit: 14+",
         "Prior VR experience not required"
       ],
-      "venue": "Room 605",
+      "venue": "Innovation Lab",
       "datetime": "2025-02-15T11:00:00Z",
       "teamSize": "Individual",
       "gallery": [
@@ -70,18 +66,16 @@
       "id": "cricomania",
       "title": "Cricomania",
       "category": "non-tech",
-      "description": "Cricket fever is here! Whether you're a die-hard fan or just love the game, Cricomania is the ultimate cricket carnival, but with a twist!\n\nGame Plan: The room is completely darkened and the bat, ball and pitch are covered in glow in dark tapes.",
+      "description": "Cricket-themed gaming experience",
       "image": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-cricomania",
       "rules": [
         "Teams of 2 players",
         "Knockout tournament format",
         "15 overs per match",
-        "Standard cricket rules apply",
-        "Time Limit: 1 Match",
-        "Time Limit: 1 Match"
+        "Standard cricket rules apply"
       ],
-      "venue": "Room 606",
+      "venue": "Sports Complex",
       "datetime": "2025-02-16T09:00:00Z",
       "teamSize": "2 members",
       "gallery": [
@@ -103,7 +97,7 @@
       "id": "blinded-battle",
       "title": "Blinded Battle",
       "category": "non-tech",
-      "description": "A game of skill, trust, and instinct! In Blinded Battles, teams navigate challenges while blindfolded, relying on teamwork and communication to emerge victorious. Can you conquer the game without sight?",
+      "description": "Test your senses in this unique blindfolded challenge",
       "image": "https://images.unsplash.com/photo-1606166325683-e6deb697d301?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-blinded-battle",
       "rules": [
@@ -143,7 +137,7 @@
         "Music to be submitted beforehand",
         "LED props will be provided"
       ],
-      "venue": "Room 604",
+      "venue": "Cultural Center",
       "datetime": "2025-02-15T18:00:00Z",
       "teamSize": "1-2 members",
       "gallery": [
@@ -165,7 +159,7 @@
       "id": "ctf",
       "title": "CTF",
       "category": "tech",
-      "description": "A battlefield for the best hackers! Capture The Flag (CTF) is an intense cybersecurity competition where participants solve cryptographic puzzles, decode vulnerabilities, and compete in ethical hacking challenges. Prove your prowess and secure the flag!",
+      "description": "Capture The Flag cybersecurity challenge",
       "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-ctf",
       "rules": [
@@ -174,7 +168,7 @@
         "Own laptop required",
         "Internet access provided"
       ],
-      "venue": "Room 613",
+      "venue": "Computer Lab 3",
       "datetime": "2025-02-17T09:00:00Z",
       "teamSize": "3 members",
       "gallery": [
@@ -196,7 +190,7 @@
       "id": "squid-games",
       "title": "Squid Games",
       "category": "non-tech",
-      "description": "Survive the ultimate test of skill, strategy, and luck! Inspired by the famous series, Squid Games brings thrilling challenges where players must outwit, outplay, and outlast their opponents to claim victory. Do you have what it takes?\n\nGame Plan: Players go through a series of mini-games inspired by the popular show. Players who fail the challenge are eliminated; the last player standing wins.\n\n",
+      "description": "Series of challenging games inspired by popular culture",
       "image": "https://images.unsplash.com/photo-1636487658609-28282edc1b7e?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-squid-games",
       "rules": [
@@ -205,7 +199,7 @@
         "Physical activities involved",
         "Age limit: 16+"
       ],
-      "venue": "Room 504-506",
+      "venue": "Main Ground",
       "datetime": "2025-02-16T11:00:00Z",
       "teamSize": "6 members",
       "gallery": [
@@ -227,20 +221,18 @@
       "id": "laser-tag",
       "title": "Laser Tag",
       "category": "non-tech",
-      "description": "Gear up, take aim, and strategize your way to victory in this adrenaline-pumping Laser Tag battle! Navigate the arena, dodge enemy fire, and eliminate opponents with precision in this action-packed showdown.\n\nGame Plan: Players are equipped with laser guns and must aim at designated focus points on their opponents\u2019 bodies, such as the head, shoulders, and back. Each successful hit earns points, and the player with the highest score at the end wins.",
+      "description": "High-tech team-based laser combat",
       "image": "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-laser-tag",
       "rules": [
         "Teams of 5 members",
         "20-minute matches",
         "Equipment provided",
-        "Tournament format",
-        "Time Limit: 6-10 Mins",
-        "Time Limit: 6-10 Mins"
+        "Tournament format"
       ],
-      "venue": "Room 511",
+      "venue": "Indoor Sports Complex",
       "datetime": "2025-02-17T13:00:00Z",
-      "teamSize": "6 members",
+      "teamSize": "5 members",
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=800&auto=format&fit=crop&q=60",
@@ -260,7 +252,7 @@
       "id": "photobooth",
       "title": "Photobooth",
       "category": "non-tech",
-      "description": "Capture your best moments at the event with our fun and creative photobooth! Strike a pose, grab some props, and take home memories that last forever.",
+      "description": "Capture memories with our themed photo booth",
       "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-photobooth",
       "rules": [
@@ -269,7 +261,7 @@
         "Digital copies provided",
         "Multiple themes available"
       ],
-      "venue": "Room 515",
+      "venue": "Main Hall Entrance",
       "datetime": "2025-02-15T09:00:00Z",
       "teamSize": "Individual or Group",
       "gallery": [
@@ -291,7 +283,7 @@
       "id": "coding-competition",
       "title": "Coding Competition",
       "category": "tech",
-      "description": "Put your coding skills to the ultimate test in a high-stakes programming battle! Solve complex problems, optimize your solutions, and compete against the best minds to win the title of coding champion.\n\nGame Plan: Participants will compete in three rounds focused on speed coding, debugging, and competitive programming. Each question will have points assigned based on its difficulty level. Points will be awarded based on the completeness of the solution\u2014full, partial, or none. The participant who earns the most points in the shortest time will be declared the winner.",
+      "description": "Show off your programming skills",
       "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-coding",
       "rules": [
@@ -300,9 +292,9 @@
         "Any programming language allowed",
         "Internet access restricted"
       ],
-      "venue": "Room 520-523",
+      "venue": "Computer Center",
       "datetime": "2025-02-15T13:00:00Z",
-      "teamSize": "100 members",
+      "teamSize": "Individual",
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1623479322729-28b25c16b011?w=800&auto=format&fit=crop&q=60",
@@ -339,7 +331,7 @@
       "id": "treasure-hunt",
       "title": "Treasure Hunt",
       "category": "non-tech",
-      "description": "An adventure like no other! Decode cryptic clues, solve puzzles, and race against time to find the hidden treasure. Only the sharpest minds will prevail\u2014do you have what it takes?\n\nGame Plan: Teams follow cryptic clues to find hidden locations and complete tasks. The first team to complete all clues and reach the final destination earliest wins",
+      "description": "Tech-themed treasure hunt across campus",
       "image": "https://images.unsplash.com/photo-1577083552431-6e5fd01988f8?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-treasure-hunt",
       "rules": [
@@ -348,7 +340,7 @@
         "Tech-based clues",
         "Time limit: 2 hours"
       ],
-      "venue": "Room 4th Floor",
+      "venue": "Campus Wide",
       "datetime": "2025-02-17T10:00:00Z",
       "teamSize": "3 members"
     },
@@ -387,7 +379,7 @@
       "id": "bgmi-cod",
       "title": "BGMI / COD",
       "category": "gaming",
-      "description": "Battle it out in an intense gaming showdown! Whether it's the battlegrounds of BGMI and the high-octane action of Call of Duty, prove your dominance and claim victory in this epic eSports tournament.",
+      "description": "Mobile gaming tournament",
       "image": "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-bgmi-cod",
       "rules": [
@@ -396,7 +388,7 @@
         "Headphones mandatory",
         "No emulators allowed"
       ],
-      "venue": "Room 302",
+      "venue": "Mobile Gaming Zone",
       "datetime": "2025-02-17T11:00:00Z",
       "teamSize": "4 members",
       "gallery": [
@@ -418,7 +410,7 @@
       "id": "simulator",
       "title": "Simulator",
       "category": "tech",
-      "description": "Experience the thrill of real-world scenarios through high-tech simulators! From racing to aviation, get behind the controls and feel the adrenaline rush of virtual reality simulations.",
+      "description": "Experience various simulation technologies",
       "image": "https://images.unsplash.com/photo-1607292676061-d629f4b663fa?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-simulator",
       "rules": [
@@ -427,7 +419,7 @@
         "Multiple scenarios available",
         "Age limit: 14+"
       ],
-      "venue": "Room 305",
+      "venue": "Simulation Lab",
       "datetime": "2025-02-15T10:00:00Z",
       "teamSize": "Individual",
       "gallery": [
@@ -449,7 +441,7 @@
       "id": "fifa-2k23-gta",
       "title": "FIFA/2k23/GTA",
       "category": "gaming",
-      "description": "Compete in the ultimate gaming tournament featuring FIFA, NBA 2K23, and GTA! Whether you're scoring goals, dunking on opponents, or causing chaos in the streets, it's time to game like a pro.",
+      "description": "Console gaming tournament",
       "image": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-console-gaming",
       "rules": [
@@ -458,7 +450,7 @@
         "Standard game rules",
         "Console provided"
       ],
-      "venue": "Room 306",
+      "venue": "Gaming Arena",
       "datetime": "2025-02-16T13:00:00Z",
       "teamSize": "Individual",
       "gallery": [
@@ -480,7 +472,7 @@
       "id": "project-competition-software",
       "title": "Project Competition (Software)",
       "category": "tech",
-      "description": "Showcase your innovative software projects and compete against the best minds in tech! Whether it's AI, web development, or cutting-edge applications, this is your chance to shine.",
+      "description": "Showcase your software projects",
       "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-software-project",
       "rules": [
@@ -489,7 +481,7 @@
         "15-minute presentation",
         "Q&A session included"
       ],
-      "venue": "Room 201-2, 208",
+      "venue": "Tech Hub",
       "datetime": "2025-02-17T09:00:00Z",
       "teamSize": "2-4 members",
       "gallery": [
@@ -511,7 +503,7 @@
       "id": "paper-presentation-software",
       "title": "Paper Presentation (Software)",
       "category": "tech",
-      "description": "Present your research, ideas, and innovations in software technology! Impress judges with your technical expertise, clarity, and depth of knowledge in this academic showdown.",
+      "description": "Present your research papers on software",
       "image": "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-paper-presentation",
       "rules": [
@@ -520,7 +512,7 @@
         "Paper submission required",
         "Original research only"
       ],
-      "venue": "Room 213-215, 114-115",
+      "venue": "Seminar Hall",
       "datetime": "2025-02-16T11:00:00Z",
       "teamSize": "1-2 members",
       "gallery": [
@@ -542,7 +534,7 @@
       "id": "project-competition-hardware",
       "title": "Project Competition (Hardware)",
       "category": "tech",
-      "description": "Have a groundbreaking hardware project? Compete in this challenge and demonstrate your engineering prowess by building and presenting innovative tech solutions!",
+      "description": "Showcase your hardware projects",
       "image": "https://images.unsplash.com/photo-1597838816882-4435b1977fbe?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-hardware-project",
       "rules": [
@@ -551,7 +543,7 @@
         "Safety guidelines mandatory",
         "Power supply provided"
       ],
-      "venue": "Room IOT Lab",
+      "venue": "Hardware Lab",
       "datetime": "2025-02-17T10:00:00Z",
       "teamSize": "2-4 members",
       "gallery": [
@@ -573,7 +565,7 @@
       "id": "rc-throttle",
       "title": "RC Throttle",
       "category": "tech",
-      "description": "Feel the rush of speed with RC Throttle! Control remote-controlled cars with precision and compete in high-speed races. Only the best drivers will make it to the finish line!",
+      "description": "Remote-controlled vehicle competition",
       "image": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-rc-throttle",
       "rules": [
@@ -582,7 +574,7 @@
         "Track rules apply",
         "Multiple race formats"
       ],
-      "venue": "Room Lawn",
+      "venue": "RC Track",
       "datetime": "2025-02-16T15:00:00Z",
       "teamSize": "2 members",
       "gallery": [
@@ -632,4 +624,4 @@
       ]
     }
   ]
-}
+} 
