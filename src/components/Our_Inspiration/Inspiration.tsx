@@ -12,7 +12,7 @@ const patronsData = {
       name: "Dr. D. Y. Patil",
       role: "Founder President",
       organization: "D. Y. Patil Group",
-      image: "/patrons/DYPatil.jpg",
+      image: "/patrons/DrDYPatil.jpg",
       quote: "Excellence in education empowers future generations.",
     },
     {
