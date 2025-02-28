@@ -67,7 +67,7 @@ export function Footer() {
               Core Development Team
             </p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-s text-white/50">
-              <span><strong className="text-white/70">Deeptanshu</strong> • 3D Hero Section & Website Development</span>
+              <span><strong className="text-white/70">Deeptanshu</strong> • 3D Website Development</span>
               <span><strong className="text-white/70">Pranav</strong> • Hosting & Code Management</span>
               <span><strong className="text-white/70">Jatin</strong> • UI/UX Wireframing</span>
               <span><strong className="text-white/70">Rushil</strong> • 3D Optimizations</span>
