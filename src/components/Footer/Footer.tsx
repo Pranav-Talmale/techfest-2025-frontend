@@ -60,11 +60,26 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between">
-          <p className="text-sm text-white/50">
-            © Made with ❤️ by Deeptanshu, Pranav, Vishwajeet and Jatin
-          </p>
-          <div className="flex gap-6 mt-4 md:mt-0">
+        <div className="mt-8 pt-8 border-t border-white/10 flex flex-col items-center justify-between">
+          {/* Main Contributors */}
+          <div className="flex flex-col items-center space-y-2">
+            <p className="text-s text-white/70 font-medium">
+              Core Development Team
+            </p>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-s text-white/50">
+              <span><strong className="text-white/70">Deeptanshu</strong> • 3D Hero Section & Website Development</span>
+              <span><strong className="text-white/70">Pranav</strong> • Hosting & Code Management</span>
+              <span><strong className="text-white/70">Jatin</strong> • UI/UX Wireframing</span>
+              <span><strong className="text-white/70">Rushil</strong> • 3D Optimizations</span>
+            </div>
+            
+            {/* Additional Contributors */}
+            <p className="mt-4 text-sm text-white/50">
+              Additional contributions by Vishwajeet
+            </p>
+          </div>
+
+          <div className="flex gap-6 mt-6 md:mt-4">
             <a
               href="#"
               className="text-sm text-white/50 hover:text-white transition-colors"
