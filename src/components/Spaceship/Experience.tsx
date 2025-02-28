@@ -26,7 +26,7 @@ const SHOW_FPS = true; // Toggle this to show/hide FPS counter
 const TIMING = {
   FTL_CHARGE: 1500,    // Time to charge FTL drive
   SCROLL_DELAY: 900,   // Delay before page scroll
-  JUMP_RESET: 1000,    // Time before resetting after jump
+  JUMP_RESET: 930,    // Time before resetting after jump
   TRANSITION: 150      // State transition duration
 } as const;
 
@@ -106,10 +106,10 @@ function useTurboControl() {
 const CameraRig = ({ turbo }: { turbo: number }) => {
   const { camera } = useThree();
   const perspCamera = camera as THREE.PerspectiveCamera;
-  const basePosition = useMemo(() => new THREE.Vector3(-4, 4, 6), []);
+  const basePosition = useMemo(() => new THREE.Vector3(-5, 4.5, 7), []);
   const baseLookAt = useMemo(() => new THREE.Vector3(0, 0, 0), []);
-  const turboPosition = useMemo(() => new THREE.Vector3(10, 0, 0), []);
-  const turboLookAt = useMemo(() => new THREE.Vector3(-5, 0, 0), []);
+  const turboPosition = useMemo(() => new THREE.Vector3(12, 0, 0), []);
+  const turboLookAt = useMemo(() => new THREE.Vector3(-6, 0, 0), []);
 
   useFrame(() => {
     const targetPos = turbo ? turboPosition : basePosition;
@@ -208,24 +208,21 @@ const SpaceshipController = ({
   const pitchAngle = useRef(0);
   const pitchAcceleration = useRef(0);
   const originalPosition = useRef(new THREE.Vector3(0, 0, 0));
-  // Use quaternions for smoother rotation interpolation
-  const originalRotation = useRef(new THREE.Quaternion().setFromEuler(new THREE.Euler(0, -Math.PI / 2, 0, "YZX")));
+  const originalRotation = useRef(new THREE.Euler(0, -Math.PI / 2, 0, "YZX"));
   const isResetting = useRef(false);
-  const resetStartRotation = useRef(new THREE.Quaternion());
+  const targetQuaternion = useRef(new THREE.Quaternion());
 
   const tempVec = useMemo(() => new THREE.Vector3(), []);
   const subtractionVec = useMemo(() => new THREE.Vector3(), []);
   const upVec = useMemo(() => new THREE.Vector3(0, 1, 0), []);
-  const tempQuaternion = useMemo(() => new THREE.Quaternion(), []);
 
   // Store initial position and rotation
   useEffect(() => {
     if (spaceshipRef.current) {
       originalPosition.current.copy(spaceshipRef.current.position);
-      tempQuaternion.setFromEuler(spaceshipRef.current.rotation);
-      originalRotation.current.copy(tempQuaternion);
+      targetQuaternion.current.setFromEuler(originalRotation.current);
     }
-  }, [tempQuaternion]);
+  }, []);
 
   useFrame(() => {
     if (!spaceshipRef.current) return;
@@ -234,30 +231,21 @@ const SpaceshipController = ({
       isResetting.current = false;
       // Dramatic forward movement during FTL jump
       spaceshipRef.current.position.x -= 1;
-      spaceshipRef.current.rotation.z = THREE.MathUtils.lerp(
-        spaceshipRef.current.rotation.z,
-        Math.PI * 0.05,
-        0.1
-      );
-      // Store the current rotation for smooth reset
-      resetStartRotation.current.setFromEuler(spaceshipRef.current.rotation);
+      
+      // Keep the ship's orientation stable during FTL
+      spaceshipRef.current.quaternion.copy(targetQuaternion.current);
       return;
     }
 
-    // Reset position after FTL jump
+    // Reset position and rotation after FTL jump
     if (!ftlJump && spaceshipRef.current.position.x !== originalPosition.current.x) {
       isResetting.current = true;
       spaceshipRef.current.position.lerp(originalPosition.current, 0.1);
-
-      // Use quaternion slerp for smooth rotation reset
-      tempQuaternion.setFromEuler(spaceshipRef.current.rotation);
-      tempQuaternion.slerp(originalRotation.current, 0.1);
-      spaceshipRef.current.rotation.setFromQuaternion(tempQuaternion);
-
+      
       // If close enough to original position, snap to it
       if (spaceshipRef.current.position.distanceTo(originalPosition.current) < 0.01) {
         spaceshipRef.current.position.copy(originalPosition.current);
-        spaceshipRef.current.rotation.setFromQuaternion(originalRotation.current);
+        spaceshipRef.current.quaternion.copy(targetQuaternion.current);
         isResetting.current = false;
       }
       return;
@@ -298,7 +286,7 @@ const SpaceshipController = ({
 
       spaceshipRef.current.position.setY(translateY.current);
       const euler = new THREE.Euler(boundedPitch, -Math.PI / 2, angleZ.current, "YZX");
-      spaceshipRef.current.rotation.copy(euler);
+      spaceshipRef.current.setRotationFromEuler(euler);
     }
   });
 

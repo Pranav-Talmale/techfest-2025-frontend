@@ -72,7 +72,7 @@ const Spaceship = forwardRef<THREE.Group, SpaceshipProps>(({ turbo = 0 }, ref) =
 
   const groupProps = useMemo(() => ({
     rotation: [0, Math.PI / 2, 0] as [number, number, number],
-    scale: isMobile ? 0.3 : 0.5,
+    scale: isMobile ? 0.35 : 0.5,
     position: [0, 0, 0] as [number, number, number],
     name: "x-wing"
   }), [isMobile])
