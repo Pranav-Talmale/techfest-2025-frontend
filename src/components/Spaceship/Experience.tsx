@@ -22,27 +22,81 @@ import MotionBlur from "./MotionBlur";
 // Enable/disable FPS counter
 const SHOW_FPS = true; // Toggle this to show/hide FPS counter
 
+// Timing constants in milliseconds
+const TIMING = {
+  FTL_CHARGE: 1500,    // Time to charge FTL drive
+  SCROLL_DELAY: 900,   // Delay before page scroll
+  JUMP_RESET: 1000,    // Time before resetting after jump
+  TRANSITION: 300      // State transition duration
+} as const;
+
 // Custom hook to detect when the target key is pressed or mobile touch is active
 function useTurboControl() {
   const [isPressed, setIsPressed] = useState(false);
+  const [isCharging, setIsCharging] = useState(false);
   const [transitioningTurbo, setTransitioningTurbo] = useState(false);
+  const [ftlJump, setFtlJump] = useState(false);
+  const chargeTimeoutRef = useRef<number | null>(null);
+  const jumpTimeoutRef = useRef<number | null>(null);
   
   const handleStart = useCallback(() => {
-    setTransitioningTurbo(true);
-    setIsPressed(true);
-    // Clear transition state after animation
-    setTimeout(() => setTransitioningTurbo(false), 300);
+    setIsCharging(true);
+    setIsPressed(true); // Immediately activate turbo view
+    
+    // Start charging timer
+    chargeTimeoutRef.current = window.setTimeout(() => {
+      setFtlJump(true); // Trigger FTL jump
+      setIsCharging(false);
+      
+      setTimeout(() => {
+        // Scroll the page down smoothly
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: 'smooth'
+        });
+      }, TIMING.SCROLL_DELAY);
+      
+      // Reset FTL jump state after animation
+      jumpTimeoutRef.current = window.setTimeout(() => {
+        setFtlJump(false);
+        setIsPressed(false);
+        setTransitioningTurbo(true);
+        setTimeout(() => setTransitioningTurbo(false), TIMING.TRANSITION);
+      }, TIMING.JUMP_RESET);
+    }, TIMING.FTL_CHARGE);
   }, []);
   
   const handleEnd = useCallback(() => {
-    setTransitioningTurbo(true);
-    setIsPressed(false);
-    // Clear transition state after animation
-    setTimeout(() => setTransitioningTurbo(false), 300);
+    // Only cancel if we haven't started the FTL jump
+    if (!ftlJump) {
+      // Clear timers
+      if (chargeTimeoutRef.current) {
+        clearTimeout(chargeTimeoutRef.current);
+        chargeTimeoutRef.current = null;
+      }
+      if (jumpTimeoutRef.current) {
+        clearTimeout(jumpTimeoutRef.current);
+        jumpTimeoutRef.current = null;
+      }
+      
+      setIsCharging(false);
+      setIsPressed(false);
+      setTransitioningTurbo(true);
+      setTimeout(() => setTransitioningTurbo(false), TIMING.TRANSITION);
+    }
+  }, [ftlJump]);
+
+  useEffect(() => {
+    return () => {
+      if (chargeTimeoutRef.current) clearTimeout(chargeTimeoutRef.current);
+      if (jumpTimeoutRef.current) clearTimeout(jumpTimeoutRef.current);
+    };
   }, []);
 
   return {
     turboActive: isPressed,
+    isCharging,
+    ftlJump,
     transitioningTurbo,
     handleStart,
     handleEnd
@@ -140,9 +194,11 @@ const MousePlane = ({
 const SpaceshipController = ({
   mousePoint,
   turbo,
+  ftlJump
 }: {
   mousePoint: THREE.Vector3;
   turbo: number;
+  ftlJump: boolean;
 }) => {
   const spaceshipRef = useRef<THREE.Group>(null);
   const translateY = useRef(0);
@@ -151,63 +207,99 @@ const SpaceshipController = ({
   const angleAcceleration = useRef(0);
   const pitchAngle = useRef(0);
   const pitchAcceleration = useRef(0);
+  const originalPosition = useRef(new THREE.Vector3(0, 0, 0));
+  // Use quaternions for smoother rotation interpolation
+  const originalRotation = useRef(new THREE.Quaternion().setFromEuler(new THREE.Euler(0, -Math.PI / 2, 0, "YZX")));
+  const isResetting = useRef(false);
+  const resetStartRotation = useRef(new THREE.Quaternion());
 
   const tempVec = useMemo(() => new THREE.Vector3(), []);
   const subtractionVec = useMemo(() => new THREE.Vector3(), []);
   const upVec = useMemo(() => new THREE.Vector3(0, 1, 0), []);
+  const tempQuaternion = useMemo(() => new THREE.Quaternion(), []);
 
-  // Enhance spaceship material for reflections on mount.
+  // Store initial position and rotation
   useEffect(() => {
     if (spaceshipRef.current) {
-      spaceshipRef.current.traverse((child) => {
-        if (
-          child instanceof THREE.Mesh &&
-          child.material instanceof THREE.MeshStandardMaterial
-        ) {
-          child.material.envMapIntensity = 1;
-          child.material.metalness = 1;
-          child.material.roughness = 0.1;
-          child.material.needsUpdate = true;
-        }
-      });
+      originalPosition.current.copy(spaceshipRef.current.position);
+      tempQuaternion.setFromEuler(spaceshipRef.current.rotation);
+      originalRotation.current.copy(tempQuaternion);
     }
-  }, []);
+  }, [tempQuaternion]);
 
   useFrame(() => {
     if (!spaceshipRef.current) return;
-    // --- Spaceship Movement Logic ---
-    if (turbo > 0) {
-      translateAcceleration.current += -translateY.current * 0.01;
-      angleAcceleration.current += -angleZ.current * 0.01;
-      pitchAcceleration.current += -pitchAngle.current * 0.01;
-    } else {
-      const boundedY = Math.max(-3, Math.min(1, mousePoint.y));
-      translateAcceleration.current += (boundedY - translateY.current) * 0.002;
-      const targetPitch = mousePoint.z * 0.5;
-      pitchAcceleration.current += (targetPitch - pitchAngle.current) * 0.01;
-    }
-    translateAcceleration.current *= 0.95;
-    translateY.current += translateAcceleration.current;
-    pitchAcceleration.current *= 0.85;
-    pitchAngle.current += pitchAcceleration.current;
 
-    subtractionVec.set(0, translateY.current, 0);
-    tempVec.copy(mousePoint).sub(subtractionVec).normalize();
-    const dirCos = tempVec.dot(upVec);
-    const angle = Math.acos(dirCos) - Math.PI / 2;
-    const boundedAngle = Math.max(-Math.PI / 4, Math.min(Math.PI / 4, angle));
-    const boundedPitch = Math.max(
-      -Math.PI / 6,
-      Math.min(Math.PI / 6, pitchAngle.current)
-    );
-    if (!turbo) {
-      angleAcceleration.current += (boundedAngle - angleZ.current) * 0.01;
+    if (ftlJump) {
+      isResetting.current = false;
+      // Dramatic forward movement during FTL jump
+      spaceshipRef.current.position.x -= 1;
+      spaceshipRef.current.rotation.z = THREE.MathUtils.lerp(
+        spaceshipRef.current.rotation.z,
+        Math.PI * 0.05,
+        0.1
+      );
+      // Store the current rotation for smooth reset
+      resetStartRotation.current.setFromEuler(spaceshipRef.current.rotation);
+      return;
     }
-    angleAcceleration.current *= 0.75;
-    angleZ.current += angleAcceleration.current;
 
-    spaceshipRef.current.position.setY(translateY.current);
-    spaceshipRef.current.rotation.set(boundedPitch, -Math.PI / 2, angleZ.current, "YZX");
+    // Reset position after FTL jump
+    if (!ftlJump && spaceshipRef.current.position.x !== originalPosition.current.x) {
+      isResetting.current = true;
+      spaceshipRef.current.position.lerp(originalPosition.current, 0.1);
+
+      // Use quaternion slerp for smooth rotation reset
+      tempQuaternion.setFromEuler(spaceshipRef.current.rotation);
+      tempQuaternion.slerp(originalRotation.current, 0.1);
+      spaceshipRef.current.rotation.setFromQuaternion(tempQuaternion);
+
+      // If close enough to original position, snap to it
+      if (spaceshipRef.current.position.distanceTo(originalPosition.current) < 0.01) {
+        spaceshipRef.current.position.copy(originalPosition.current);
+        spaceshipRef.current.rotation.setFromQuaternion(originalRotation.current);
+        isResetting.current = false;
+      }
+      return;
+    }
+
+    // Only apply normal movement logic if not resetting
+    if (!isResetting.current) {
+      // --- Spaceship Movement Logic ---
+      if (turbo > 0) {
+        translateAcceleration.current += -translateY.current * 0.01;
+        angleAcceleration.current += -angleZ.current * 0.01;
+        pitchAcceleration.current += -pitchAngle.current * 0.01;
+      } else {
+        const boundedY = Math.max(-3, Math.min(1, mousePoint.y));
+        translateAcceleration.current += (boundedY - translateY.current) * 0.002;
+        const targetPitch = mousePoint.z * 0.5;
+        pitchAcceleration.current += (targetPitch - pitchAngle.current) * 0.01;
+      }
+      translateAcceleration.current *= 0.95;
+      translateY.current += translateAcceleration.current;
+      pitchAcceleration.current *= 0.85;
+      pitchAngle.current += pitchAcceleration.current;
+
+      subtractionVec.set(0, translateY.current, 0);
+      tempVec.copy(mousePoint).sub(subtractionVec).normalize();
+      const dirCos = tempVec.dot(upVec);
+      const angle = Math.acos(dirCos) - Math.PI / 2;
+      const boundedAngle = Math.max(-Math.PI / 4, Math.min(Math.PI / 4, angle));
+      const boundedPitch = Math.max(
+        -Math.PI / 6,
+        Math.min(Math.PI / 6, pitchAngle.current)
+      );
+      if (!turbo) {
+        angleAcceleration.current += (boundedAngle - angleZ.current) * 0.01;
+      }
+      angleAcceleration.current *= 0.75;
+      angleZ.current += angleAcceleration.current;
+
+      spaceshipRef.current.position.setY(translateY.current);
+      const euler = new THREE.Euler(boundedPitch, -Math.PI / 2, angleZ.current, "YZX");
+      spaceshipRef.current.rotation.copy(euler);
+    }
   });
 
   return <Spaceship turbo={turbo} ref={spaceshipRef} />;
@@ -258,7 +350,7 @@ const AssignEnvMap = () => {
 };
 
 const Experience = () => {
-  const { turboActive, transitioningTurbo, handleStart, handleEnd } = useTurboControl();
+  const { turboActive, isCharging, ftlJump, transitioningTurbo, handleStart, handleEnd } = useTurboControl();
   const [mousePoint, setMousePoint] = useState(() => new THREE.Vector3(0, 0, 0));
 
   return (
@@ -290,8 +382,14 @@ const Experience = () => {
       {/* Controls Overlay */}
       <div className="absolute inset-x-0 bottom-12 flex flex-col items-center gap-4 pointer-events-none z-10 select-none touch-none">
         <div className="text-sm text-white/50 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full">
-          Hold circle to boost into hyperspace
+          Hold circle to charge FTL drive
         </div>
+        
+        {/* FTL Charge Progress Bar */}
+        <div className={`ftl-charge-container ${isCharging ? 'charging' : ''}`}>
+          <div className="ftl-charge-progress" />
+        </div>
+
         <div className="pointer-events-auto touch-none">
           <button
             onTouchStart={handleStart}
@@ -299,7 +397,7 @@ const Experience = () => {
             onMouseDown={handleStart}
             onMouseUp={handleEnd}
             onMouseLeave={handleEnd}
-            className={`w-20 h-20 boost-button ${turboActive ? 'boost-active' : ''}`}
+            className={`w-20 h-20 boost-button ${turboActive ? 'boost-active' : ''} ${isCharging ? 'charging' : ''}`}
             style={{
               WebkitTapHighlightColor: 'transparent',
               WebkitTouchCallout: 'none',
@@ -309,8 +407,8 @@ const Experience = () => {
             <div className="boost-button-inner flex items-center justify-center">
               <div 
                 className={`w-10 h-10 rounded-full transition-all duration-300 ${
-                  turboActive 
-                    ? 'bg-white scale-90 opacity-90' 
+                  turboActive || isCharging
+                    ? 'bg-[#409CFF] scale-90 opacity-90' 
                     : 'bg-white/50 scale-100 opacity-70'
                 }`} 
               />
@@ -344,8 +442,15 @@ const Experience = () => {
             castShadow={false}
           />
           <Stars turbo={turboActive ? 1 : 0} />
-          <SpaceshipController mousePoint={mousePoint} turbo={turboActive ? 1 : 0} />
-          <PostProcessing turbo={turboActive ? 1 : 0} transitioning={transitioningTurbo} />
+          <SpaceshipController 
+            mousePoint={mousePoint} 
+            turbo={turboActive ? 1 : 0}
+            ftlJump={ftlJump}
+          />
+          <PostProcessing 
+            turbo={turboActive ? 1 : 0} 
+            transitioning={transitioningTurbo}
+          />
         </Suspense>
       </Canvas>
     </>
