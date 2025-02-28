@@ -27,7 +27,7 @@ const TIMING = {
   FTL_CHARGE: 1500,    // Time to charge FTL drive
   SCROLL_DELAY: 900,   // Delay before page scroll
   JUMP_RESET: 1000,    // Time before resetting after jump
-  TRANSITION: 300      // State transition duration
+  TRANSITION: 150      // State transition duration
 } as const;
 
 // Custom hook to detect when the target key is pressed or mobile touch is active
