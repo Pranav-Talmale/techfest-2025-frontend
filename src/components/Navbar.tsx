@@ -32,9 +32,9 @@ export default function Navbar() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-lg border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center justify-between gap-2 md:justify-between">
+            <div className="flex items-center justify-center gap-2 md:justify-between">
                 {/* DYPU Logo */}
-                <Link to="/" className="flex items-center md:mx-0 ml-8">
+                <Link to="/" className="flex items-center md:mx-0">
                   <img
                     src="/white_dy.png"
                     alt="DYPU logo"
@@ -42,7 +42,7 @@ export default function Navbar() {
                   />
                 </Link>
                 {/* Logo */}
-                <Link to="/" className="flex items-center md:mx-0 ml-2">
+                <Link to="/" className="flex items-center md:mx-0 ml-12">
                   <img
                     src="/technovate logo.png"
                     alt="Technovate"

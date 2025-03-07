@@ -20,7 +20,7 @@ import Spaceship from "./Spaceship";
 import MotionBlur from "./MotionBlur";
 
 // Enable/disable FPS counter
-const SHOW_FPS = true; // Toggle this to show/hide FPS counter
+const SHOW_FPS = false; // Toggle this to show/hide FPS counter
 
 // Timing constants in milliseconds
 const TIMING = {
