@@ -3,19 +3,19 @@ import { Calendar } from "lucide-react";
 
 const aboutData = {
   title: "Technovate'25",
-  date: "March 1st - 2nd, 2025",
-  mainHeading: "Experience the Future",
+  date: "April 8th - 9th, 2025",
+  mainHeading: "A Techfest like never before",
   description: "Join us for an electrifying showcase of technology, creativity, and innovation at RAIT's premier technical festival. Immerse yourself in cutting-edge demonstrations, participate in thrilling competitions, and connect with fellow tech enthusiasts.",
   highlights: [
-    "20+ Technical Events",
-    "Expert Workshops",
+    "20+ Events",
+    "Industry Interaction",
     "Amazing Prizes"
   ],
   stats: [
-    { number: "200+", label: "Participants" },
-    { number: "10+", label: "Events" },
-    { number: "20+", label: "Workshops" },
-    { number: "₹20k+", label: "Prize Pool" }
+    { number: "5000+", label: "Participants" },
+    { number: "15+", label: "Events" },
+    { number: "₹1.5L+", label: "Prize Pool" }
+    // { number: "20+", label: "Workshops" },
   ],
   poster: {
     src: "/Poster-final.jpg",
