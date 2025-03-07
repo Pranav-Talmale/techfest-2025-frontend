@@ -32,14 +32,24 @@ export default function Navbar() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-lg border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link to="/" className="flex items-center">
-              <img
-                src="/technovate logo.png"
-                alt="Technovate"
-                className="h-8 w-auto"
-              />
-            </Link>
+            <div className="flex items-center justify-between gap-2 md:justify-between">
+                {/* DYPU Logo */}
+                <Link to="/" className="flex items-center md:mx-0 ml-8">
+                  <img
+                    src="/white_dy.png"
+                    alt="DYPU logo"
+                    className="h-8 w-auto"
+                  />
+                </Link>
+                {/* Logo */}
+                <Link to="/" className="flex items-center md:mx-0 ml-2">
+                  <img
+                    src="/technovate logo.png"
+                    alt="Technovate"
+                    className="h-8 w-auto"
+                  />
+                </Link>
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center">
@@ -56,7 +66,7 @@ export default function Navbar() {
                         : "text-white/50 hover:text-white"
                     )}
                   >
-                    <item.icon className="w-4 h-4" />
+                    <item.icon className="size-4" />
                     {item.name}
                   </Link>
                 ))}
@@ -72,7 +82,7 @@ export default function Navbar() {
                     rel="noopener noreferrer"
                     className="text-white/50 hover:text-white transition-colors"
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="size-5" />
                   </a>
                 ))}
               </div>
@@ -83,7 +93,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(true)}
               className="md:hidden p-2 rounded-md text-white/50 hover:text-white focus:outline-none"
             >
-              <Menu className="h-6 w-6" />
+              <Menu className="size-6" />
             </button>
           </div>
         </div>
@@ -107,6 +117,14 @@ export default function Navbar() {
         >
           {/* Drawer Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+            <div className="flex justify-between items-center">
+            <Link to="/" onClick={() => setIsOpen(false)}>
+              <img
+                src="/white_dy.png"
+                alt="DYPU logo"
+                className="h-12 w-auto"
+              />
+            </Link>
             <Link to="/" onClick={() => setIsOpen(false)}>
               <img
                 src="/technovate logo.png"
@@ -114,11 +132,12 @@ export default function Navbar() {
                 className="h-12 w-auto"
               />
             </Link>
+            </div>
             <button
               onClick={() => setIsOpen(false)}
               className="p-2 text-white/50 hover:text-white focus:outline-none"
             >
-              <X className="h-5 w-5" />
+              <X className="size-5" />
             </button>
           </div>
 
@@ -140,7 +159,7 @@ export default function Navbar() {
                         : "text-white hover:bg-white hover:text-black"
                     )}
                   >
-                    <item.icon className="h-5 w-5 mr-3" />
+                    <item.icon className="size-5 mr-3" />
                     {item.name}
                   </Link>
                 );
@@ -158,7 +177,7 @@ export default function Navbar() {
                     rel="noopener noreferrer"
                     className="text-white hover:text-white/70 transition-colors p-2"
                   >
-                    <social.icon className="w-7 h-7" />
+                    <social.icon className="size-7" />
                   </a>
                 ))}
               </div>
