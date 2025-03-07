@@ -118,7 +118,7 @@ const developmentTeamData = {
     {
       id: 3,
       name: "Jatin",
-      role: "UI/UX Wireframing",
+      role: "UI/UX Design",
       image: "/team/jatin.jpg",
       socials: {
         linkedin: "https://linkedin.com/in/jatin",
@@ -136,7 +136,18 @@ const developmentTeamData = {
       }
     }
   ],
-  additionalContributors: ["Vishwajeet"]
+  additionalContributors: [
+    {
+      id: 1,
+      name: "Vishwajeet",
+      role: "UI Development",
+      image: "/team/vishwajeet.jpg",
+      socials: {
+        github: "https://github.com/vishwajeet",
+        linkedin: "https://linkedin.com/in/vishwajeet"
+      }
+    }
+  ]
 };
 
 export function Leadership() {
@@ -424,20 +435,69 @@ export function Leadership() {
 
           {/* Additional Contributors */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-center"
+            transition={{ duration: 0.5 }}
+            className="mt-16"
           >
-            <p className="text-white/50 text-sm">
-              Additional contributions by{" "}
-              {developmentTeamData.additionalContributors.map((contributor, index, array) => (
-                <span key={contributor} className="text-white/70 font-medium">
-                  {contributor}
-                  {index < array.length - 1 ? ", " : ""}
-                </span>
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-white mb-2">
+                Additional Contributors
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {developmentTeamData.additionalContributors.map((contributor, index) => (
+                <motion.div
+                  key={contributor.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group"
+                >
+                  <div className="bg-neutral-900/50 rounded-lg p-4 border border-white/10 hover:border-white/20 transition-all duration-500">
+                    <div className="relative w-full aspect-square rounded-lg overflow-hidden mb-4">
+                      <img
+                        src={contributor.image}
+                        alt={contributor.name}
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                      />
+                      {/* Social Links */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent md:bg-black/60 flex items-end md:items-center justify-center gap-4 p-4 md:p-0 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {contributor.socials.github && (
+                          <a
+                            href={contributor.socials.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white/90 hover:text-white transition-colors"
+                          >
+                            <Github className="w-5 h-5" />
+                          </a>
+                        )}
+                        {contributor.socials.linkedin && (
+                          <a
+                            href={contributor.socials.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white/90 hover:text-white transition-colors"
+                          >
+                            <Linkedin className="w-5 h-5" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <h3 className="text-white/90 font-medium text-sm mb-1">
+                        {contributor.name}
+                      </h3>
+                      <p className="text-white/50 text-xs">
+                        {contributor.role}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
               ))}
-            </p>
+            </div>
           </motion.div>
         </motion.div>
       </div>
