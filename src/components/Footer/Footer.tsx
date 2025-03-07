@@ -8,7 +8,7 @@ const navigation = {
   ],
   social: [
     { name: "Twitter", href: "https://twitter.com/", icon: Twitter },
-    { name: "Instagram", href: "https://instagram.com/", icon: Instagram },
+    { name: "Instagram", href: "https://www.instagram.com/rait_technovate/", icon: Instagram },
     { name: "Email", href: "mailto:contact@techfest.com", icon: Mail },
   ],
 };

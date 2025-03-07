@@ -25,7 +25,7 @@ export function Sponsors() {
           transition={{ duration: 0.5 }}
           className="text-3xl font-bold text-white text-center mb-12"
         >
-          Our Sponsors
+          Our Past Sponsors
         </motion.h2>
 
         {/* Sponsors Row */}
