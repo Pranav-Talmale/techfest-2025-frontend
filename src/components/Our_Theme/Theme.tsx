@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Rocket, Stars, Orbit } from "lucide-react";
+import { Stars } from "lucide-react";
 
 const themeData = {
   title: "Space Odyssey",
@@ -9,15 +9,9 @@ const themeData = {
     "The vast expanse of space is a cosmic wonder, filled with shimmering galaxies, distant stars, and endless mysteries. Nebulas glow like celestial paintings, while planets drift in silent orbits, bathed in the light of ancient suns.",
     "Amidst the darkness, comets streak across the void, leaving trails of stardust in their wake. Space is a frontier of infinite possibilities, where the unknown invites exploration and the universe whispers its secrets to those who dare to listen."
   ],
-  features: [
-    { label: "Cosmic Events", icon: "🌠" },
-    { label: "Space Tech", icon: "🛸" },
-    { label: "Star Gazing", icon: "🔭" },
-    { label: "Galaxy Quest", icon: "🌌" }
-  ],
   image: {
-    src: "/planet-02.png",
-    alt: "Space Theme"
+    src: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&q=80",
+    alt: "Space Theme - A nebula in deep space with vibrant colors and countless stars"
   }
 };
 
@@ -73,17 +67,6 @@ export function Theme() {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              
-              {/* Floating Elements */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-                className="absolute bottom-4 left-4 right-4 flex items-center justify-center gap-4"
-              >
-                <Rocket className="w-6 h-6 text-white/70" />
-                <Orbit className="w-6 h-6 text-white/70" />
-              </motion.div>
             </div>
           </motion.div>
 
@@ -99,22 +82,6 @@ export function Theme() {
                 <p key={index} className="text-lg md:text-xl text-neutral-300 leading-relaxed">
                   {paragraph}
                 </p>
-              ))}
-            </div>
-
-            {/* Theme Features */}
-            <div className="grid grid-cols-2 gap-6 pt-6">
-              {themeData.features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                  className="flex items-center gap-3 text-white/70"
-                >
-                  <span className="text-2xl">{feature.icon}</span>
-                  <span className="text-sm font-medium">{feature.label}</span>
-                </motion.div>
               ))}
             </div>
           </motion.div>

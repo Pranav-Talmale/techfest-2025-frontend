@@ -360,8 +360,8 @@ const Experience = () => {
           
           {/* Tagline */}
           <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
-            <p className="text-xs md:text-sm uppercase tracking-[0.15em] text-white/60">
-              The Future Awaits
+            <p className="text-xs md:text-sm uppercase tracking-[0.15em] text-white/80">
+            A Techfest like never before
             </p>
           </div>
         </div>
@@ -370,7 +370,7 @@ const Experience = () => {
       {/* Controls Overlay */}
       <div className="absolute inset-x-0 bottom-12 flex flex-col items-center gap-4 pointer-events-none z-10 select-none touch-none">
         <div className="text-sm text-white/50 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full">
-          Hold circle to charge FTL drive
+          Hold circle to charge hyperdrive
         </div>
         
         {/* FTL Charge Progress Bar */}

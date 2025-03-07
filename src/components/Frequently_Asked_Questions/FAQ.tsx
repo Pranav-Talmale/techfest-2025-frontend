@@ -9,7 +9,7 @@ const faqData = {
   questions: [
     {
       id: 1,
-      question: "When and where is TechFest 2025?",
+      question: "When and where is Technovate 2025?",
       answer: "TechFest 2025 will be held on March 1st - 2nd, 2025 at our campus. The event will run from 9 AM to 6 PM on both days."
     },
     {

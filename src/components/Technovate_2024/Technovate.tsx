@@ -1,22 +1,51 @@
 import { motion } from "framer-motion";
-import { Users, Trophy, Calendar } from "lucide-react";
 
-const highlights = [
+const committees = [
   {
-    icon: Users,
-    title: "100+",
-    description: "Participants"
-  },
-  {
-    icon: Trophy,
-    title: "15+",
-    description: "Events"
-  },
-  {
-    icon: Calendar,
-    title: "2024",
-    description: "March Edition"
-  }
+      name: "CSI",
+      logo: "/logos/csi-logo.png",
+      fullName: "Computer Society of India"
+    },
+    {
+      name: "ACM",
+      logo: "/logos/acm-logo.png",
+      fullName: "Association for Computing Machinery"
+    },
+    {
+      name: "IEEE",
+      logo: "/logos/ieee-logo.png",
+      fullName: "Institute of Electrical and Electronics Engineers"
+    },
+    {
+      name: "GDG",
+      logo: "/logos/gdg-logo.png",
+      fullName: "Google Developer Groups"
+    },
+    {
+      name: "ISA",
+      logo: "/logos/isa-logo.png",
+      fullName: "International Society of Automation"
+    },
+    {
+      name: "The Wall",
+      logo: "/logos/wall-logo.png",
+      fullName: "The Wall"
+    },
+    {
+      name: "ISTE",
+      logo: "/logos/iste-logo.png",
+      fullName: "Indian Society for Technical Education"
+    },
+    {
+      name: "PCR",
+      logo: "/logos/pcr-logo.png",
+      fullName: "Photo Circle RAIT"
+    },
+    {
+      name: "IIC",
+      logo: "/logos/iic-logo.png",
+      fullName: "Institution's Innovation Council"
+    }
 ];
 
 export function Technovate() {
@@ -33,45 +62,46 @@ export function Technovate() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl font-bold text-white"
+            className="text-3xl font-bold text-white mb-4"
           >
-            Technovate'24
+            Our Committees
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-white/50 max-w-2xl mx-auto"
+          >
+            A collaborative tech fest brought to you by RAIT's leading technical committees
+          </motion.p>
         </div>
 
-        {/* Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative aspect-video rounded-2xl border border-white/10 overflow-hidden mb-16"
-        >
-          <img
-            src="/technovate-2024.jpg"
-            alt="Technovate 2024"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-        </motion.div>
-
-        {/* Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {highlights.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <Icon className="w-8 h-8 text-white/50 mx-auto mb-4" />
-                <h3 className="text-3xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-white/50">{item.description}</p>
-              </motion.div>
-            );
-          })}
+        {/* Committee Logos Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center justify-items-center">
+          {committees.map((committee, index) => (
+            <motion.div
+              key={committee.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group relative flex flex-col items-center"
+            >
+              {/* Logo Container */}
+              <div className="w-24 h-24 rounded-xl bg-white/5 border border-white/10 p-4 flex items-center justify-center transition-all duration-300 group-hover:border-white/20 group-hover:bg-white/10">
+                <img
+                  src={committee.logo}
+                  alt={`${committee.name} Logo`}
+                  className="w-full h-full object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300"
+                />
+              </div>
+              
+              {/* Committee Name Tooltip */}
+              <div className="absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-all duration-300 text-center">
+                <p className="text-sm text-white/70 font-medium">{committee.name}</p>
+                <p className="text-xs text-white/40">{committee.fullName}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

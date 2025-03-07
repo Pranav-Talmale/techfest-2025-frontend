@@ -5,7 +5,6 @@ import { Theme } from "@/components/Our_Theme/Theme";
 import { Sponsors } from "@/components/Our_Sponsors/Sponsors";
 import { FAQ } from "@/components/Frequently_Asked_Questions/FAQ";
 import { Technovate } from "@/components/Technovate_2024/Technovate";
-import { Inspiration } from "@/components/Our_Inspiration/Inspiration";
 import { useState } from "react";
 import { X, AlertTriangle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -75,7 +74,6 @@ function Home() {
       <Theme />
       <Explore />
       <Sponsors />
-      <Inspiration />
       <FAQ />
       <Technovate />
     </>
