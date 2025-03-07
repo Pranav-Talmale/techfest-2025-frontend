@@ -80,19 +80,19 @@ export function Technovate() {
         </div>
 
         {/* Committees Carousel */}
-        <div className="relative w-full overflow-hidden">
+        <div className="relative w-full overflow-hidden py-8">
           {/* Gradient Overlays */}
           <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
           
-          {/* First Row */}
+          {/* Single Row */}
           <div className="flex animate-scroll-left">
-            {doubledCommittees.slice(0, Math.ceil(doubledCommittees.length/2)).map((committee, index) => (
+            {doubledCommittees.map((committee, index) => (
               <div
                 key={index}
-                className="flex-none mx-8 w-32 group"
+                className="flex-none mx-12 w-40 group"
               >
-                <div className="relative h-20 flex items-center justify-center">
+                <div className="relative h-24 flex items-center justify-center">
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
                   <img
                     src={committee.logo}
@@ -100,32 +100,8 @@ export function Technovate() {
                     className="w-full h-full object-contain filter brightness-75 group-hover:brightness-100 transition-all duration-300"
                   />
                 </div>
-                <div className="mt-2 text-center">
-                  <p className="text-white/50 text-xs font-medium group-hover:text-white/90 transition-colors">
-                    {committee.name}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Second Row */}
-          <div className="flex animate-scroll-right mt-12">
-            {doubledCommittees.slice(Math.ceil(doubledCommittees.length/2)).map((committee, index) => (
-              <div
-                key={index}
-                className="flex-none mx-8 w-32 group"
-              >
-                <div className="relative h-20 flex items-center justify-center">
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                  <img
-                    src={committee.logo}
-                    alt={`${committee.name} Logo`}
-                    className="w-full h-full object-contain filter brightness-75 group-hover:brightness-100 transition-all duration-300"
-                  />
-                </div>
-                <div className="mt-2 text-center">
-                  <p className="text-white/50 text-xs font-medium group-hover:text-white/90 transition-colors">
+                <div className="mt-3 text-center">
+                  <p className="text-white/50 text-sm font-medium group-hover:text-white/90 transition-colors">
                     {committee.name}
                   </p>
                 </div>

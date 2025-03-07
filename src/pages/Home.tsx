@@ -74,8 +74,8 @@ function Home() {
       <Theme />
       <Explore />
       <Sponsors />
-      <FAQ />
       <Technovate />
+      <FAQ />
     </>
   );
 }
