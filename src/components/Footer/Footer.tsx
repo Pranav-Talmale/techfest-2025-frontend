@@ -21,9 +21,9 @@ export function Footer() {
           {/* Logo & Links */}
           <div className="flex flex-col items-center md:items-start">
               <img
-                src="/technovate logo.png"
+                src="/technovate-logo.svg"
                 alt="Technovate"
-                className="h-8 w-auto"
+                className="h-8 w-auto pb-2 mb-4"
               />
             <nav className="flex gap-6 mt-4 md:mt-0">
               {navigation.main.map((item) => (

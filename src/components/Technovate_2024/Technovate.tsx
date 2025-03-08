@@ -1,62 +1,71 @@
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
 
-const committees = [
+interface Committee {
+  name: string;
+  logo: string;
+  fullName: string;
+}
+
+const committees: Committee[] = [
   {
     name: "CSI",
-    logo: "/logos/csi-logo.png",
-    fullName: "Computer Society of India"
+    logo: "/logos/committees/csi-logo.svg",
+    fullName: "Computer Society of India",
   },
   {
     name: "ACM",
-    logo: "/logos/acm-logo.png",
-    fullName: "Association for Computing Machinery"
+    logo: "/logos/committees/acm-logo.svg",
+    fullName: "Association for Computing Machinery",
   },
   {
     name: "IEEE",
-    logo: "/logos/ieee-logo.png",
-    fullName: "Institute of Electrical and Electronics Engineers"
+    logo: "/logos/committees/ieee-logo.svg",
+    fullName: "Institute of Electrical and Electronics Engineers",
   },
   {
     name: "GDG",
-    logo: "/logos/gdg-logo.png",
-    fullName: "Google Developer Groups"
+    logo: "/logos/committees/gdg-logo.svg",
+    fullName: "Google Developer Groups",
   },
   {
     name: "ISA",
-    logo: "/logos/isa-logo.png",
-    fullName: "International Society of Automation"
-  },
-  {
-    name: "The Wall",
-    logo: "/logos/wall-logo.png",
-    fullName: "The Wall"
+    logo: "/logos/committees/isa-logo.svg",
+    fullName: "International Society of Automation",
   },
   {
     name: "ISTE",
-    logo: "/logos/iste-logo.png",
-    fullName: "Indian Society for Technical Education"
+    logo: "/logos/committees/iste-logo.svg",
+    fullName: "Indian Society for Technical Education",
+  },
+  {
+    name: "ECELL",
+    logo: "/logos/committees/ecell-logo.svg",
+    fullName: "ECELL",
   },
   {
     name: "PCR",
-    logo: "/logos/pcr-logo.png",
-    fullName: "Photo Circle RAIT"
+    logo: "/logos/committees/pcr-logo.svg",
+    fullName: "Photo Circle RAIT",
   },
   {
     name: "IIC",
-    logo: "/logos/iic-logo.png",
-    fullName: "Institution's Innovation Council"
-  }
+    logo: "/logos/committees/iic-logo.svg",
+    fullName: "Institution's Innovation Council",
+  },
+  {
+    name: "WALL",
+    logo: "/logos/committees/the-wall-logo.svg",
+    fullName: "The Wall",
+  },
 ];
 
-// Double the array for seamless infinite scroll
-const doubledCommittees = [...committees, ...committees];
-
-export function Technovate() {
+export const Technovate: React.FC = () => {
   return (
     <section className="bg-black relative overflow-hidden py-24">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
-      
+
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -79,37 +88,43 @@ export function Technovate() {
           </motion.p>
         </div>
 
-        {/* Committees Carousel */}
-        <div className="relative w-full overflow-hidden py-8">
-          {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
-          
-          {/* Single Row */}
-          <div className="flex animate-scroll-left">
-            {doubledCommittees.map((committee, index) => (
-              <div
-                key={index}
-                className="flex-none mx-12 w-40 group"
+        {/* Existing Container */}
+        <div className="container mx-auto px-4 py-8">
+          {/* Committees Cards: Logo above Text with fixed image container */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+            {committees.map((committee, index) => (
+              <motion.div
+                key={committee.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                className="group"
               >
-                <div className="relative h-24 flex items-center justify-center">
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                  <img
-                    src={committee.logo}
-                    alt={`${committee.name} Logo`}
-                    className="w-full h-full object-contain filter brightness-75 group-hover:brightness-100 transition-all duration-300"
-                  />
+                <div className="bg-neutral-900 rounded-xl p-6 border border-white/10 h-full flex items-center justify-center transition-colors">
+                  <div className="flex flex-col items-center">
+                    {/* Fixed container for image */}
+                    <div className="h-22 md:h-30 flex items-center justify-center w-full">
+                      <img
+                        src={committee.logo}
+                        alt={`${committee.name} Logo`}
+                        className="max-h-full object-contain"
+                      />
+                    </div>
+                    {/* Fixed spacing for committee name */}
+                    <div className="mt-6 md:pt-4">
+                      <div className="text-white font-medium text-center">
+                        {committee.name}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="mt-3 text-center">
-                  <p className="text-white/50 text-sm font-medium group-hover:text-white/90 transition-colors">
-                    {committee.name}
-                  </p>
-                </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Technovate;

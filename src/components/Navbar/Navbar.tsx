@@ -28,7 +28,7 @@ export function Navbar() {
             {/* Logo */}
             <Link to="https://dypatil.edu/schools/ramrao-adik-institute-of-technology" target="_blank" className="flex items-center space-x-4">
               <img
-                src="/white_dy.png"
+                src="/logos/dyp/white_dy.svg"
                 alt="DY Patil University"
                 className="h-10 w-auto"
               />
@@ -36,9 +36,9 @@ export function Navbar() {
             <Link to="/" className="flex items-center space-x-4">
               <div className="h-8 w-px bg-white/10" />
               <img
-                src="/technovate logo.png"
+                src="/technovate-logo.svg"
                 alt="Technovate"
-                className="h-8 w-auto"
+                className="h-8 w-auto p-2"
               />
             </Link>
             </div>
