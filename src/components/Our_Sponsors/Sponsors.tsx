@@ -29,7 +29,7 @@ export function Sponsors() {
         </motion.h2>
 
         {/* Sponsors Row */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {sponsors.map((sponsor, index) => (
             <motion.div
               key={sponsor.id}

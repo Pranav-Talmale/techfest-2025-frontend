@@ -34,7 +34,7 @@ export default function Navbar() {
                 {/* DYPU Logo */}
                 <Link to="/" className="flex items-center md:mx-0">
                   <img
-                    src="/white_dy.png"
+                    src="/logos/dyp/white_dy.svg"
                     alt="DYPU logo"
                     className="h-8 w-auto"
                   />
@@ -42,9 +42,9 @@ export default function Navbar() {
                 {/* Logo */}
                 <Link to="/" className="flex items-center md:mx-0 ml-12">
                   <img
-                    src="/technovate logo.png"
+                    src="/technovate-logo.svg"
                     alt="Technovate"
-                    className="h-8 w-auto"
+                    className="h-8 w-auto p-2"
                   />
                 </Link>
             </div>
@@ -118,14 +118,14 @@ export default function Navbar() {
             <div className="flex justify-between items-center">
             <Link to="/" onClick={() => setIsOpen(false)}>
               <img
-                src="/white_dy.png"
+                src="/logos/dyp/white_dy.svg"
                 alt="DYPU logo"
                 className="h-12 w-auto"
               />
             </Link>
             <Link to="/" onClick={() => setIsOpen(false)}>
               <img
-                src="/technovate logo.png"
+                src="/technovate-logo.svg"
                 alt="Technovate"
                 className="h-12 w-auto"
               />

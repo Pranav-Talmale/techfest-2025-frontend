@@ -74,13 +74,13 @@ export default function EventDetail() {
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="relative h-[50vh] md:h-[60vh] w-full"
+          className="relative h-[50vh] md:h-[60vh] w-full mt-4 md:mt-8"
         >
           <div className="absolute inset-0">
             <img 
               src={event.image} 
               alt={event.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover md:rounded-t-3xl"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
           </div>
