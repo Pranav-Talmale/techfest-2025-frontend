@@ -330,7 +330,7 @@ export function Leadership() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {studentLeadershipData.leaders.map((leader, index) => (
               <motion.div
                 key={leader.id}
@@ -399,7 +399,7 @@ export function Leadership() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mt-16"
+          className="mt-32"
         >
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -410,7 +410,7 @@ export function Leadership() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {developmentTeamData.members.map((member, index) => (
               <motion.div
                 key={member.id}
@@ -505,7 +505,7 @@ export function Leadership() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group"
                 >
-                  <div className="bg-neutral-900/50 rounded-lg p-4 border border-white/10 hover:border-white/20 transition-all duration-500">
+                  <div className="bg-neutral-900 rounded-xl p-4 border border-white/10 hover:border-white/20 transition-all duration-500">
                     <div className="relative w-full aspect-square rounded-lg overflow-hidden mb-4">
                       <img
                         src={contributor.image}
@@ -521,7 +521,7 @@ export function Leadership() {
                             rel="noopener noreferrer"
                             className="text-white/90 hover:text-white transition-colors"
                           >
-                            <Github className="w-5 h-5" />
+                            <Github className="w-5 h-5 md:w-6 md:h-6" />
                           </a>
                         )}
                         {contributor.socials.linkedin && (
@@ -531,7 +531,7 @@ export function Leadership() {
                             rel="noopener noreferrer"
                             className="text-white/90 hover:text-white transition-colors"
                           >
-                            <Linkedin className="w-5 h-5" />
+                            <Linkedin className="w-5 h-5 md:w-6 md:h-6" />
                           </a>
                         )}
                       </div>
