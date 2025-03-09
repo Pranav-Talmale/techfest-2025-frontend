@@ -34,7 +34,7 @@ const LoadingScreen = () => {
           <img 
             src="/technovate-logo.svg" 
             alt="Technovate" 
-            className="h-16 w-auto"
+            className="h-8 md:h-16 w-auto"
           />
         </motion.div>
 

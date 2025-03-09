@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 
 const aboutData = {
-  title: "Technovate'25",
+  title: "Technovate 2025",
   date: "April 8th - 9th, 2025",
   mainHeading: "A Techfest like never before",
   description: "Join us for an electrifying showcase of technology, creativity, and innovation at RAIT's premier technical festival. Immerse yourself in cutting-edge demonstrations, participate in thrilling competitions, and connect with fellow tech enthusiasts.",

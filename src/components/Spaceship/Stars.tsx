@@ -3,8 +3,8 @@ import { useFrame } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 
-const COLORS = ['#260C73', '#57016D', '#1C488F', '#529EEA', '#126778'].map(
-  color => new THREE.Color(color).convertSRGBToLinear().multiplyScalar(6.0)
+const COLORS = ['#008080', '#57016D', '#008080', '#529EEA', '#126778'].map(
+  color => new THREE.Color(color).convertSRGBToLinear().multiplyScalar(8.0)
 )
 
 const COUNT = 200
