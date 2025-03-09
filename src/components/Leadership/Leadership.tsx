@@ -86,6 +86,56 @@ const studentLeadershipData = {
         instagram: "https://instagram.com/student4"
       }
     },
+    {
+      id: 5,
+      name: "Student Name",
+      role: "Student Role",
+      image: "/leadership/student4.jpg",
+      socials: {
+        linkedin: "https://linkedin.com/in/student4",
+        instagram: "https://instagram.com/student4"
+      }
+    },
+    {
+      id: 6,
+      name: "Student Name",
+      role: "Student Role",
+      image: "/leadership/student4.jpg",
+      socials: {
+        linkedin: "https://linkedin.com/in/student4",
+        instagram: "https://instagram.com/student4"
+      }
+    },
+    {
+      id: 7,
+      name: "Student Name",
+      role: "Student Role",
+      image: "/leadership/student4.jpg",
+      socials: {
+        linkedin: "https://linkedin.com/in/student4",
+        instagram: "https://instagram.com/student4"
+      }
+    },
+    {
+      id: 8,
+      name: "Student Name",
+      role: "Student Role",
+      image: "/leadership/student4.jpg",
+      socials: {
+        linkedin: "https://linkedin.com/in/student4",
+        instagram: "https://instagram.com/student4"
+      }
+    },
+    {
+      id: 9,
+      name: "Student Name",
+      role: "Student Role",
+      image: "/leadership/student4.jpg",
+      socials: {
+        linkedin: "https://linkedin.com/in/student4",
+        instagram: "https://instagram.com/student4"
+      }
+    },
   ]
 };
 
@@ -121,8 +171,8 @@ const developmentTeamData = {
       role: "UI/UX Design",
       image: "/team/jatin.jpg",
       socials: {
-        linkedin: "https://linkedin.com/in/jatin",
-        instagram: "https://instagram.com/jatin"
+        linkedin: "https://linkedin.com/in/pathakjatin",
+        instagram: "https://instagram.com/pathakjatin_"
       }
     },
     {
@@ -280,7 +330,7 @@ export function Leadership() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {studentLeadershipData.leaders.map((leader, index) => (
               <motion.div
                 key={leader.id}

@@ -8,17 +8,17 @@
       "image": "https://images.unsplash.com/photo-1511882150382-421056c89033?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-escape-room",
       "rules": [
-        "Teams of 4 members",
-        "Time limit: 60 minutes",
+        "Teams of 3 members",
+        "Time limit: 10 minutes",
         "Multiple rooms with increasing difficulty",
         "Electronic devices not allowed inside",
         "Time Limit: 10 Mins",
-        "Entry Fee: 100",
+        "Entry Fee per team: 100",
         "Time Limit: 10 Mins",
-        "Entry Fee: 100"
+        "Entry Fee per person: 50"
       ],
-      "venue": "Room 627-627",
-      "datetime": "2025-02-15T10:00:00Z",
+      "venue": "Room 623 - Room 627",
+      "datetime": "2025-04-08T10:00:00Z",
       "teamSize": "3 members",
       "gallery": [
         {
@@ -49,7 +49,7 @@
         "Prior VR experience not required"
       ],
       "venue": "Room 605",
-      "datetime": "2025-02-15T11:00:00Z",
+      "datetime": "2025-04-08T10:00:00Z",
       "teamSize": "Individual",
       "gallery": [
         {
@@ -79,11 +79,13 @@
         "15 overs per match",
         "Standard cricket rules apply",
         "Time Limit: 1 Match",
-        "Time Limit: 1 Match"
+        "Time Limit: 1 Match",
+        "Entry Fee per team: 180",
+        "Entry Fee per person: 50"
       ],
       "venue": "Room 606",
-      "datetime": "2025-02-16T09:00:00Z",
-      "teamSize": "2 members",
+      "datetime": "2025-04-08T10:00:00Z",
+      "teamSize": "4 members",
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&auto=format&fit=crop&q=60",
@@ -112,7 +114,7 @@
         "Multiple rounds of challenges",
         "No external assistance allowed"
       ],
-      "venue": "Main Auditorium",
+      "venue": "Room 612-A",
       "datetime": "2025-02-16T14:00:00Z",
       "teamSize": "Individual",
       "gallery": [
@@ -200,14 +202,16 @@
       "image": "https://images.unsplash.com/photo-1636487658609-28282edc1b7e?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-squid-games",
       "rules": [
-        "Teams of 6 members",
+        "Teams of 10 members",
         "Multiple elimination rounds",
         "Physical activities involved",
-        "Age limit: 16+"
+        "Age limit: 16+",
+        "Entry Fee per team: 800",
+        "Entry Fee per person: 100"
       ],
       "venue": "Room 504-506",
       "datetime": "2025-02-16T11:00:00Z",
-      "teamSize": "6 members",
+      "teamSize": "10 members",
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1636487658609-28282edc1b7e?w=800&auto=format&fit=crop&q=60",
@@ -231,12 +235,12 @@
       "image": "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-laser-tag",
       "rules": [
-        "Teams of 5 members",
-        "20-minute matches",
+        "Individual Participation",
+        "6-10 minute matches",
         "Equipment provided",
         "Tournament format",
         "Time Limit: 6-10 Mins",
-        "Time Limit: 6-10 Mins"
+        "Entry Fee per person: 100"
       ],
       "venue": "Room 511",
       "datetime": "2025-02-17T13:00:00Z",
@@ -331,7 +335,7 @@
         "Business plan required",
         "Q&A session included"
       ],
-      "venue": "Conference Hall",
+      "venue": "Intel Unnati Lab",
       "datetime": "2025-02-16T14:00:00Z",
       "teamSize": "2-4 members"
     },
@@ -343,14 +347,16 @@
       "image": "https://images.unsplash.com/photo-1577083552431-6e5fd01988f8?w=800&auto=format&fit=crop&q=60",
       "enrollLink": "https://forms.google.com/techfest-treasure-hunt",
       "rules": [
-        "Teams of 3 members",
+        "Teams of 4 members",
         "Campus-wide hunt",
         "Tech-based clues",
-        "Time limit: 2 hours"
+        "Time limit: 2 hours",
+        "Entry Fee per team: 75",
+        "Entry Fee per person: 100"
       ],
       "venue": "Room 4th Floor",
       "datetime": "2025-02-17T10:00:00Z",
-      "teamSize": "3 members"
+      "teamSize": "4 members"
     },
     {
       "id": "valorant",
@@ -394,7 +400,8 @@
         "Squad format (4 players)",
         "Own mobile device required",
         "Headphones mandatory",
-        "No emulators allowed"
+        "No emulators allowed",
+        "Entry Fee per person: 200"
       ],
       "venue": "Room 302",
       "datetime": "2025-02-17T11:00:00Z",
@@ -425,7 +432,8 @@
         "Individual sessions",
         "15 minutes per simulation",
         "Multiple scenarios available",
-        "Age limit: 14+"
+        "Age limit: 14+",
+        "Entry Fee per person: 75"
       ],
       "venue": "Room 305",
       "datetime": "2025-02-15T10:00:00Z",
@@ -614,7 +622,7 @@
         "10 minutes presentation time"
       ],
       "venue": "Exhibition Hall",
-      "datetime": "2025-02-16T09:00:00Z",
+      "datetime": "2025-04-08T10:00:00Z",
       "teamSize": "2-4 members",
       "gallery": [
         {
