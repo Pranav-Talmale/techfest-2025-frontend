@@ -360,7 +360,7 @@ const Experience = () => {
           
           {/* Tagline */}
           <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
-            <p className="text-xs md:text-sm uppercase tracking-[0.15em] text-white/80">
+            <p className="text-xs md:text-sm uppercase font-medium tracking-[0.15em] text-white/80">
             A Techfest like never before
             </p>
           </div>
