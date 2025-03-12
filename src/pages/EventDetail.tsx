@@ -17,7 +17,7 @@ export default function EventDetail() {
   
   if (!event) {
     return (
-      <div className="min-h-screen bg-black pt-16">
+      <div className="min-h-screen bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Link 
             to="/events"
@@ -68,7 +68,7 @@ export default function EventDetail() {
   };
 
   return (
-    <div className="min-h-screen bg-black pt-16">
+    <div className="min-h-screen bg-black md:pt-10 pt-15">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section with Full-width Image */}
         <motion.div 
@@ -80,7 +80,7 @@ export default function EventDetail() {
             <img 
               src={event.image} 
               alt={event.title}
-              className="w-full h-full object-cover md:rounded-t-3xl"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
           </div>

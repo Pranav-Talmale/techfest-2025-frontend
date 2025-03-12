@@ -355,7 +355,7 @@ const Experience = () => {
           <img 
             src="/technovate-logo.svg" 
             alt="Technovate" 
-            className="h-16 hidden md:block md:h-32 w-auto p-6 mt-4"
+            className="h-24 block md:h-32 w-auto p-6 mt-4"
           />
           
           {/* Tagline */}
