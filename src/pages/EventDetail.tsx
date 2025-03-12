@@ -241,18 +241,27 @@ export default function EventDetail() {
 
                 {/* Register Button */}
                 {event.enrollLink && (
-                  <motion.a
-                    href={event.enrollLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full bg-white text-black py-3 px-6 rounded-xl font-medium hover:bg-neutral-200 transition-colors"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Register Now
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </motion.a>
-                )}
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  {event.closed ? (
+                    <button
+                      className="flex items-center justify-center w-full bg-gray-500 text-white py-3 px-6 rounded-xl font-medium cursor-not-allowed"
+                      disabled
+                    >
+                      Registrations Are Closed
+                    </button>
+                  ) : (
+                    <a
+                      href={event.enrollLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-full bg-white text-black py-3 px-6 rounded-xl font-medium hover:bg-neutral-200 transition-colors"
+                    >
+                      Register Now
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </a>
+                  )}
+                </motion.div>
+              )}
               </div>
 
               {/* Timeline */}

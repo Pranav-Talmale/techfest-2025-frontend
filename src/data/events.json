@@ -20,6 +20,7 @@
       "venue": "Room 623 - Room 627",
       "datetime": "2025-04-08T10:00:00Z",
       "teamSize": "3 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1511882150382-421056c89033?w=800&auto=format&fit=crop&q=60",
@@ -51,6 +52,7 @@
       "venue": "Room 605",
       "datetime": "2025-04-08T10:00:00Z",
       "teamSize": "Individual",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800&auto=format&fit=crop&q=60",
@@ -86,6 +88,7 @@
       "venue": "Room 606",
       "datetime": "2025-04-08T10:00:00Z",
       "teamSize": "4 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&auto=format&fit=crop&q=60",
@@ -117,6 +120,7 @@
       "venue": "Room 612-A",
       "datetime": "2025-02-16T14:00:00Z",
       "teamSize": "Individual",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1606166325683-e6deb697d301?w=800&auto=format&fit=crop&q=60",
@@ -148,6 +152,7 @@
       "venue": "Room 604",
       "datetime": "2025-02-15T18:00:00Z",
       "teamSize": "1-2 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=800&auto=format&fit=crop&q=60",
@@ -179,6 +184,7 @@
       "venue": "Room 613",
       "datetime": "2025-02-17T09:00:00Z",
       "teamSize": "3 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=60",
@@ -212,6 +218,7 @@
       "venue": "Room 504-506",
       "datetime": "2025-02-16T11:00:00Z",
       "teamSize": "10 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1636487658609-28282edc1b7e?w=800&auto=format&fit=crop&q=60",
@@ -245,6 +252,7 @@
       "venue": "Room 511",
       "datetime": "2025-02-17T13:00:00Z",
       "teamSize": "6 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=800&auto=format&fit=crop&q=60",
@@ -276,6 +284,7 @@
       "venue": "Room 515",
       "datetime": "2025-02-15T09:00:00Z",
       "teamSize": "Individual or Group",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&auto=format&fit=crop&q=60",
@@ -307,6 +316,7 @@
       "venue": "Room 520-523",
       "datetime": "2025-02-15T13:00:00Z",
       "teamSize": "100 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1623479322729-28b25c16b011?w=800&auto=format&fit=crop&q=60",
@@ -337,7 +347,8 @@
       ],
       "venue": "Intel Unnati Lab",
       "datetime": "2025-02-16T14:00:00Z",
-      "teamSize": "2-4 members"
+      "teamSize": "2-4 members",
+      "closed": true
     },
     {
       "id": "treasure-hunt",
@@ -356,7 +367,8 @@
       ],
       "venue": "Room 4th Floor",
       "datetime": "2025-02-17T10:00:00Z",
-      "teamSize": "4 members"
+      "teamSize": "4 members",
+      "closed": true
     },
     {
       "id": "valorant",
@@ -374,6 +386,7 @@
       "venue": "E-Sports Arena",
       "datetime": "2025-02-16T10:00:00Z",
       "teamSize": "5 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=60",
@@ -406,6 +419,7 @@
       "venue": "Room 302",
       "datetime": "2025-02-17T11:00:00Z",
       "teamSize": "4 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&auto=format&fit=crop&q=60",
@@ -438,6 +452,7 @@
       "venue": "Room 305",
       "datetime": "2025-02-15T10:00:00Z",
       "teamSize": "Individual",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1607292676061-d629f4b663fa?w=800&auto=format&fit=crop&q=60",
@@ -469,6 +484,7 @@
       "venue": "Room 306",
       "datetime": "2025-02-16T13:00:00Z",
       "teamSize": "Individual",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=800&auto=format&fit=crop&q=60",
@@ -500,6 +516,7 @@
       "venue": "Room 201-2, 208",
       "datetime": "2025-02-17T09:00:00Z",
       "teamSize": "2-4 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=60",
@@ -531,6 +548,7 @@
       "venue": "Room 213-215, 114-115",
       "datetime": "2025-02-16T11:00:00Z",
       "teamSize": "1-2 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&auto=format&fit=crop&q=60",
@@ -562,6 +580,7 @@
       "venue": "Room IOT Lab",
       "datetime": "2025-02-17T10:00:00Z",
       "teamSize": "2-4 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1597838816882-4435b1977fbe?w=800&auto=format&fit=crop&q=60",
@@ -593,6 +612,7 @@
       "venue": "Room Lawn",
       "datetime": "2025-02-16T15:00:00Z",
       "teamSize": "2 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800&auto=format&fit=crop&q=60",
@@ -624,6 +644,7 @@
       "venue": "Exhibition Hall",
       "datetime": "2025-04-08T10:00:00Z",
       "teamSize": "2-4 members",
+      "closed": true,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=60",
