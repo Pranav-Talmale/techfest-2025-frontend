@@ -30,7 +30,7 @@ const committees: Committee[] = [
   },
   {
     name: "ISA",
-    logo: "/logos/committees/isa-logo.svg",
+    logo: "/logos/committees/isa-logo.png",
     fullName: "International Society of Automation",
   },
   {
@@ -40,7 +40,7 @@ const committees: Committee[] = [
   },
   {
     name: "ECELL",
-    logo: "/logos/committees/ecell-logo.svg",
+    logo: "/logos/committees/ecell-logo.png",
     fullName: "ECELL",
   },
   {
