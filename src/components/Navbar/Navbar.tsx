@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { HomeIcon, Instagram, Menu, X, CalendarIcon, MailIcon, UsersIcon, InfoIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const navigation = [
@@ -17,6 +17,20 @@ const social = [
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showLogo, setShowLogo] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight * 0.7) {
+        setShowLogo(true);
+      } else {
+        setShowLogo(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <nav className="fixed top-0 inset-x-0 z-50">
@@ -25,7 +39,6 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto p-2 px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center justify-center space-x-4">
-            {/* Logo */}
             <Link to="https://dypatil.edu/schools/ramrao-adik-institute-of-technology" target="_blank" className="flex items-center space-x-4">
               <img
                 src="/logos/dyp/white_dy.svg"
@@ -33,7 +46,14 @@ export function Navbar() {
                 className="h-10 w-auto"
               />
             </Link>
-            <Link to="/" className="flex items-center space-x-4">
+            {location.pathname === "/" && showLogo && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+                <Link to="/" className="flex items-center space-x-4">
               <div className="h-8 w-px bg-white/10" />
               <img
                 src="/technovate-logo.svg"
@@ -41,6 +61,18 @@ export function Navbar() {
                 className="h-8 w-auto p-2"
               />
             </Link>
+              </motion.div>
+            )}
+            {location.pathname !== "/" && (
+              <Link to="/" className="flex items-center space-x-4">
+              <div className="h-8 w-px bg-white/10" />
+              <img
+                src="/technovate-logo.svg"
+                alt="Technovate"
+                className="h-8 w-auto p-2"
+              />
+            </Link>
+            )}
             </div>
 
             {/* Desktop Navigation */}
