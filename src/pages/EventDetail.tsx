@@ -265,7 +265,7 @@ export default function EventDetail() {
               </div>
 
               {/* Timeline */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
@@ -273,22 +273,44 @@ export default function EventDetail() {
               >
                 <h3 className="text-xl font-semibold text-white mb-6">Event Timeline</h3>
                 <div className="space-y-4">
+                  {/* Conditional Registration Section for tech events */}
                   <div className="flex items-start space-x-4 group">
                     <Clock className="w-5 h-5 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
                     <div>
-                      <p className="text-white font-medium group-hover:text-white/90 transition-colors">Registration Opens</p>
-                      <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors">1 hour before event</p>
+                    {/* <p className="text-white font-medium group-hover:text-white/90 transition-colors">
+                    Registration Status
+                      </p> */}
+                      <p className="text-white font-medium group-hover:text-white/90 transition-colors">
+                        {event.category === "tech" && !event.closed
+                          ? "Registration closes a day before the event"
+                          : event.closed
+                          ? "Registrations not started yet"
+                          : "Registration Opens"}
+                      </p>
+
+                      {!event.closed && event.category !== "tech" && (
+                        <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors">
+                          1 hour before event
+                        </p>
+                      )}
                     </div>
                   </div>
+
+                  {/* Constant Event Start Section */}
                   <div className="flex items-start space-x-4 group">
                     <Clock className="w-5 h-5 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
                     <div>
-                      <p className="text-white font-medium group-hover:text-white/90 transition-colors">Event Starts</p>
-                      <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors">{formattedTime}</p>
+                      <p className="text-white font-medium group-hover:text-white/90 transition-colors">
+                        Event Starts
+                      </p>
+                      <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors">
+                        {formattedTime}
+                      </p>
                     </div>
                   </div>
                 </div>
               </motion.div>
+
             </motion.div>
           </div>
 
