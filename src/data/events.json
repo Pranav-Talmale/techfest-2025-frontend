@@ -371,26 +371,37 @@
       "closed": true
     },
     {
-      "id": "valorant",
-      "title": "VALO",
+      "id": "valoreign",
+      "title": "Valoreign",
       "category": "gaming",
-      "description": "Valorant tournament",
-      "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-valorant",
+      "description": "Valoreign: A Valorant Tournament that Reignites the Spark of Gaming Companionship!",
+      "image": "/events/valoreign.jpg",
+      "enrollLink": "https://forms.gle/AtFZeSTrJtrfM56Z7",
       "rules": [
         "5v5 team format",
-        "Double elimination",
+        "Single elimination",
         "Standard tournament rules",
-        "Own peripherals allowed"
+        "Own peripherals allowed",
+        "Limited to first 32 teams"
       ],
       "venue": "E-Sports Arena",
       "datetime": "2025-04-08T04:30:00Z",
-      "teamSize": "5 members",
+      "teamSize": "5 members + 1 substitute",
       "closed": true,
+      "fee": "₹1000 per team",
+      "prizePool": "₹25,000",
+      "schedule": {
+        "Single Elimination Matches": "April 5th & 6th",
+        "LAN Event": "April 8th"
+      },
+      "contact": {
+        "Meet Thakkar": "+91 8928146830",
+        "Shlok Ray": "+91 7900124286"
+      },
       "gallery": [
         {
-          "url": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=60",
-          "caption": "Tournament Finals"
+          "url": "/events/valoreign.jpg",
+          "caption": "Event Poster"
         },
         {
           "url": "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&auto=format&fit=crop&q=60",
