@@ -65,7 +65,7 @@ export function Footer() {
             </p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm md:text-sm text-white/50">
               <span><strong className="text-white/70 hover:text-white transition-colors"><a href="https://deeptanshu.is-a.dev" target="_blank" rel="noopener noreferrer">Deeptanshu</a></strong> • 3D Website Development</span>
-              <span><strong className="text-white/70 hover:text-white transition-colors"><a href="" target="_blank" rel="noopener noreferrer">Pranav</a> </strong> • Hosting & Code Management</span>
+              <span><strong className="text-white/70 hover:text-white transition-colors"><a href="https://github.com/Pranav-Talmale" target="_blank" rel="noopener noreferrer">Pranav</a> </strong> • Hosting & Code Management</span>
               <span><strong className="text-white/70 hover:text-white transition-colors"><a href="" target="_blank" rel="noopener noreferrer">Jatin</a> </strong> • UI/UX Wireframing</span>
               <span><strong className="text-white/70 hover:text-white transition-colors"><a href="" target="_blank" rel="noopener noreferrer">Rushil</a> </strong> • 3D Optimizations</span>
             </div>

@@ -344,12 +344,10 @@ export default function EventDetail() {
                 </h3>
                 <div className="space-y-4">
                   {/* Conditional Registration Section for tech events */}
-                  <div className="flex items-start space-x-4 group">
+                  {/* <div className="flex items-start space-x-4 group">
                     <Clock className="w-5 h-5 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
                     <div>
-                      {/* <p className="text-white font-medium group-hover:text-white/90 transition-colors">
-                    Registration Status
-                      </p> */}
+
                       <p className="text-white font-medium group-hover:text-white/90 transition-colors">
                         {event.category === "tech" && !event.closed
                           ? "Registration closes a day before the event"
@@ -358,13 +356,14 @@ export default function EventDetail() {
                           : "Registration Opens"}
                       </p>
 
-                      {!event.closed && event.category !== "tech" && (
-                        <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors">
-                          1 hour before event
-                        </p>
-                      )}
+                      {!event.closed &&
+                        event.category === "" && (
+                          <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors">
+                            1 hour before event
+                          </p>
+                        )}
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Constant Event Start Section */}
                   <div className="flex items-start space-x-4 group">

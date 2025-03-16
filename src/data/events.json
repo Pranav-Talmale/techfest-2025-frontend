@@ -387,7 +387,7 @@
       "venue": "E-Sports Arena",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "5 members + 1 substitute",
-      "closed": true,
+      "closed": false,
       "fee": "₹1000 per team",
       "prizePool": "₹25,000",
       "schedule": {
