@@ -1,6 +1,6 @@
 import { useSearchParams, Link } from "react-router-dom";
 import eventsData from "@/data/events.json";
-import { Filter, Calendar, MapPin, Users, Loader2 } from "lucide-react";
+import { Filter, Calendar, MapPin, Users, Loader2, ChevronRight, Clock, Trophy, Gamepad2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -113,7 +113,7 @@ export default function Events() {
                 </div>
               ) : (
                 /* Events Grid */
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                   {filteredEvents.map((event, index) => (
                     <motion.div
                       key={event.id}
@@ -121,19 +121,31 @@ export default function Events() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
                     >
-                      <div className="group block bg-neutral-900 rounded-2xl overflow-hidden hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-500 border border-white/10 hover:border-white/20">
+                      <div className="group relative bg-neutral-900/80 rounded-2xl overflow-hidden backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-500 hover:shadow-[0_0_25px_rgba(255,255,255,0.07)]">
                         {/* Event Image */}
-                        <div className="relative overflow-hidden h-64 w-full">
+                        <div className="relative overflow-hidden h-56 w-full">
                           <img
                             src={event.image}
                             alt={event.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
-
+                          
+                          {/* Image Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/70 to-transparent opacity-80" />
+                          
                           {/* Category Badge */}
-                          <div className="absolute top-4 right-4">
-                            <span className="px-3 py-1 rounded-full text-sm bg-white/10 text-white backdrop-blur-sm border border-white/20">
+                          <div className="absolute top-4 left-4 z-10">
+                            <span className={cn(
+                              "px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md border border-white/20 uppercase tracking-wider flex items-center gap-1.5",
+                              event.category === "tech" 
+                                ? "bg-black/10 text-white border-white/20" 
+                                : event.category === "non-tech" 
+                                ? "bg-black/10 text-white border-white/20" 
+                                : "bg-black/10 text-white border-white/20"
+                            )}>
+                              {event.category === "tech" && <Trophy className="w-3 h-3" />}
+                              {event.category === "non-tech" && <Users className="w-3 h-3" />}
+                              {event.category === "gaming" && <Gamepad2 className="w-3 h-3" />}
                               {event.category === "tech"
                                 ? "Technical"
                                 : event.category === "non-tech"
@@ -141,56 +153,75 @@ export default function Events() {
                                 : "Gaming"}
                             </span>
                           </div>
+                          
+                          {/* Date Badge */}
+                          <div className="absolute top-4 right-4 z-10">
+                            <div className="bg-black/50 backdrop-blur-md rounded-xl px-3 py-2 border border-white/10 flex items-center gap-1.5">
+                              <Calendar className="w-3.5 h-3.5 text-white/95" />
+                              <span className="text-xs font-medium text-white/90">
+                                {new Date(event.datetime).toLocaleDateString("en-US", {
+                                  month: "long",
+                                  day: "numeric"
+                                })}
+                              </span>
+                            </div>
+                          </div>
                         </div>
 
                         {/* Event Content */}
-                        <div className="p-6">
-                          <div className="flex-1">
-                            <h3 className="text-2xl font-semibold text-white mb-3 group-hover:text-white/90 transition-colors">
+                        <div className="p-6 relative">
+                          {/* Title and Description */}
+                          <div className="mb-6">
+                            <h3 className="text-2xl font-bold text-white mb-2 transition-colors group-hover:text-white">
                               {event.title}
+                              <span className="block w-12 h-0.5 bg-white/20 mt-2 group-hover:w-24 group-hover:bg-white/40 transition-all duration-500" />
                             </h3>
-                            <p className="text-neutral-400 mb-6 line-clamp-2 group-hover:text-neutral-300 transition-colors">
+                            <p className="text-neutral-400 line-clamp-2 group-hover:text-neutral-300 transition-colors text-sm leading-relaxed">
                               {event.description}
                             </p>
+                          </div>
 
-                            {/* Event Details */}
-                            <div className="grid grid-cols-2 gap-4 mb-6">
-                              <div className="flex items-center gap-2 group/item">
-                                <Calendar className="w-4 h-4 text-white/50 group-hover/item:text-white/70 transition-colors" />
-                                <span className="text-sm text-neutral-300 group-hover/item:text-neutral-200 transition-colors">
-                                  {new Date(event.datetime).toLocaleDateString(
-                                    "en-US",
-                                    {
-                                      month: "short",
-                                      day: "numeric",
-                                    }
-                                  )}
-                                </span>
-                              </div>
-                              <div className="flex items-center gap-2 group/item">
-                                <MapPin className="w-4 h-4 text-white/50 group-hover/item:text-white/70 transition-colors" />
-                                <span className="text-sm text-neutral-300 truncate group-hover/item:text-neutral-200 transition-colors">
+                          {/* Event Details */}
+                          <div className="mb-6 border-t border-white/10 pt-4 mt-4">
+                            <div className="grid grid-cols-3 gap-2">
+                              {/* Location */}
+                              <div className="flex flex-col items-center text-center group/venue">
+                                <MapPin className="w-5 h-5 text-white/60 group-hover/venue:text-white/90 mb-1 transition-colors" />
+                                <span className="text-xs text-white/60 group-hover/venue:text-white/90 transition-colors line-clamp-1">
                                   {event.venue}
                                 </span>
                               </div>
-                            </div>
-
-                            {/* Footer */}
-                            <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                              <div className="flex items-center gap-2 group/item">
-                                <Users className="w-4 h-4 text-white/50 group-hover/item:text-white/70 transition-colors" />
-                                <span className="text-sm text-white/80 group-hover/item:text-white/90 transition-colors">
+                              
+                              {/* Time */}
+                              <div className="flex flex-col items-center text-center group/time">
+                                <Clock className="w-5 h-5 text-white/60 group-hover/time:text-white/90 mb-1 transition-colors" />
+                                <span className="text-xs text-white/60 group-hover/time:text-white/90 transition-colors">
+                                  {new Date(event.datetime).toLocaleTimeString("en-US", {
+                                    hour: "numeric",
+                                    minute: "2-digit",
+                                    hour12: true
+                                  })}
+                                </span>
+                              </div>
+                              
+                              {/* Team Size */}
+                              <div className="flex flex-col items-center text-center group/team">
+                                <Users className="w-5 h-5 text-white/60 group-hover/team:text-white/90 mb-1 transition-colors" />
+                                <span className="text-xs text-white/60 group-hover/team:text-white/90 transition-colors">
                                   {event.teamSize}
                                 </span>
                               </div>
-                              <Link
-                                to={`/events/detail?id=${event.id}`}
-                                className="inline-flex items-center gap-2 bg-white text-black text-lg px-4 py-2 rounded-full font-medium hover:bg-gray-100 hover:scale-105 transition-transform shadow-md"
-                              >
-                                View Details
-                              </Link>
                             </div>
                           </div>
+
+                          {/* Action Button */}
+                          <Link
+                            to={`/events/detail?id=${event.id}`}
+                            className="group/btn flex w-full items-center justify-center gap-2 bg-white text-black text-base px-4 py-3 rounded-xl font-medium hover:bg-white/90 transition-all duration-300"
+                          >
+                            View Details
+                            <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                          </Link>
                         </div>
                       </div>
                     </motion.div>

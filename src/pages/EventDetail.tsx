@@ -6,13 +6,13 @@ import {
   Calendar,
   MapPin,
   Clock,
-  ChevronRight,
   ExternalLink,
   Camera,
   Share2,
-  DollarSign,
   Phone,
   Trophy,
+  IndianRupee,
+  CircleSmall,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -215,7 +215,7 @@ export default function EventDetail() {
                           transition={{ delay: 0.6 + index * 0.1 }}
                           className="flex items-start"
                         >
-                          <ChevronRight className="w-5 h-5 text-white/50 mt-1 flex-shrink-0" />
+                          <CircleSmall className="w-5 h-5 fill-white/80 text-white/80 mt-1 flex-shrink-0" />
                           <span className="text-neutral-300 ml-4">{rule}</span>
                         </motion.li>
                       ))}
@@ -293,7 +293,7 @@ export default function EventDetail() {
 
                 {/* Registeration Cost */}
                 <div className="flex items-start space-x-4 mb-8 group">
-                  <DollarSign className="w-6 h-6 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
+                  <IndianRupee className="w-6 h-6 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
                   <div>
                     <p className="text-white font-medium group-hover:text-white/90 transition-colors">
                       Entry Fees
