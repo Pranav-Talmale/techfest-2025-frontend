@@ -84,13 +84,13 @@ export default function EventDetail() {
   };
 
   return (
-    <div className="min-h-screen bg-black md:pt-10 pt-15">
+    <div className="min-h-screen bg-black md:pt-12 pt-16">
       <div className="max-w-7xl mx-auto">
         {/* Hero Section with Full-width Image */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="relative h-[50vh] md:h-[60vh] w-full mt-4 md:mt-8"
+          className="relative h-[60vh] md:h-[60vh] w-full mt-4 md:mt-8"
         >
           <div className="absolute inset-0">
             <img
