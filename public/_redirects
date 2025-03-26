@@ -1,5 +1,1 @@
-# Serve pre-generated HTML files for social media crawlers
-/events/detail?id=:id /events/detail/:id.html 200!
-
-# Fallback for SPA
 /* /index.html 200
