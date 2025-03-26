@@ -40,7 +40,7 @@ const EVENTS_ENDPOINT = 'https://raw.githubusercontent.com/Pranav-Talmale/techfe
 // Cache variables
 let cachedEvents: Event[] | null = null;
 let lastFetchTime = 0;
-const CACHE_DURATION = 0; // 0 seconds
+const CACHE_DURATION = 1; // 0 seconds
 
 /**
  * Fetches events from GitHub repository with caching
