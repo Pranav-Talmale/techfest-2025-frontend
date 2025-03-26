@@ -33,7 +33,8 @@
     },
     {
       "src": "/events/detail",
-      "dest": "/events/detail/_handler.js"
+      "status": 200,
+      "dest": "/events/detail/:id.html"
     },
     {
       "handle": "filesystem"
