@@ -1,6 +1,83 @@
 {
   "events": [
     {
+      "id": "mehfil",
+      "title": "Mehfil - An Open Mic Eve",
+      "category": "non-tech",
+      "description": "At Mehfil, every word, every note, and every story is celebrated. 🌟📚 Whether you're a seasoned performer or stepping onto the stage for the first time, this is your moment to shine. 🎙️✨",
+      "image": "https://res.cloudinary.com/ddyomaueo/image/upload/v1742998159/event-thumbnails/olnpbhpcq03qld7rkvvq.jpg",
+      "enrollLink": "https://forms.gle/CSNuC1irEBgnuNVm6",
+      "fee": "₹50 per team",
+      "rules": [
+        "⚠️ Note: Due to time constraints, each performance is limited to 2 minutes, and an audition process will be conducted.",
+        "Any form of artistic expression welcome wheather its 🎶 Singing 🎭 Monologue😂 Stand-up📝 Shayari & Poetry🎤 Rapping & Beatbox🎸 Instrumental🎭 Mime & Skits 📖Storytelling & Powada 👥 Duet Acts …or anything else that sets the stage on fire! 🤩",
+        "Content must be appropriate for all audiences",
+        "Pre-registration required",        
+        "Individual or group performances"
+      ],
+      "venue": "RAIT Circle",
+      "datetime": "2025-04-08T18:00:00Z",
+      "teamSize": "Individual or Group",
+      "closed": false,
+      "gallery": [
+        {
+          "url": "https://res.cloudinary.com/ddyomaueo/image/upload/v1742998159/event-thumbnails/olnpbhpcq03qld7rkvvq.jpg",
+          "caption": "Mehfil - Open Mic Night"
+        },
+        {
+          "url": "https://res.cloudinary.com/ddyomaueo/image/upload/v1742998159/event-thumbnails/v7tnb0bxhreqsyaygxtg.jpg",
+          "caption": "Poster "
+        },
+        {
+          "url": "https://res.cloudinary.com/ddyomaueo/image/upload/v1742998159/event-thumbnails/j4bk7nxronmyit4supj8.jpg",
+          "caption": "Poster Alt"
+        }
+      ]
+    },
+    {
+      "id": "valoreign",
+      "title": "Valoreign",
+      "category": "gaming",
+      "description": "Valoreign: A Valorant Tournament that Reignites the Spark of Gaming Companionship!",
+      "image": "/events/valoreign.jpg",
+      "enrollLink": "https://forms.gle/AtFZeSTrJtrfM56Z7",
+      "rules": [
+        "5v5 team format",
+        "Single elimination",
+        "Standard tournament rules",
+        "Own peripherals allowed",
+        "Limited to first 32 teams"
+      ],
+      "venue": "E-Sports Arena",
+      "datetime": "2025-04-08T04:30:00Z",
+      "teamSize": "5 members + 1 substitute",
+      "closed": false,
+      "fee": "₹1000 per team",
+      "prizePool": "₹25,000",
+      "schedule": {
+        "Single Elimination Matches": "April 5th & 6th",
+        "LAN Event": "April 8th"
+      },
+      "contact": {
+        "Meet Thakkar": "+91 8928146830",
+        "Shlok Ray": "+91 7900124286"
+      },
+      "gallery": [
+        {
+          "url": "/events/valoreign.jpg",
+          "caption": "Event Poster"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&auto=format&fit=crop&q=60",
+          "caption": "Team celebration"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=800&auto=format&fit=crop&q=60",
+          "caption": "Intense gameplay moment"
+        }
+      ]
+    },
+    {
       "id": "escape-room",
       "title": "Escape Room",
       "category": "tech",
@@ -369,49 +446,6 @@
       "datetime": "2025-02-17T10:00:00Z",
       "teamSize": "4 members",
       "closed": true
-    },
-    {
-      "id": "valoreign",
-      "title": "Valoreign",
-      "category": "gaming",
-      "description": "Valoreign: A Valorant Tournament that Reignites the Spark of Gaming Companionship!",
-      "image": "/events/valoreign.jpg",
-      "enrollLink": "https://forms.gle/AtFZeSTrJtrfM56Z7",
-      "rules": [
-        "5v5 team format",
-        "Single elimination",
-        "Standard tournament rules",
-        "Own peripherals allowed",
-        "Limited to first 32 teams"
-      ],
-      "venue": "E-Sports Arena",
-      "datetime": "2025-04-08T04:30:00Z",
-      "teamSize": "5 members + 1 substitute",
-      "closed": false,
-      "fee": "₹1000 per team",
-      "prizePool": "₹25,000",
-      "schedule": {
-        "Single Elimination Matches": "April 5th & 6th",
-        "LAN Event": "April 8th"
-      },
-      "contact": {
-        "Meet Thakkar": "+91 8928146830",
-        "Shlok Ray": "+91 7900124286"
-      },
-      "gallery": [
-        {
-          "url": "/events/valoreign.jpg",
-          "caption": "Event Poster"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&auto=format&fit=crop&q=60",
-          "caption": "Team celebration"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=800&auto=format&fit=crop&q=60",
-          "caption": "Intense gameplay moment"
-        }
-      ]
     },
     {
       "id": "bgmi-cod",

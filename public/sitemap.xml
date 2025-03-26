@@ -36,6 +36,14 @@
     <priority>0.8</priority>
   </url>
   
+  <!-- Event Detail Pages -->
+  <url>
+    <loc>https://www.raittechnovate.co.in/events/detail?id=mehfil</loc>
+    <lastmod>2025-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <!-- Other Important Pages -->
   <url>
     <loc>https://www.raittechnovate.co.in/about</loc>
