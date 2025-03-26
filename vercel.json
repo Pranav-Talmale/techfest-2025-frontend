@@ -32,11 +32,18 @@
       "dest": "/assets/$1.glb"
     },
     {
+      "src": "/events/detail",
+      "status": 200,
+      "dest": "/events/detail/:id.html"
+    },
+    {
       "handle": "filesystem"
     },
     {
-      "src": "^/(.*)",
+      "src": "/(.*)",
       "dest": "/index.html"
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 } 
