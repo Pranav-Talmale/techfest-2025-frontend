@@ -32,6 +32,9 @@
       "dest": "/assets/$1.glb"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }

@@ -64,8 +64,8 @@ export default function EventDetail() {
   // Prepare meta data for Open Graph and Twitter cards
   let pageTitle = "Event | Technovate 2025";
   let pageDescription = "Join us for this exciting event at Technovate 2025!";
-  let pageImage = event?.image || "https://www.raittechnovate.co.in/Poster-final.jpg"; // Default image
-  let eventUrl = "";
+  let pageImage = event?.image || "https://technovate-2025.vercel.app/Poster-final.jpg"; // Default image
+  let eventUrl = `https://technovate-2025.vercel.app/events/detail?id=${eventId}`;
   let structuredData = {};
 
   if (event) {
@@ -74,7 +74,7 @@ export default function EventDetail() {
       ? `${event.description.substring(0, 157)}...` 
       : event.description;
     pageImage = event.image || (event.gallery && event.gallery.length > 0 ? event.gallery[0].url : pageImage);
-    eventUrl = `https://www.raittechnovate.co.in/events/detail?id=${eventId}`;
+    eventUrl = `https://technovate-2025.vercel.app/events/detail?id=${eventId}`;
     
     // Create structured data for this event
     structuredData = {
