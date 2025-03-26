@@ -40,7 +40,7 @@ const committees: Committee[] = [
   },
   {
     name: "ECELL",
-    logo: "/logos/committees/ecell-logo.png",
+    logo: "/logos/committees/ecell-logo.svg",
     fullName: "ECELL",
   },
   {
