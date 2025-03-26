@@ -64,7 +64,7 @@ export default function EventDetail() {
   // Prepare meta data for Open Graph and Twitter cards
   let pageTitle = "Event | Technovate 2025";
   let pageDescription = "Join us for this exciting event at Technovate 2025!";
-  let pageImage = event?.image || "https://technovate-2025.vercel.app/Poster-final.jpg"; // Default image
+  let pageImage = event?.image; // Default image
   let eventUrl = `https://technovate-2025.vercel.app/events/detail?id=${eventId}`;
   let structuredData = {};
 
