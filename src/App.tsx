@@ -10,6 +10,7 @@ import ErrorPage from "./pages/ErrorPage";
 import LoadingScreen from "./components/LoadingScreen";
 import AboutUs from "./pages/AboutUs";
 import { useEffect } from "react";
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
   const location = useLocation();
@@ -23,20 +24,22 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <LoadingScreen />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/leadership" element={<Leadership />} />
-        <Route path="/events/detail" element={<EventDetail />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-      <Footer />
-    </div>
+    <HelmetProvider>
+      <div className="min-h-screen bg-black text-white">
+        <LoadingScreen />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/leadership" element={<Leadership />} />
+          <Route path="/events/detail" element={<EventDetail />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </HelmetProvider>
   );
 }
 

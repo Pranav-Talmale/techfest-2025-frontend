@@ -1,9 +1,10 @@
 import { useSearchParams, Link } from "react-router-dom";
-import eventsData from "@/data/events.json";
 import { Filter, Calendar, MapPin, Users, Loader2, ChevronRight, Clock, Trophy, Gamepad2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { fetchEvents, Event } from "@/services/eventService";
+import { Helmet } from 'react-helmet-async';
 
 type Category = "all" | "tech" | "non-tech" | "gaming";
 
@@ -18,43 +19,141 @@ export default function Events() {
   const [searchParams, setSearchParams] = useSearchParams();
   const category = (searchParams.get("category") as Category) || "all";
   const [isLoading, setIsLoading] = useState(true);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-  const filteredEvents = eventsData.events.filter((event) => {
+  useEffect(() => {
+    async function loadEvents() {
+      try {
+        setIsLoading(true);
+        const eventsData = await fetchEvents();
+        setEvents(eventsData);
+        setError(null);
+      } catch (err) {
+        console.error('Failed to load events:', err);
+        setError('Failed to load events. Please try again later.');
+      } finally {
+        setTimeout(() => setIsLoading(false), 500);
+      }
+    }
+
+    loadEvents();
+    window.scrollTo(0, 0);
+  }, [category]);
+
+  const filteredEvents = events.filter((event) => {
     return category === "all" || event.category === category;
   });
 
-  // Get counts for each category
   const categoryCounts = {
-    all: eventsData.events.length,
-    tech: eventsData.events.filter((e) => e.category === "tech").length,
-    "non-tech": eventsData.events.filter((e) => e.category === "non-tech")
-      .length,
-    gaming: eventsData.events.filter((e) => e.category === "gaming").length,
+    all: events.length,
+    tech: events.filter((e) => e.category === "tech").length,
+    "non-tech": events.filter((e) => e.category === "non-tech").length,
+    gaming: events.filter((e) => e.category === "gaming").length,
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    // Simulate loading state
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 500);
-    return () => clearTimeout(timer);
-  }, [category]);
+
+  const getPageTitle = () => {
+    if (category === 'all') return "All Events | Technovate'25";
+    if (category === 'tech') return "Technical Events | Technovate'25";
+    if (category === 'non-tech') return "Non-Technical Events | Technovate'25";
+    return "Gaming Events | Technovate'25";
+  };
+
+
+  const getPageDescription = () => {
+    if (category === 'all') 
+      return "Discover all events at Technovate'25 - technical competitions, workshops, gaming contests, and more at RAIT's premier technical festival.";
+    if (category === 'tech') 
+      return "Explore technical events at Technovate'25 including hackathons, coding competitions, and engineering challenges.";
+    if (category === 'non-tech') 
+      return "Participate in non-technical events at Technovate'25 including management competitions, quizzes, and creative challenges.";
+    return "Join gaming tournaments and competitions at Technovate'25 - RAIT's premier technical festival.";
+  };
 
   return (
     <div className="min-h-screen bg-black pt-16">
+      <Helmet>
+        <title>{getPageTitle()}</title>
+        <meta name="description" content={getPageDescription()} />
+        <meta name="keywords" content={`technovate, events, ${category} events, technical festival`} />
+        <link rel="canonical" href={`https://www.raittechnovate.co.in/events${category !== 'all' ? `?category=${category}` : ''}`} />
+        
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": getPageTitle(),
+            "description": getPageDescription(),
+            "url": `https://www.raittechnovate.co.in/events${category !== 'all' ? `?category=${category}` : ''}`,
+            "mainEntity": {
+              "@type": "ItemList",
+              "itemListElement": filteredEvents.map((event, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "Event",
+                  "name": event.title,
+                  "description": event.description,
+                  "image": event.image,
+                  "url": `https://www.raittechnovate.co.in/events/detail?id=${event.id}`,
+                  "location": {
+                    "@type": "Place",
+                    "name": event.venue
+                  },
+                  "startDate": event.datetime
+                }
+              }))
+            }
+          })}
+        </script>
+      </Helmet>
+     
+
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Header */}
+        {/* Header with Breadcrumbs for SEO */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-12"
         >
-          <h1 className="text-6xl font-bold text-white mb-4">Events</h1>
+          {/* Breadcrumbs for SEO and Navigation */}
+          <nav aria-label="Breadcrumb" className="mb-4">
+            <ol className="flex items-center space-x-2 text-sm text-white/60">
+              <li><Link to="/" className="hover:text-white/80 transition-colors">Home</Link></li>
+              <li>/</li>
+              <li>
+                <Link to="/events" aria-current={category === 'all' ? 'page' : undefined} className="hover:text-white/80 transition-colors">
+                  Events
+                </Link>
+              </li>
+              {category !== 'all' && (
+                <>
+                  <li>/</li>
+                  <li aria-current="page" className="text-white/80">
+                    {category === 'tech' ? 'Technical' : category === 'non-tech' ? 'Non Technical' : 'Gaming'}
+                  </li>
+                </>
+              )}
+            </ol>
+          </nav>
+
+          <h1 className="text-6xl font-bold text-white mb-4">
+            {category === 'all' ? 'Events' : 
+             category === 'tech' ? 'Technical Events' : 
+             category === 'non-tech' ? 'Non-Technical Events' : 
+             'Gaming Events'}
+          </h1>
           <p className="text-white/50 text-lg">
             Discover and participate in our exciting range of events
+            {category !== 'all' ? (
+              category === 'tech' ? ' showcasing technical skills and innovation' : 
+              category === 'non-tech' ? ' focused on creativity and management' : 
+              ' featuring competitive gaming challenges'
+            ) : ''}
           </p>
         </motion.div>
 
@@ -96,6 +195,22 @@ export default function Events() {
               className="flex items-center justify-center min-h-[400px]"
             >
               <Loader2 className="w-8 h-8 text-white animate-spin" />
+            </motion.div>
+          ) : error ? (
+            <motion.div
+              key="error"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex flex-col items-center justify-center min-h-[400px] text-center"
+            >
+              <div className="text-red-400 text-lg mb-4">{error}</div>
+              <button 
+                onClick={() => window.location.reload()}
+                className="px-4 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Retry
+              </button>
             </motion.div>
           ) : (
             <motion.div

@@ -1,5 +1,4 @@
 import { useSearchParams, Link } from "react-router-dom";
-import eventsData from "@/data/events.json";
 import {
   ArrowLeft,
   Users,
@@ -13,14 +12,18 @@ import {
   Trophy,
   IndianRupee,
   CircleSmall,
+  Loader2,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { fetchEventById, Event } from "@/services/eventService";
 
 export default function EventDetail() {
   const [searchParams] = useSearchParams();
   const eventId = searchParams.get("id");
-  const event = eventsData.events.find((e) => e.id === eventId);
+  const [event, setEvent] = useState<Event | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<null | {
     url: string;
     caption: string;
@@ -28,10 +31,44 @@ export default function EventDetail() {
   const [isShareMenuOpen, setIsShareMenuOpen] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    async function loadEventDetails() {
+      if (!eventId) {
+        setError("No event ID provided");
+        setIsLoading(false);
+        return;
+      }
 
-  if (!event) {
+      try {
+        setIsLoading(true);
+        const eventData = await fetchEventById(eventId);
+        
+        if (!eventData) {
+          setError("Event not found");
+        } else {
+          setEvent(eventData);
+          setError(null);
+        }
+      } catch (err) {
+        console.error("Failed to load event details:", err);
+        setError("Failed to load event details. Please try again later.");
+      } finally {
+        setTimeout(() => setIsLoading(false), 300);
+      }
+    }
+
+    loadEventDetails();
+    window.scrollTo(0, 0);
+  }, [eventId]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-white animate-spin" />
+      </div>
+    );
+  }
+
+  if (error || !event) {
     return (
       <div className="min-h-screen bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -42,19 +79,29 @@ export default function EventDetail() {
             <ArrowLeft className="w-5 h-5 mr-2" />
             Back to Events
           </Link>
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl font-bold text-white mt-8"
+            className="text-center py-16"
           >
-            Event not found
-          </motion.h1>
+            <h1 className="text-4xl font-bold text-white mb-4">
+              {error || "Event not found"}
+            </h1>
+            <p className="text-white/60 mb-8">
+              The event you're looking for could not be found.
+            </p>
+            <Link
+              to="/events"
+              className="inline-flex items-center bg-white text-black px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition-colors"
+            >
+              View All Events
+            </Link>
+          </motion.div>
         </div>
       </div>
     );
   }
 
-  // Format date and time
   const eventDate = new Date(event.datetime);
   const formattedDate = eventDate.toLocaleDateString("en-US", {
     weekday: "long",
@@ -86,7 +133,6 @@ export default function EventDetail() {
   return (
     <div className="min-h-screen bg-black md:pt-12 pt-16">
       <div className="max-w-7xl mx-auto">
-        {/* Hero Section with Full-width Image */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -101,7 +147,6 @@ export default function EventDetail() {
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
           </div>
 
-          {/* Navigation and Share Buttons */}
           <div className="absolute top-8 left-8 right-8 flex justify-between z-10">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -156,7 +201,6 @@ export default function EventDetail() {
             </motion.div>
           </div>
 
-          {/* Event Title and Category */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -178,10 +222,8 @@ export default function EventDetail() {
           </motion.div>
         </motion.div>
 
-        {/* Content Section */}
         <div className="max-w-7xl mx-auto px-8 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Main Content */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -225,7 +267,6 @@ export default function EventDetail() {
               </div>
             </motion.div>
 
-            {/* Sidebar */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -237,7 +278,6 @@ export default function EventDetail() {
                   Event Details
                 </h3>
 
-                {/* Date & Time */}
                 <div className="flex items-start space-x-4 mb-6 group">
                   <Calendar className="w-6 h-6 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
                   <div>
@@ -250,7 +290,6 @@ export default function EventDetail() {
                   </div>
                 </div>
 
-                {/* Prize Pool */}
                 {event.prizePool && (
                   <div className="flex items-start space-x-4 mb-6 group">
                     <Trophy className="w-6 h-6 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
@@ -265,7 +304,6 @@ export default function EventDetail() {
                   </div>
                 )}
 
-                {/* Venue */}
                 <div className="flex items-start space-x-4 mb-6 group">
                   <MapPin className="w-6 h-6 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
                   <div>
@@ -278,7 +316,6 @@ export default function EventDetail() {
                   </div>
                 </div>
 
-                {/* Team Size */}
                 <div className="flex items-start space-x-4 mb-8 group">
                   <Users className="w-6 h-6 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
                   <div>
@@ -291,7 +328,6 @@ export default function EventDetail() {
                   </div>
                 </div>
 
-                {/* Registeration Cost */}
                 <div className="flex items-start space-x-4 mb-8 group">
                   <IndianRupee className="w-6 h-6 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
                   <div>
@@ -304,7 +340,6 @@ export default function EventDetail() {
                   </div>
                 </div>
 
-                {/* Register Button */}
                 {event.enrollLink && (
                   <motion.div
                     whileHover={{ scale: 1.02 }}
@@ -332,7 +367,6 @@ export default function EventDetail() {
                 )}
               </div>
 
-              {/* Timeline */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -343,29 +377,6 @@ export default function EventDetail() {
                   Event Timeline
                 </h3>
                 <div className="space-y-4">
-                  {/* Conditional Registration Section for tech events */}
-                  {/* <div className="flex items-start space-x-4 group">
-                    <Clock className="w-5 h-5 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
-                    <div>
-
-                      <p className="text-white font-medium group-hover:text-white/90 transition-colors">
-                        {event.category === "tech" && !event.closed
-                          ? "Registration closes a day before the event"
-                          : event.closed
-                          ? "Registrations not started yet"
-                          : "Registration Opens"}
-                      </p>
-
-                      {!event.closed &&
-                        event.category === "" && (
-                          <p className="text-neutral-400 group-hover:text-neutral-300 transition-colors">
-                            1 hour before event
-                          </p>
-                        )}
-                    </div>
-                  </div> */}
-
-                  {/* Constant Event Start Section */}
                   <div className="flex items-start space-x-4 group">
                     <Clock className="w-5 h-5 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
                     <div>
@@ -380,7 +391,6 @@ export default function EventDetail() {
                 </div>
               </motion.div>
 
-              {/* Contact */}
               {event.contact && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -392,34 +402,31 @@ export default function EventDetail() {
                     Contact
                   </h3>
                   <div className="space-y-4">
-                    {/* Contact Info */}
-                    {event.contact &&
-                      Object.entries(event.contact).map(([name, phone]) => (
-                        <div
-                          key={name}
-                          className="flex items-start space-x-4 group"
-                        >
-                          <Phone className="w-5 h-5 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
-                          <div>
-                            <p className="text-white font-medium group-hover:text-white/90 transition-colors">
-                              {name}
-                            </p>
-                            <a
-                              href={`tel:${phone}`}
-                              className="text-neutral-400 group-hover:text-neutral-300 transition-colors"
-                            >
-                              {phone}
-                            </a>
-                          </div>
+                    {Object.entries(event.contact).map(([name, phone]) => (
+                      <div
+                        key={name}
+                        className="flex items-start space-x-4 group"
+                      >
+                        <Phone className="w-5 h-5 text-white/50 flex-shrink-0 group-hover:text-white/70 transition-colors" />
+                        <div>
+                          <p className="text-white font-medium group-hover:text-white/90 transition-colors">
+                            {name}
+                          </p>
+                          <a
+                            href={`tel:${phone}`}
+                            className="text-neutral-400 group-hover:text-neutral-300 transition-colors"
+                          >
+                            {phone}
+                          </a>
                         </div>
-                      ))}
+                      </div>
+                    ))}
                   </div>
                 </motion.div>
               )}
             </motion.div>
           </div>
 
-          {/* Photo Gallery Section */}
           {event.gallery && event.gallery.length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -462,7 +469,6 @@ export default function EventDetail() {
           )}
         </div>
 
-        {/* Lightbox Modal */}
         <AnimatePresence>
           {selectedImage && (
             <motion.div
