@@ -276,7 +276,8 @@ export default function Events() {
                               <span className="text-xs font-medium text-white/90">
                                 {new Date(event.datetime).toLocaleDateString("en-US", {
                                   month: "long",
-                                  day: "numeric"
+                                  day: "numeric",
+                                  timeZone: "Asia/Kolkata"
                                 })}
                               </span>
                             </div>
@@ -314,7 +315,8 @@ export default function Events() {
                                   {new Date(event.datetime).toLocaleTimeString("en-US", {
                                     hour: "numeric",
                                     minute: "2-digit",
-                                    hour12: true
+                                    hour12: true,
+                                    timeZone: "Asia/Kolkata"
                                   })}
                                 </span>
                               </div>

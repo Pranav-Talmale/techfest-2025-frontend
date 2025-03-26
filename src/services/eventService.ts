@@ -37,25 +37,12 @@ export interface Event {
 
 const EVENTS_ENDPOINT = 'https://raw.githubusercontent.com/Pranav-Talmale/techfest-2025-frontend/refs/heads/main/src/data/events.json';
 
-// Cache variables
-let cachedEvents: Event[] | null = null;
-let lastFetchTime = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
-
 /**
- * Fetches events from GitHub repository with caching
+ * Fetches events from GitHub repository
  */
 export async function fetchEvents(): Promise<Event[]> {
-  const now = Date.now();
-  
-  // Return cached data if it's fresh
-  if (cachedEvents && now - lastFetchTime < CACHE_DURATION) {
-    console.log('Using cached events data');
-    return cachedEvents;
-  }
-  
+  console.log('Fetching events data');
   try {
-    console.log('Fetching fresh events data');
     const response = await fetch(EVENTS_ENDPOINT);
     
     if (!response.ok) {
@@ -63,20 +50,9 @@ export async function fetchEvents(): Promise<Event[]> {
     }
     
     const data = await response.json();
-    cachedEvents = data.events as Event[];
-    lastFetchTime = now;
-    
-    return cachedEvents;
+    return data.events as Event[];
   } catch (error) {
     console.error('Error fetching events:', error);
-    
-    // If we have stale cache, use it rather than nothing
-    if (cachedEvents) {
-      console.log('Using stale cached data as fallback');
-      return cachedEvents;
-    }
-    
-    // If all else fails, return empty array
     return [];
   }
 }
@@ -98,7 +74,5 @@ export async function fetchEventById(eventId: string): Promise<Event | null> {
  * Force refresh the events cache
  */
 export async function refreshEventsCache(): Promise<Event[]> {
-  // Set lastFetchTime to 0 to force a refresh
-  lastFetchTime = 0;
   return fetchEvents();
 } 

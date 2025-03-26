@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run build && serve -s dist -p 3000",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "prebuild": "node generate-og-pages.js",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

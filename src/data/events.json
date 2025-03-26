@@ -16,7 +16,7 @@
         "Individual or group performances"
       ],
       "venue": "RAIT Circle",
-      "datetime": "2025-04-08T15:00:00Z",
+      "datetime": "2025-04-08T15:00:00+05:30",
       "teamSize": "Individual or Group",
       "closed": false,
       "gallery": [
@@ -119,7 +119,7 @@
       "category": "tech",
       "description": "Step into the future with cutting-edge AR/VR experiences! Immerse yourself in virtual worlds, explore augmented realities, and witness the power of technology like never before. Get ready to blur the lines between the real and the digital!",
       "image": "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-ar-vr",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSc_2i0M-itdMbv8NK4ZwpQeq3bkAj4dAK2MHSG7BFqpy8QW0w/viewform",
       "rules": [
         "Individual participation",
         "15 minutes per experience",
@@ -129,7 +129,7 @@
       "venue": "Room 605",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "Individual",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800&auto=format&fit=crop&q=60",
@@ -151,7 +151,7 @@
       "category": "non-tech",
       "description": "Cricket fever is here! Whether you're a die-hard fan or just love the game, Cricomania is the ultimate cricket carnival, but with a twist!\n\nGame Plan: The room is completely darkened and the bat, ball and pitch are covered in glow in dark tapes.",
       "image": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-cricomania",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSeTv4onAYUEuJpVoIivJvx3W8Hh_mu2GExy-bBVUg5GlQuGBw/viewform",
       "rules": [
         "Teams of 2 players",
         "Knockout tournament format",
@@ -165,7 +165,7 @@
       "venue": "Room 606",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "4 members",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&auto=format&fit=crop&q=60",
@@ -187,7 +187,7 @@
       "category": "non-tech",
       "description": "A game of skill, trust, and instinct! In Blinded Battles, teams navigate challenges while blindfolded, relying on teamwork and communication to emerge victorious. Can you conquer the game without sight?",
       "image": "https://images.unsplash.com/photo-1606166325683-e6deb697d301?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-blinded-battle",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSesrHBZo8yt8n0w0mZEod5E05sQWE4Cl5xgZlwdKqps_Xvclg/viewform",
       "rules": [
         "Individual participation",
         "Blindfold will be provided",
@@ -197,7 +197,7 @@
       "venue": "Room 612-A",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "Individual",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1606166325683-e6deb697d301?w=800&auto=format&fit=crop&q=60",
@@ -219,7 +219,7 @@
       "category": "non-tech",
       "description": "Glow-in-the-dark dance performance and competition",
       "image": "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-dancing-radium",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSdShd_dXJ8aITZ3KZ8Tweuk2M1d5hVhxRGJzY3vDEz43oA5eQ/viewform",
       "rules": [
         "Solo or duo performance",
         "Time limit: 5 minutes",
@@ -229,7 +229,7 @@
       "venue": "Room 604",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "1-2 members",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=800&auto=format&fit=crop&q=60",
@@ -251,7 +251,7 @@
       "category": "tech",
       "description": "A battlefield for the best hackers! Capture The Flag (CTF) is an intense cybersecurity competition where participants solve cryptographic puzzles, decode vulnerabilities, and compete in ethical hacking challenges. Prove your prowess and secure the flag!",
       "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-ctf",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLScSwZggOcMQhbzVa9cMtiiZNork827HKwpGd0x5lFErN9C55Q/viewform",
       "rules": [
         "Teams of 3 members",
         "24-hour challenge",
@@ -261,7 +261,7 @@
       "venue": "Room 613",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "3 members",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=60",
@@ -283,7 +283,7 @@
       "category": "non-tech",
       "description": "Survive the ultimate test of skill, strategy, and luck! Inspired by the famous series, Squid Games brings thrilling challenges where players must outwit, outplay, and outlast their opponents to claim victory. Do you have what it takes?\n\nGame Plan: Players go through a series of mini-games inspired by the popular show. Players who fail the challenge are eliminated; the last player standing wins.\n\n",
       "image": "https://images.unsplash.com/photo-1636487658609-28282edc1b7e?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-squid-games",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSdSsON3Xyn3kv7sdAvbb16cCu-wBrzoZb22v64DFpNvMLZyAw/viewform",
       "rules": [
         "Teams of 10 members",
         "Multiple elimination rounds",
@@ -295,7 +295,7 @@
       "venue": "Room 504-506",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "10 members",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1636487658609-28282edc1b7e?w=800&auto=format&fit=crop&q=60",
@@ -317,7 +317,7 @@
       "category": "non-tech",
       "description": "Gear up, take aim, and strategize your way to victory in this adrenaline-pumping Laser Tag battle! Navigate the arena, dodge enemy fire, and eliminate opponents with precision in this action-packed showdown.\n\nGame Plan: Players are equipped with laser guns and must aim at designated focus points on their opponents\u2019 bodies, such as the head, shoulders, and back. Each successful hit earns points, and the player with the highest score at the end wins.",
       "image": "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-laser-tag",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLScp4DSf2HskPDJaFUcqGZYlKZ3ZOJy3ZVt-qWlx-CgvAxrB3Q/viewform",
       "rules": [
         "Individual Participation",
         "6-10 minute matches",
@@ -383,7 +383,7 @@
       "category": "tech",
       "description": "Put your coding skills to the ultimate test in a high-stakes programming battle! Solve complex problems, optimize your solutions, and compete against the best minds to win the title of coding champion.\n\nGame Plan: Participants will compete in three rounds focused on speed coding, debugging, and competitive programming. Each question will have points assigned based on its difficulty level. Points will be awarded based on the completeness of the solution\u2014full, partial, or none. The participant who earns the most points in the shortest time will be declared the winner.",
       "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-coding",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSdvFCi7EkRmSzpgxGwFA7Bfo5lIB0Lwt30JbLcZ0888S_9vKQ/viewform",
       "rules": [
         "Individual participation",
         "Entry Fee per person: 400",
@@ -393,7 +393,7 @@
       "venue": "Room 520-523",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "1 member",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1623479322729-28b25c16b011?w=800&auto=format&fit=crop&q=60",
@@ -415,7 +415,7 @@
       "category": "tech",
       "description": "Present your innovative startup ideas",
       "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-startup",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSeAMMmUsibAKbJI_wcyq6iQ-Y01bt_MFilzR0ttxk4f8D9QtQ/viewform",
       "rules": [
         "Teams of 2-4 members",
         "10-minute pitch",
@@ -425,7 +425,7 @@
       "venue": "Intel Unnati Lab",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "2-4 members",
-      "closed": true
+      "closed": false
     },
     {
       "id": "treasure-hunt",
@@ -433,7 +433,7 @@
       "category": "non-tech",
       "description": "An adventure like no other! Decode cryptic clues, solve puzzles, and race against time to find the hidden treasure. Only the sharpest minds will prevail\u2014do you have what it takes?\n\nGame Plan: Teams follow cryptic clues to find hidden locations and complete tasks. The first team to complete all clues and reach the final destination earliest wins",
       "image": "https://images.unsplash.com/photo-1577083552431-6e5fd01988f8?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-treasure-hunt",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLScPkv_jq69ytV3M8kkEO4cu8FDn6g_Fb1cql0IZ7Prj1GOwdw/viewform",
       "rules": [
         "Teams of 4 members",
         "Campus-wide hunt",
@@ -445,7 +445,7 @@
       "venue": "Room 4th Floor",
       "datetime": "2025-02-17T10:00:00Z",
       "teamSize": "4 members",
-      "closed": true
+      "closed": false
     },
     {
       "id": "bgmi-cod",
@@ -453,7 +453,7 @@
       "category": "gaming",
       "description": "Battle it out in an intense gaming showdown! Whether it's the battlegrounds of BGMI and the high-octane action of Call of Duty, prove your dominance and claim victory in this epic eSports tournament.",
       "image": "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-bgmi-cod",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSe8bDmQ8YeQsdGeMEWnNvtQtVkryeQ_1dyWEwL5p-vZo_rihQ/viewform",
       "rules": [
         "Squad format (4 players)",
         "Own mobile device required",
@@ -464,7 +464,7 @@
       "venue": "Room 302",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "4 members",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&auto=format&fit=crop&q=60",
@@ -486,7 +486,7 @@
       "category": "tech",
       "description": "Experience the thrill of real-world scenarios through high-tech simulators! From racing to aviation, get behind the controls and feel the adrenaline rush of virtual reality simulations.",
       "image": "https://images.unsplash.com/photo-1607292676061-d629f4b663fa?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-simulator",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSfJj2rwIwzsmf7srLfu5C1i78mBgRfWf6Dt2zKKNhqduhKkTQ/viewform",
       "rules": [
         "Individual sessions",
         "15 minutes per simulation",
@@ -497,7 +497,7 @@
       "venue": "Room 305",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "Individual",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1607292676061-d629f4b663fa?w=800&auto=format&fit=crop&q=60",
@@ -519,7 +519,7 @@
       "category": "gaming",
       "description": "Compete in the ultimate gaming tournament featuring FIFA, NBA 2K23, and GTA! Whether you're scoring goals, dunking on opponents, or causing chaos in the streets, it's time to game like a pro.",
       "image": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-console-gaming",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSfeBA0_WFPwlTTKtRxmcVZR0f8zsYYAj0fnCNaXgyVPjjtdeg/viewform",
       "rules": [
         "Individual participation",
         "Knockout format",
@@ -529,7 +529,7 @@
       "venue": "Room 306",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "Individual",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=800&auto=format&fit=crop&q=60",
@@ -551,7 +551,7 @@
       "category": "tech",
       "description": "Showcase your innovative software projects and compete against the best minds in tech! Whether it's AI, web development, or cutting-edge applications, this is your chance to shine.",
       "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-software-project",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLScV9HOJVpQdTLoex5aa-NSGx0VMN2Y25NbmutoT2uBT_HYZeQ/viewform",
       "rules": [
         "Individual Participation",
         "Entry Fee per person: 400",
@@ -562,7 +562,7 @@
       "venue": "Room 201-2, 208",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "1 member",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=60",
@@ -617,7 +617,7 @@
       "category": "tech",
       "description": "Have a groundbreaking hardware project? Compete in this challenge and demonstrate your engineering prowess by building and presenting innovative tech solutions!",
       "image": "https://images.unsplash.com/photo-1597838816882-4435b1977fbe?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-hardware-project",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSfskRN-7j1d-X1hdLgDFvunIAd15wvnsM4PvLticCdB0N_pIA/viewform",
       "rules": [
         "Individual Participation",
         "Entry Fee per person: 400",
@@ -628,7 +628,7 @@
       "venue": "Room IOT Lab",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "1 member",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1597838816882-4435b1977fbe?w=800&auto=format&fit=crop&q=60",
@@ -650,7 +650,7 @@
       "category": "tech",
       "description": "Feel the rush of speed with RC Throttle! Control remote-controlled cars with precision and compete in high-speed races. Only the best drivers will make it to the finish line!",
       "image": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-rc-throttle",
+      "enrollLink": "https://docs.google.com/forms/d/e/1FAIpQLSfGmn7x92ZgT2Rc7GOY5ok-QKwHCR0SUIO8yLDx5YPv0bLI9g/viewform",
       "rules": [
         "Teams of 2 members",
         "Own RC vehicle required",
@@ -660,7 +660,7 @@
       "venue": "Room Lawn",
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "2 members",
-      "closed": true,
+      "closed": false,
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800&auto=format&fit=crop&q=60",
@@ -673,38 +673,6 @@
         {
           "url": "https://images.unsplash.com/photo-1547638375-ebf04735d19a?w=800&auto=format&fit=crop&q=60",
           "caption": "Victory Lap"
-        }
-      ]
-    },
-    {
-      "id": "project-competition",
-      "title": "Project Competition",
-      "category": "tech",
-      "description": "Showcase your innovative projects",
-      "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=60",
-      "enrollLink": "https://forms.google.com/techfest-project",
-      "rules": [
-        "Team size: 2-4 members",
-        "Project documentation required",
-        "Live demonstration mandatory",
-        "10 minutes presentation time"
-      ],
-      "venue": "Exhibition Hall",
-      "datetime": "2025-04-08T04:30:00Z",
-      "teamSize": "2-4 members",
-      "closed": true,
-      "gallery": [
-        {
-          "url": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=60",
-          "caption": "Project Showcase"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=60",
-          "caption": "Live Demo"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=60",
-          "caption": "Judging Round"
         }
       ]
     }
