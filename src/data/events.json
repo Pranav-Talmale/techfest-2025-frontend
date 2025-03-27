@@ -19,6 +19,10 @@
       "datetime": "2025-04-08T15:00:00+05:30",
       "teamSize": "Individual or Group",
       "closed": false,
+      "contact": {
+        "Shanya": "+91 9649322521",
+        "Vedant": "+91 7208106534"
+      },
       "gallery": [
         {
           "url": "https://res.cloudinary.com/ddyomaueo/image/upload/v1742998159/event-thumbnails/j4bk7nxronmyit4supj8.jpg",
@@ -39,7 +43,7 @@
       "title": "Valoreign",
       "category": "gaming",
       "description": "Valoreign: A Valorant Tournament that Reignites the Spark of Gaming Companionship!",
-      "image": "/events/valoreign.jpg",
+      "image": "https://raw.githubusercontent.com/Pranav-Talmale/techfest-2025-frontend/refs/heads/main/public/events/valoreign.jpg",
       "enrollLink": "https://forms.gle/AtFZeSTrJtrfM56Z7",
       "rules": [
         "5v5 team format",
