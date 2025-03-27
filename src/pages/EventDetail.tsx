@@ -219,11 +219,11 @@ ${event.fee ? `💰 Entry Fee: ${event.fee}` : ''}
           await navigator.share({
             title: `${event.title} | Technovate 2025`,
             text: textarea.value,
-            url: window.location.href,
+            // url: window.location.href, url is already in the text
           });
         } catch (shareError) {
           // User cancelled or share failed - do nothing
-          console.log("Share cancelled or failed");
+          console.log("Share cancelled or failed",shareError);
         }
       }
     } catch (error) {
