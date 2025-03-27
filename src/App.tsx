@@ -34,6 +34,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/leadership" element={<Leadership />} />
           <Route path="/events/detail" element={<EventDetail />} />
+          <Route path="/events/detail/:id" element={<EventDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

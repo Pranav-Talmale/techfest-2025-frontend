@@ -1,4 +1,4 @@
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
   ArrowLeft,
@@ -21,7 +21,10 @@ import { fetchEventById, Event } from "@/services/eventService";
 
 export default function EventDetail() {
   const [searchParams] = useSearchParams();
-  const eventId = searchParams.get("id");
+  const params = useParams();
+  const queryEventId = searchParams.get("id");
+  const pathEventId = params.id;
+  const eventId = pathEventId || queryEventId;
   const [event, setEvent] = useState<Event | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -65,7 +68,7 @@ export default function EventDetail() {
   let pageTitle = "Event | Technovate 2025";
   let pageDescription = "Join us for this exciting event at Technovate 2025!";
   let pageImage = event?.image; // Default image
-  let eventUrl = `https://technovate-2025.vercel.app/events/detail?id=${eventId}`;
+  let eventUrl = `https://technovate-2025.vercel.app/events/detail/${eventId}`;
   let structuredData = {};
 
   if (event) {
@@ -74,7 +77,7 @@ export default function EventDetail() {
       ? `${event.description.substring(0, 157)}...` 
       : event.description;
     pageImage = event.image || (event.gallery && event.gallery.length > 0 ? event.gallery[0].url : pageImage);
-    eventUrl = `https://technovate-2025.vercel.app/events/detail?id=${eventId}`;
+    eventUrl = `https://technovate-2025.vercel.app/events/detail/${eventId}`;
     
     // Create structured data for this event
     structuredData = {

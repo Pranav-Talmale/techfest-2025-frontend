@@ -96,7 +96,7 @@ export default function Events() {
                   "name": event.title,
                   "description": event.description,
                   "image": event.image,
-                  "url": `https://www.raittechnovate.co.in/events/detail?id=${event.id}`,
+                  "url": `https://www.raittechnovate.co.in/events/detail/${event.id}`,
                   "location": {
                     "@type": "Place",
                     "name": event.venue
@@ -333,7 +333,7 @@ export default function Events() {
 
                           {/* Action Button */}
                           <Link
-                            to={`/events/detail?id=${event.id}`}
+                            to={`/events/detail/${event.id}`}
                             className="group/btn flex w-full items-center justify-center gap-2 bg-white text-black text-base px-4 py-3 rounded-xl font-medium hover:bg-white/90 transition-all duration-300"
                           >
                             View Details

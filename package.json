@@ -6,8 +6,8 @@
   "scripts": {
     "start": "npm run build && serve -s dist -p 3000",
     "dev": "vite",
-    "prebuild": "node generate-og-pages.js",
     "build": "vite build",
+    "generate-static": "react-snap",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -39,9 +39,38 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
+    "puppeteer": "^24.4.0",
+    "react-snap": "^1.23.0",
     "tailwindcss": "^4.0.8",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.22.0",
     "vite": "^6.2.0"
+  },
+  "reactSnap": {
+    "include": [
+      "/",
+      "/events",
+      "/events/detail",
+      "/about",
+      "/contact"
+    ],
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "skipThirdPartyRequests": true,
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    },
+    "puppeteer": {
+      "cache": true
+    },
+    "source": "dist",
+    "skipJsErrors": true,
+    "fixWebpackChunksIssue": false,
+    "removeBlobs": true,
+    "cacheAjaxRequests": false,
+    "userAgent": "ReactSnap"
   }
 }
