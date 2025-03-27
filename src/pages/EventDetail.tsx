@@ -172,36 +172,9 @@ export default function EventDetail() {
     timeZone: "Asia/Kolkata",
   });
 
-  const handleShare = async () => {
+  const handleShare = () => {
     if (!event) return;
-
-    // Construct the share text
-    const shareText = 
-`${event.title} | Technovate 2025
-
-📝 ${event.description}
-
-📅 ${formattedDate} at ${formattedTime}
-📍 ${event.venue}
-👥 Team Size: ${event.teamSize}
-${event.fee ? `💰 Entry Fee: ${event.fee}` : ''}
-
-🔗 View Details: ${window.location.href}`;
-
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: `${event.title} | Technovate 2025`,
-          text: shareText,
-          url: window.location.href,
-        });
-      } catch (error) {
-        console.error("Error sharing:", error);
-        setIsShareMenuOpen(!isShareMenuOpen);
-      }
-    } else {
-      setIsShareMenuOpen(!isShareMenuOpen);
-    }
+    setIsShareMenuOpen(!isShareMenuOpen);
   };
 
   const copyAllToClipboard = async () => {
