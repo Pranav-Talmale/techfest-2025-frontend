@@ -323,7 +323,7 @@ ${event.fee ? `💰 Entry Fee: ${event.fee}` : ''}
                             <Copy className="w-5 h-5 mr-3 text-white/70" />
                           )}
                           <span>
-                            {copied && copiedItem === "all" ? "All content copied!" : "Copy image and event details"}
+                            {copied && copiedItem === "all" ? "All content copied!" : "Copy event details"}
                           </span>
                         </button>
                       </div>
