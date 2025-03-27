@@ -211,6 +211,21 @@ ${event.fee ? `💰 Entry Fee: ${event.fee}` : ''}
         setCopied(false);
         setCopiedItem("");
       }, 2000);
+
+      // Check if it's a mobile device and has Web Share API support
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile && navigator.share) {
+        try {
+          await navigator.share({
+            title: `${event.title} | Technovate 2025`,
+            text: textarea.value,
+            url: window.location.href,
+          });
+        } catch (shareError) {
+          // User cancelled or share failed - do nothing
+          console.log("Share cancelled or failed");
+        }
+      }
     } catch (error) {
       console.error("Error copying to clipboard:", error);
       alert("Failed to copy to clipboard. Please try again.");
