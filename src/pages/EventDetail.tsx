@@ -14,6 +14,8 @@ import {
   IndianRupee,
   CircleSmall,
   Loader2,
+  Check,
+  Copy
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -33,6 +35,8 @@ export default function EventDetail() {
     caption: string;
   }>(null);
   const [isShareMenuOpen, setIsShareMenuOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [copiedItem, setCopiedItem] = useState("");
 
   useEffect(() => {
     async function loadEventDetails() {
@@ -169,18 +173,74 @@ export default function EventDetail() {
   });
 
   const handleShare = async () => {
+    if (!event) return;
+
+    // Construct the share text
+    const shareText = 
+`${event.title} | Technovate 2025
+
+📝 ${event.description}
+
+📅 ${formattedDate} at ${formattedTime}
+📍 ${event.venue}
+👥 Team Size: ${event.teamSize}
+${event.fee ? `💰 Entry Fee: ${event.fee}` : ''}
+
+🔗 View Details: ${window.location.href}`;
+
     if (navigator.share) {
       try {
         await navigator.share({
-          title: event.title,
-          text: event.description,
+          title: `${event.title} | Technovate 2025`,
+          text: shareText,
           url: window.location.href,
         });
       } catch (error) {
-        console.log("Error sharing:", error);
+        console.error("Error sharing:", error);
+        setIsShareMenuOpen(!isShareMenuOpen);
       }
     } else {
       setIsShareMenuOpen(!isShareMenuOpen);
+    }
+  };
+
+  const copyAllToClipboard = async () => {
+    if (!event) return;
+    
+    try {
+      // Create a temporary textarea element
+      const textarea = document.createElement('textarea');
+      textarea.value = `${event.title} | Technovate 2025
+
+📝 ${event.description}
+
+📅 ${formattedDate} at ${formattedTime}
+📍 ${event.venue}
+👥 Team Size: ${event.teamSize}
+${event.fee ? `💰 Entry Fee: ${event.fee}` : ''}
+
+🔗 View Details: ${window.location.href}`;
+      
+      // Add textarea to document
+      document.body.appendChild(textarea);
+      
+      // Select and copy text
+      textarea.select();
+      document.execCommand('copy');
+      
+      // Remove textarea
+      document.body.removeChild(textarea);
+      
+      // Show success feedback
+      setCopied(true);
+      setCopiedItem("all");
+      setTimeout(() => {
+        setCopied(false);
+        setCopiedItem("");
+      }, 2000);
+    } catch (error) {
+      console.error("Error copying to clipboard:", error);
+      alert("Failed to copy to clipboard. Please try again.");
     }
   };
 
@@ -262,17 +322,36 @@ export default function EventDetail() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
-                      className="absolute right-0 mt-2 w-48 bg-neutral-900 rounded-xl border border-white/10 overflow-hidden"
+                      className="absolute right-0 mt-2 w-72 bg-neutral-900 rounded-xl border border-white/10 overflow-hidden"
                     >
-                      <div className="py-1">
+                      <div className="py-3 px-4 border-b border-white/10">
+                        <h3 className="text-sm font-medium text-white">Share This Event</h3>
+                      </div>
+                      
+                      {/* Event image preview */}
+                      <div className="p-2">
+                        <div className="w-full aspect-video rounded-lg overflow-hidden mb-2 border border-white/10">
+                          <img 
+                            src={event.image} 
+                            alt={event.title} 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="p-2">
                         <button
-                          onClick={() => {
-                            navigator.clipboard.writeText(window.location.href);
-                            setIsShareMenuOpen(false);
-                          }}
-                          className="w-full px-4 py-2 text-left text-sm text-white hover:bg-white/10 transition-colors"
+                          onClick={copyAllToClipboard}
+                          className="w-full flex items-center px-4 py-3 text-left text-sm text-white hover:bg-white/10 rounded-lg transition-colors"
                         >
-                          Copy Link
+                          {copied && copiedItem === "all" ? (
+                            <Check className="w-5 h-5 mr-3 text-green-400" />
+                          ) : (
+                            <Copy className="w-5 h-5 mr-3 text-white/70" />
+                          )}
+                          <span>
+                            {copied && copiedItem === "all" ? "All content copied!" : "Copy image and event details"}
+                          </span>
                         </button>
                       </div>
                     </motion.div>
