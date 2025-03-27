@@ -159,10 +159,10 @@ export default function Events() {
 
         {/* Filters */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
-          <div className="flex items-center gap-2 px-4 py-2 bg-neutral-900 rounded-xl border border-white/10">
-            <Filter className="w-5 h-5 text-white/50" />
-            <span className="text-white/50 text-sm">Filter by:</span>
-          </div>
+            <div className="flex items-center gap-2">
+              <Filter className="w-4 h-4 text-white/40" />
+              <span className="text-white/40 text-base font-medium">Filter events</span>
+            </div>
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
               <button
@@ -271,7 +271,7 @@ export default function Events() {
                           
                           {/* Date Badge */}
                           <div className="absolute top-4 right-4 z-10">
-                            <div className="bg-black/50 backdrop-blur-md rounded-xl px-3 py-2 border border-white/10 flex items-center gap-1.5">
+                            <div className="px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md border border-white/20 uppercase tracking-wider flex items-center gap-1.5">
                               <Calendar className="w-3.5 h-3.5 text-white/95" />
                               <span className="text-xs font-medium text-white/90">
                                 {new Date(event.datetime).toLocaleDateString("en-US", {

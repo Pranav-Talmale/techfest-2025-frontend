@@ -367,15 +367,17 @@ const Experience = () => {
         </div>
       </div>
       
-      {/* Controls Overlay */}
-      <div className="absolute inset-x-0 bottom-12 flex flex-col items-center gap-4 pointer-events-none z-10 select-none touch-none">
-        <div className="text-sm text-white/50 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full">
-          Hold circle to charge hyperdrive
-        </div>
-        
-        {/* FTL Charge Progress Bar */}
+      {/* FTL Charge Progress Bar - Now positioned at center-left */}
+      <div className="absolute right-6 bottom-1/6 pointer-events-none z-10 rotate-270 sm:hidden">
         <div className={`ftl-charge-container ${isCharging ? 'charging' : ''}`}>
           <div className="ftl-charge-progress" />
+        </div>
+      </div>
+      
+      {/* Controls Overlay */}
+      <div className="absolute inset-x-0 bottom-12 flex flex-col items-center gap-4 pointer-events-none z-10 select-none touch-none">
+        <div className="text-sm text-white/90 bg-black/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.3)] border border-white/10">
+          Hold circle to charge hyperdrive
         </div>
 
         <div className="pointer-events-auto touch-none">
@@ -404,6 +406,7 @@ const Experience = () => {
           </button>
         </div>
       </div>
+      
       <Canvas
         dpr={transitioningTurbo ? 1 : (window.devicePixelRatio > 2 ? [1, 2] : [1, window.devicePixelRatio])}
         performance={{ min: transitioningTurbo ? 0.3 : 0.5 }}
