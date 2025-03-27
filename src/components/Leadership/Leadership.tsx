@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Quote, Github, Globe, Linkedin, Instagram } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 // Configuration object to control section visibility
 const SECTION_CONFIG = {
@@ -211,6 +212,11 @@ const developmentTeamData = {
 
 export function Leadership() {
   return (
+    <>
+      <Helmet>
+        <title>Leadership | Technovate 2025</title>
+        <meta name="description" content="Meet the leadership team behind Technovate 2025, RAIT's premier technical festival." />
+      </Helmet>
     <section className="bg-black relative overflow-hidden py-32">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
@@ -221,7 +227,7 @@ export function Leadership() {
         {SECTION_CONFIG.PATRONS && (
           <>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 2 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="text-center mb-16"
@@ -573,5 +579,6 @@ export function Leadership() {
         )}
       </div>
     </section>
+    </>
   );
 } 

@@ -8,12 +8,67 @@ import { Technovate } from "@/components/Technovate_2024/Technovate";
 import { useState } from "react";
 import { X, AlertTriangle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 function Home() {
   const [showWarning, setShowWarning] = useState(false);
 
   return (
     <>
+      <Helmet>
+        <title>Technovate 2025 | RAIT's Premier Technical Festival</title>
+        <meta name="title" content="Technovate 2025" />
+        <meta name="description" content="Experience the future at Technovate'25, RAIT's premier technical festival featuring 20+ technical events, expert workshops, gaming competitions, and amazing prizes." />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.raittechnovate.co.in/" />
+        <meta property="og:title" content="Technovate 2025 TechFest" />
+        <meta property="og:site_name" content="Technovate 2025 TechFest" />
+        <meta property="og:description" content="Experience the Future Join us for an electrifying showcase of technology, creativity, and innovation at RAIT's premier technical festival." />
+        <meta property="og:image" content="https://technovate-2025.vercel.app/Poster-final.jpg" />
+        <meta property="og:image:alt" content="Technovate'25 Event Poster" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://www.raittechnovate.co.in/" />
+        <meta name="twitter:title" content="Technovate'25 | RAIT's Premier Technical Festival" />
+        <meta name="twitter:description" content="Experience the future at Technovate'25, featuring 20+ technical events, workshops, and amazing prizes." />
+        <meta name="twitter:image" content="https://www.raittechnovate.co.in/Poster-final.jpg" />
+        
+        {/* Structured Data - Event */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "Technovate'25",
+            "description": "RAIT's premier technical festival featuring technical events, workshops, and competitions",
+            "image": "https://www.raittechnovate.co.in/Poster-final.jpg",
+            "url": "https://www.raittechnovate.co.in/",
+            "startDate": "2025-03-01T09:00:00+05:30",
+            "endDate": "2025-03-03T18:00:00+05:30",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": {
+              "@type": "Place",
+              "name": "Ramrao Adik Institute of Technology",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Navi Mumbai",
+                "addressRegion": "Maharashtra",
+                "addressCountry": "IN"
+              }
+            },
+            "organizer": {
+              "@type": "Organization",
+              "name": "Technovate RAIT",
+              "url": "https://www.raittechnovate.co.in/"
+            }
+          })}
+        </script>
+      </Helmet>
+
       {/* Controls Indicator */}
       {/* <div className="fixed bottom-4 left-4 z-10 rounded bg-black/50 p-4 text-white">
         <p className="text-sm">Controls:</p>

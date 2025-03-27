@@ -189,7 +189,7 @@ export default function EventDetail() {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        
+        {/* Event details Meta Tags */}
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={eventUrl} />

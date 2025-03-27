@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Linkedin } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const representatives = [
   {
@@ -37,6 +38,25 @@ const representatives = [
 export default function Contact() {
   return (
     <section className="bg-black relative overflow-hidden pt-16">
+      <Helmet>
+        <title>Contact Us | Technovate 2025</title>
+        <meta name="description" content="Get in touch with the Technovate 2025 team. Contact our representatives for queries about RAIT's premier technical festival." />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.raittechnovate.co.in/contact" />
+        <meta property="og:title" content="Contact Us | Technovate 2025" />
+        <meta property="og:description" content="Get in touch with the Technovate 2025 team. Contact our representatives for queries about RAIT's premier technical festival." />
+        <meta property="og:image" content="https://technovate-2025.vercel.app/Poster-final.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://www.raittechnovate.co.in/contact" />
+        <meta name="twitter:title" content="Contact Us | Technovate 2025" />
+        <meta name="twitter:description" content="Get in touch with the Technovate 2025 team. Contact our representatives for queries about RAIT's premier technical festival." />
+        <meta name="twitter:image" content="https://www.raittechnovate.co.in/Poster-final.jpg" />
+      </Helmet>
+
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
       

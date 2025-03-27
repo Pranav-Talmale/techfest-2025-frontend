@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Cpu, Briefcase, Gamepad2, Palette } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const festImages = [
   { 
@@ -56,6 +57,25 @@ export default function AboutUs() {
 
   return (
     <section className="bg-black min-h-screen pt-24">
+      <Helmet>
+        <title>About Technovate | RAIT's Premier Technical Festival</title>
+        <meta name="description" content="Learn about Technovate at RAIT - a festival of collaboration where innovation meets creativity, and technology drives change." />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.raittechnovate.co.in/about" />
+        <meta property="og:title" content="About Technovate | RAIT's Technical Festival" />
+        <meta property="og:description" content="Discover the story behind Technovate, RAIT's premier technical festival where innovation meets excellence." />
+        <meta property="og:image" content={festImages[currentImageIndex].src} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://www.raittechnovate.co.in/about" />
+        <meta name="twitter:title" content="About Technovate | RAIT's Technical Festival" />
+        <meta name="twitter:description" content="Discover the story behind Technovate, RAIT's premier technical festival where innovation meets excellence." />
+        <meta name="twitter:image" content={festImages[currentImageIndex].src} />
+      </Helmet>
+
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none" />
 
