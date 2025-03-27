@@ -314,19 +314,7 @@ ${event.fee ? `💰 Entry Fee: ${event.fee}` : ''}
                     >
                       <div className="py-3 px-4 border-b border-white/10">
                         <h3 className="text-sm font-medium text-white">Share This Event</h3>
-                      </div>
-                      
-                      {/* Event image preview */}
-                      <div className="p-2">
-                        <div className="w-full aspect-video rounded-lg overflow-hidden mb-2 border border-white/10">
-                          <img 
-                            src={event.image} 
-                            alt={event.title} 
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-                      
+                      </div>                      
                       <div className="p-2">
                         <button
                           onClick={copyAllToClipboard}
@@ -338,7 +326,7 @@ ${event.fee ? `💰 Entry Fee: ${event.fee}` : ''}
                             <Copy className="w-5 h-5 mr-3 text-white/70" />
                           )}
                           <span>
-                            {copied && copiedItem === "all" ? "All content copied!" : "Copy event details"}
+                            {copied && copiedItem === "all" ? "All content copied!" : "Share event details"}
                           </span>
                         </button>
                       </div>
