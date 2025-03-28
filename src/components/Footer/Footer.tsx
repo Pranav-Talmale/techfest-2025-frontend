@@ -64,10 +64,10 @@ export function Footer() {
               Made with ❤️ by
             </p>
             <div className="flex flex-col lg:flex-row justify-center gap-x-6 gap-y-2 text-sm text-white/50 text-center">
-              <span><strong className="text-white/70 hover:text-white transition-colors"><a href="https://deeptanshu.is-a.dev" target="_blank" rel="noopener noreferrer">Deeptanshu</a></strong> • 3D Website Development</span>
+              <span><strong className="text-white/70 hover:text-white transition-colors"><a href="https://deeptanshu.is-a.dev" target="_blank" rel="noopener noreferrer">Deeptanshu</a></strong> • Website Coding & Development</span>
               <span><strong className="text-white/70 hover:text-white transition-colors"><a href="https://github.com/Pranav-Talmale" target="_blank" rel="noopener noreferrer">Pranav</a> </strong> • Hosting & Code Management</span>
               <span><strong className="text-white/70 hover:text-white transition-colors"><a href="https://www.linkedin.com/in/pathakjatin" target="_blank" rel="noopener noreferrer">Jatin</a> </strong> • UI/UX Wireframing</span>
-              <span><strong className="text-white/70 hover:text-white transition-colors"><a href="https://www.linkedin.com/in/rushil-vishwakarma/" target="_blank" rel="noopener noreferrer">Rushil</a> </strong> • 3D Optimizations & UI/UX</span>
+              <span><strong className="text-white/70 hover:text-white transition-colors"><a href="https://www.linkedin.com/in/rushil-vishwakarma/" target="_blank" rel="noopener noreferrer">Rushil</a> </strong> • UI/UX Contributions</span>
             </div>
             
             {/* Additional Contributors */}
