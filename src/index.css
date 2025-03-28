@@ -98,40 +98,8 @@
 }
 
 .boost-button.charging {
-  border-color: #409CFF;
-  box-shadow: 0 0 30px rgba(64, 156, 255, 0.5);
-}
-
-/* FTL Charging effect */
-.ftl-charge-container {
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.ftl-charge-container.charging {
-  opacity: 1;
-}
-
-.ftl-charge-progress {
-  height: 100%;
-  width: 100%;
-  background: #409CFF;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1.5s linear;
-}
-
-.charging .ftl-charge-progress {
-  transform: scaleX(1);
+  border-color: #ffffff;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }
 
 /* Update boost button for FTL */
@@ -161,15 +129,77 @@
   animation: chargingGlow 1.5s ease-in-out infinite;
 }
 
-@keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+/* New text container progress bar styling */
+.charging-text .charging-progress {
+  transform: scaleX(1);
+  transition: transform 1.5s linear;
 }
 
-.animate-scroll-left {
-  animation: scroll-left 10s linear infinite;
+.charging-text {
+  border-color: rgba(64, 156, 255, 0.4);
+  box-shadow: 0 0 15px rgba(64, 156, 255, 0.3);
 }
 
-.animate-scroll-right {
-  animation: scroll-right 10s linear infinite;
+/* Progress container styling */
+.progress-container {
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  padding: 2px;
+  min-width: 240px;
+  overflow: hidden;
+  isolation: isolate;
 }
+
+.progress-bar-wrapper {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.progress-text {
+  color: rgba(255, 255, 255, 0.9);
+  mix-blend-mode: difference;
+  transition: color 0.3s ease;
+  border-radius: inherit;
+}
+
+.progress-bar {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    rgb(255, 255, 255),
+    rgb(255, 255, 255)
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.3s linear;
+  opacity: 0.95;
+  border-radius: inherit;
+  -webkit-transform: scaleX(0);
+  will-change: transform;
+}
+
+.progress-container.charging .progress-bar {
+  transform: scaleX(1);
+  -webkit-transform: scaleX(1);
+}
+
+.progress-container.charging {
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 0 0 15px rgb(245, 245, 245),
+              inset 0 0 10px rgb(255, 255, 255);
+}
+
+.progress-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgb(255, 255, 255), transparent);
+  transform: translateY(-100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+

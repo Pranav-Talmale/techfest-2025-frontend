@@ -10,6 +10,7 @@ import {
 import {
   EffectComposer,
   ChromaticAberration,
+  Noise,
 } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
@@ -25,9 +26,9 @@ const SHOW_FPS = false; // Toggle this to show/hide FPS counter
 // Timing constants in milliseconds
 const TIMING = {
   FTL_CHARGE: 1500,    // Time to charge FTL drive
-  SCROLL_DELAY: 900,   // Delay before page scroll
+  SCROLL_DELAY: 300,   // Delay before page scroll
   JUMP_RESET: 930,    // Time before resetting after jump
-  TRANSITION: 150      // State transition duration
+  TRANSITION: 50      // State transition duration
 } as const;
 
 // Custom hook to detect when the target key is pressed or mobile touch is active
@@ -51,7 +52,7 @@ function useTurboControl() {
       setTimeout(() => {
         // Scroll the page down smoothly
         window.scrollTo({
-          top: window.innerHeight,
+          top: window.innerHeight + 50,
           behavior: 'smooth'
         });
       }, TIMING.SCROLL_DELAY);
@@ -306,6 +307,11 @@ const PostProcessing = ({ turbo, transitioning }: { turbo: number, transitioning
         blendFunction={BlendFunction.NORMAL}
         offset={[0.002 * turbo * quality, 0.002 * turbo * quality]}
       />
+      <Noise
+        premultiply
+        blendFunction={BlendFunction.OVERLAY}
+        opacity={0.5}
+      />        
     </EffectComposer>
   );
 };
@@ -367,17 +373,17 @@ const Experience = () => {
         </div>
       </div>
       
-      {/* FTL Charge Progress Bar - Now positioned at center-left */}
-      <div className="absolute right-6 bottom-1/6 pointer-events-none z-10 rotate-270 sm:hidden">
-        <div className={`ftl-charge-container ${isCharging ? 'charging' : ''}`}>
-          <div className="ftl-charge-progress" />
-        </div>
-      </div>
-      
       {/* Controls Overlay */}
       <div className="absolute inset-x-0 bottom-12 flex flex-col items-center gap-4 pointer-events-none z-10 select-none touch-none">
-        <div className="text-sm text-white/90 bg-black/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.3)] border border-white/10">
-          Hold circle to charge hyperdrive
+        <div className={`rounded-full shadow-[0_0_15px_rgba(255,255,255,0.3)] border-1 border-white/30 relative overflow-hidden progress-container ${isCharging ? 'charging' : ''}`}>
+          <div className="progress-frame-left" />
+          <div className="progress-frame-right" />
+          <div className="progress-bar-wrapper">
+            <div className="progress-bar progress-bar-white" />
+          </div>
+          <div className="text-sm text-white/90 px-4 py-2 z-10 relative progress-text">
+            Hold circle to charge hyperdrive
+          </div>
         </div>
 
         <div className="pointer-events-auto touch-none">
