@@ -41,7 +41,7 @@ export function Navbar() {
             <div className="flex items-center justify-center space-x-4">
             <Link to="https://dypatil.edu/schools/ramrao-adik-institute-of-technology" target="_blank" className="flex items-center space-x-4">
               <img
-                src="/logos/dyp/white_dy.svg"
+                src="/logos/dyp/white_dy.png"
                 alt="DY Patil University"
                 className="h-10 w-auto"
               />
