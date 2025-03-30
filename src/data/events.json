@@ -102,6 +102,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "3 members",
       "closed": true,
+      "contact": {
+      "Atharva Rane": "+91 9136268919",
+      "Shubham Ghare": "+91 8180892379"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1511882150382-421056c89033?w=800&auto=format&fit=crop&q=60",
@@ -134,6 +138,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "Individual",
       "closed": false,
+      "contact": {
+      "Neeraj Narkhede": "+91 7738426867",
+      "Manmeet": "+91 8850732986"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800&auto=format&fit=crop&q=60",
@@ -170,6 +178,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "4 members",
       "closed": false,
+      "contact": {
+      "Sarvesh Mallikandy": "+91 9321794524",
+      "Varun Raj": "+91 6206355873"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&auto=format&fit=crop&q=60",
@@ -234,6 +246,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "1-2 members",
       "closed": false,
+      "contact": {
+      "Nehal Jariwala": "+91 8928767919",
+      "Shreya Shrivastav": "+91 8169722625"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=800&auto=format&fit=crop&q=60",
@@ -266,6 +282,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "3 members",
       "closed": false,
+      "contact": {
+      "Ayush Naik": "+91 9702504640",
+      "Shubham": "+91 9619723575"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=60",
@@ -300,6 +320,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "10 members",
       "closed": false,
+      "contact": {
+      "Lehar Gowda": "+91 7977490977",
+      "Sharvik": "+91 7977311565"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1636487658609-28282edc1b7e?w=800&auto=format&fit=crop&q=60",
@@ -334,6 +358,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "6 members",
       "closed": true,
+      "contact": {
+      "Amey Shete": "+91 7900064158",
+      "Atharva Potdar": "+91 9769209916"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=800&auto=format&fit=crop&q=60",
@@ -398,6 +426,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "1 member",
       "closed": false,
+      "contact": {
+      "Hardik Singh": "+91 9136186201",
+      "Chirag Shetty": "+91 9136402117"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1623479322729-28b25c16b011?w=800&auto=format&fit=crop&q=60",
@@ -450,7 +482,11 @@
       "venue": "Room 4th Floor",
       "datetime": "2025-02-17T10:00:00Z",
       "teamSize": "4 members",
-      "closed": false
+      "closed": false,
+      "contact": {
+      "Raunak": "+91 7738185493",
+      "Saeyush": "+91 8624966992"
+    }
     },
     {
       "id": "bgmi-cod",
@@ -470,6 +506,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "4 members",
       "closed": false,
+      "contact": {
+      "Yash": "+91 9867890459",
+      "Zubair": "+91 8928401354"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&auto=format&fit=crop&q=60",
@@ -503,6 +543,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "Individual",
       "closed": false,
+      "contact": {
+      "Pritish": "+91 9930363011",
+      "Siddhart": "+91 9136712404"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1607292676061-d629f4b663fa?w=800&auto=format&fit=crop&q=60",
@@ -535,6 +579,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "Individual",
       "closed": false,
+      "contact": {
+      "Jay Darje": "+91 9372059282",
+      "Nirav": "+91 8421394315"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=800&auto=format&fit=crop&q=60",
@@ -568,6 +616,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "1 member",
       "closed": false,
+      "contact": {
+      "Pragya Mishra": "+91 8452057850",
+      "Krishna Bhanushali": "+91 8291194858"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop&q=60",
@@ -601,6 +653,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "4 members",
       "closed": false,
+      "contact": {
+      "Mahadev": "+91 7400375197",
+      "Rishivir": "+91 9892605838"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&auto=format&fit=crop&q=60",
@@ -634,6 +690,10 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "1 member",
       "closed": false,
+      "contact": {
+      "Sujal": "+91 9699293611",
+      "Aqusa": "+91 8591210825"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1597838816882-4435b1977fbe?w=800&auto=format&fit=crop&q=60",
@@ -666,6 +726,9 @@
       "datetime": "2025-04-08T04:30:00Z",
       "teamSize": "2 members",
       "closed": false,
+      "contact": {
+      "Shriniket": "+91 9004082745"
+    },
       "gallery": [
         {
           "url": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800&auto=format&fit=crop&q=60",
