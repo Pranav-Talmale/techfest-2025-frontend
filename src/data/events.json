@@ -25,10 +25,6 @@
       },
       "gallery": [
         {
-          "url": "https://res.cloudinary.com/ddyomaueo/image/upload/v1742998159/event-thumbnails/j4bk7nxronmyit4supj8.jpg",
-          "caption": "Event Poster"
-        },
-        {
           "url": "https://res.cloudinary.com/ddyomaueo/image/upload/v1743437761/event-thumbnails/x6vnxpxncsmyojcxrdp9.jpg",
           "caption": "Mehfil - Open Mic Event"
         },
@@ -38,6 +34,10 @@
         },
         {
           "url": "https://res.cloudinary.com/ddyomaueo/image/upload/v1743437761/event-thumbnails/kwlkzlgw6fmhv9uqa2nz.jpg",
+          "caption": "Mehfil - Open Mic Event"
+        },
+        {
+          "url": "https://res.cloudinary.com/ddyomaueo/image/upload/v1743437762/event-thumbnails/y4h45cdlsumf93adbpdq.jpg",
           "caption": "Mehfil - Open Mic Event"
         },
         {
